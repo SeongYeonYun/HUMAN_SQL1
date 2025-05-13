@@ -14,6 +14,8 @@ SELECT COMM FROM EMP
     
 SELECT * FROM EMP
  WHERE HIREDATE = TO_DATE('81/04/02', 'YY/MM/DD');
+ 
+ sete
     
     
     
