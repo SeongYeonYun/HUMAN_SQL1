@@ -12,10 +12,9 @@ SELECT * FROM EMP
 SELECT COMM FROM EMP 
     ORDER BY COMM DESC; /*NULL값은 값이 비어있으므로 0보다 작은 숫자로 인식됨*/
     
-SELECT * FROM EMP
- WHERE HIREDATE = TO_DATE('81/04/02', 'YY/MM/DD');
+--SELECT * FROM EMP
+--WHERE HIREDATE = TO_DATE('81/04/02', 'YY/MM/DD');
  
- sete
     
     
     
