@@ -30,7 +30,6 @@ SELECT * FROM EMP
 SELECT *
 FROM EMP
 WHERE DEPTNO = 30 AND JOB = 'SALESMAN';
-
 /*
     SELECT *
         FROM EMP
@@ -70,5 +69,7 @@ FROM EMP;
 ANSWER : 그저 설정이 그렇게 되어 있는것, 만일 데이터가 2001-01-01이라고 치면 01/01/01로 출력됨*/    
 SELECT * FROM EMP
     WHERE HIREDATE <= TO_DATE('1981/04/02', 'YYYY/MM/DD');
-
+    
+SELECT * FROM EMP
+    WHERE TO_DATE(HIREDATE, 'YYYY/MM/DD') =  TO_DATE('1981/04','YYYY/MM')
     
