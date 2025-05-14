@@ -170,6 +170,10 @@ select lengthb('A'), lengthb('한') from dual;
 
 desc emp;
 
+SELECT LENGTH(ENAME) AS LEN, ENAME FROM EMP
+    GROUP BY LENRTH(ENAME)
+    
+
 
 
         
