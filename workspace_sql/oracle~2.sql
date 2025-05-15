@@ -226,8 +226,11 @@ SELECT ENAME, RPAD(SUBSTR(ENAME,1,2), LENGTH(ENAME), '*') FROM EMP;
 --SELECT JOB, LPAD(RPAD(JOB,FLOOR((20-LENGTH(JOB))/2)+LENGTH(JOB),'*'),20, '*')
 --FROM EMP; 
 
+--------------------------------------------------------------------------------
 SELECT JOB, LPAD(RPAD(JOB,(20-LENGTH(JOB))/2+LENGTH(JOB),'*'),20, '*')
 FROM EMP; 
+--RPAD함수 자체가 정수로 처리
+--------------------------------------------------------------------
 
 --글자수가 홀수개일 경우????? 애당초 가운데 정렬이 안된다.
 --먼저 앞에 들어가는 *수와 뒤에 들어가는 *수를 구하자    
