@@ -229,11 +229,10 @@ SELECT ENAME, RPAD(SUBSTR(ENAME,1,2), LENGTH(ENAME), '*') FROM EMP;
 SELECT JOB, LPAD(RPAD(JOB,(20-LENGTH(JOB))/2+LENGTH(JOB),'*'),20, '*')
 FROM EMP; 
 
--- 질문 : '/'연산자의 경우 7/2는 3.5가 나와야 하는것 아닌가????????
-
 --글자수가 홀수개일 경우????? 애당초 가운데 정렬이 안된다.
-    
--- 20-LENGTH(ENAME)/2 가 앖 뒤로FLOOR(A/B)
+--먼저 앞에 들어가는 *수와 뒤에 들어가는 *수를 구하자    
+    -- (20-LENGTH(ENAME))/2 가 앖 뒤로FLOOR(A/B)
+    -- 앞뒤로 추가하자
 --------------------------------------------------------------------------------------------------------
 SELECT COMM, 
     NVL(COMM, 0)
@@ -252,3 +251,56 @@ SELECT '      AB C   ', TRIM('      AB C   ') FROM DUAL;
 TRIM은 앞뒤 공백을 모두 제거해 주지만 문자 사이의 공백을 제거하지 못한다.
 만약 모두 지고 싶다면 REPLCE를 활용한다.
 */
+
+--ROUND
+SELECT
+    ROUND(14.46),
+    --하나만 입력하면 소숫점 첫쨰자리 반올림
+    
+    ROUND(14.4126,3)
+    --소숫점 두번째자리 까지 반올림
+    
+FROM DUAL;
+
+SELECT
+    TRUNC(14.46),
+    TRUNC(14.46,1),
+    TRUNC(14.46,-1),
+    TRUNC(-14.46)
+FROM DUAL;    --소수점 버림
+
+SELECT
+    CEIL(3.14),
+    FLOOR(3.14),
+    CEIL(-3.14),
+    TRUNC(-3.14)
+FROM DUAL;
+--CEIL : 나랑 가장 가까운 나보다 큰 정수
+--FLOOR : 나랑 가장 가까운 나보다 작은 정수
+      
+
+SELECT 7/0 FROM DUAL; --DIVISION ERROR 
+SELECT 7/3 FROM DUAL;
+
+SELECT MOD(7,3), MOD(8,3),MOD(9,3)  FROM DUAL;
+SELECT MOD(8,3) FROM DUAL;
+SELECT MOD(9,3) FROM DUAL;
+
+SELECT FLOOR(12/3) FROM DUAL;
+SELECT FLOOR(-10/3) FROM DUAL;
+--FLOOR의 경우 안에 있는 숫자보다 작은 정수중 가장 큰 정수를 반환하기 떄문에 
+--나머지를 한다음 몫이 반환된다(양수일 경우)
+
+select sysdate-15 from dual; --오늘날자 출력하는법, 영국시간
+
+select empno + '1000' from emp;
+select empno + '100sdsd0' from emp; --error
+
+
+select 'sfasf' + '100sdsd0' from emp; --error
+-- concat @@@@ ||
+--select 'sfasf' || '100sdsd0' from emp;
+
+select to_char(HIREDATE, 'yyyy"년" mm-dd hh"시" mi"분" SS"초"') from EMP; --날자 포멧할때 한글은 ""사용
+
+SELECT TO_DATE('2025-05-15', 'YYYY-MM-DD') - TO_DATE('2005-05-12' ,'YYYY-MM-DD') FROM DUAL;
