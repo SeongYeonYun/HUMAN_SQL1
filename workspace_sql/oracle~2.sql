@@ -165,16 +165,90 @@ SELECT EXTRACT(YEAR FROM HIREDATE) AS YEAR FROM EMP;
 SELECT ENAME, LENGTH(ENAME) AS LEN FROM EMP
     WHERE LENGTH(ENAME)=5;
     
-select lengthb('A'), lengthb('한') from dual;
+select lengthb('""'), lengthb('한') from dual;
 --lengthb -> 바이트 크기 , 띄어쓰기 1바이트
+
 
 desc emp;
 
 SELECT LENGTH(ENAME) AS LEN, ENAME FROM EMP
-    GROUP BY LENRTH(ENAME)
+    GROUP BY LENRTH(ENAME);
     
 
+select job, substr(job,-3,1), substr(job,5) from emp;
+/* -일경우 맨 뒤에서 자리 카운트*/
 
+--select * from emp
+--    where empno= 10
+--    order by empno desc
+--
+--union all
+--
+--select * from emp
+--    where empno= 20
+--    order by empno asc;
 
-        
+--union 명령어를 할떄 중간에 정렬을 할수는 없고 마지막에 써야함
+
     
+/*
+궁금한점 lengthb 함수에서 lengthb('''')는 왜 크기가 1바이트 이고 ' '을 하면 왜 에러가 나는가??
+''는 하나의 문자로 인식하지만 안에 내용이 추가되는 경우 입력값을 두개로 인식하기 때문에 에러가 발생한다.
+""은 다른 기호이기 떄문에 가능하다.
+*/
+
+select job, substr(job,1,2),substr(job,3,2),substr(job,5) from emp;
+
+select ename, substr(ename,2,3) from emp;
+
+select ename, substr(ename,-3,2) from emp;
+
+select ename , substr(ename, -3,3) from emp;
+
+SELECT 'A-B-C',
+     REPLACE('A-B-C', '-', '*'),
+     REPLACE('A-B-C', '-', '*'),
+     REPLACE('A-B-C', '-', '')
+FROM EMP;
+
+SELECT 'AB'|| 'CD'|| 'EF' FROM DUAL;
+
+    
+SELECT LPAD(ENAME, 10, '+') FROM EMP;
+
+---문제 2
+SELECT ENAME, RPAD(SUBSTR(ENAME,1,2), 6, '*') FROM EMP;
+
+---문제 3
+SELECT ENAME, RPAD(SUBSTR(ENAME,1,2), LENGTH(ENAME), '*') FROM EMP;
+
+---심화 길이가 20일때 가운데정렬 
+--SELECT JOB, LPAD(RPAD(JOB,FLOOR((20-LENGTH(JOB))/2)+LENGTH(JOB),'*'),20, '*')
+--FROM EMP; 
+
+SELECT JOB, LPAD(RPAD(JOB,(20-LENGTH(JOB))/2+LENGTH(JOB),'*'),20, '*')
+FROM EMP; 
+
+-- 질문 : '/'연산자의 경우 7/2는 3.5가 나와야 하는것 아닌가????????
+
+--글자수가 홀수개일 경우????? 애당초 가운데 정렬이 안된다.
+    
+-- 20-LENGTH(ENAME)/2 가 앖 뒤로FLOOR(A/B)
+--------------------------------------------------------------------------------------------------------
+SELECT COMM, 
+    NVL(COMM, 0)
+    FROM EMP;
+--NULL값을 대체하기 위해서 사용되는 함수 nvl
+--ORACLE의 경우 REPLACE는 NULL값을 지원하지 않는다.
+--NVL2(컬럼명, NOT NULL, NULL)
+  
+SELECT COMM, REPLACE(COMM, 300, NULL) FROM EMP;
+--아마 오라클에서 REPLACE는 NULL값이 뭔지는 알지만 NULL값 특성상 값이 존재하지 않기 때문에 인식하지는 못하는것 같다.
+---------------------------------------------------------------------------------------------------------
+
+SELECT CONCAT(NULL, 'abc') AS result FROM DUAL;
+SELECT '      AB C   ', TRIM('      AB C   ') FROM DUAL;
+/*
+TRIM은 앞뒤 공백을 모두 제거해 주지만 문자 사이의 공백을 제거하지 못한다.
+만약 모두 지고 싶다면 REPLCE를 활용한다.
+*/
