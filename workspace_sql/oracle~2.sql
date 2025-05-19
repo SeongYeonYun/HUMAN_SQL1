@@ -413,25 +413,7 @@ SELECT EMPNO, ENAME, MGR,
 FROM EMP;
 
 
-select * from car_history;
---car_history : 자동차 대여 목록 ,
---car_id : 자동차 아이디,
---start_date : 대여 시작일
---end_date : 대여 종료일
 
-desc car_history;
---10월 22일을 기준으로 대여중인것은 '대여중', 대여 가능한것은 '대여가능'으로 표시하라
---10월 22일 기준 반납했을경우도 대여중으로 취급한다.
-
-select car_id, stat from
-    (select car_id, start_date, end_date,
-        case
-            when to_date('2022-10-22') between start_date and end_date
-                then '대여중'
-                else '대여가능'
-            end as stat
-    from car_history)
-    where stat = '대여중';
 
 --select
 --    case
@@ -457,13 +439,151 @@ select avg(sal) from emp;
 select
     sum(sal)/count(*) as mean
      ,sal > sum(sal)/count(*)
-    grou
+    grouP
     from emp;
    
    
 select deptno
 from emp
 group by deptno;
-    
 
+SELECT *FROM EMP ;
+
+SELECT * 
+ FROM EMP
+ WHERE COMM <= 300
+
+UNION ALL  -- 증복 포함
+
+SELECT * 
+FROM EMP
+WHERE COMM <= 500 ;
+
+-----------------------05.19----------------
+-- JOIN -- 
+SELECT * 
+    FROM 
+            EMP, DEPT
+    ORDER BY 
+            EMPNO
+;
+
+select * from emp;
+select * from dept;
+
+select ename,e.deptno
+    from emp e, dept d
+    where e.deptno = d.deptno
+    order by empno;
+
+--급여 등급 테이블
+select * from salgrade;
+
+--자신의 상사 코드 조회, 총 13개의 결과값이 나온다 
+select * from emp e , emp d
+    where e.mgr = d.empno;
+    --deptno가 두개 나타남,
+
+select * from dept;    
+--3개 테이블 합치기
+select *   from emp e
+    join emp d
+    on e.mgr = d.empno
+    join dept p
+    on d.deptno = e.deptno;
+    -- deptno가 3개 나타남
+--    join dept p
+--    on p.deptno = d.deptno;
+    
+--이런 식으로 *앞에 별칭으 붙혀야 한다 . ex) select grade. salgrade.* from salgrade
+
+--select * from emp.e,
+--    where e.mgr = c.empno;
+--별칭이 있어야만 오라클이 작동, deptno같은 경우 동일한  컬럼이 있기 때문에 지정르 해줘야 한다.
+
+--select ename,deptno
+--    from emp e, dept d
+--    where e.deptno = d.deptno
+--    order by empno;
+
+--자신의 상사 코드 조회, 총 13개의 결과값이 나온다 
+select * from emp e , emp d, dept p
+    where e.mgr = d.empno
+     and e.deptno = p.deptno;
+     --and d.deptno = p.deptno;
+    --deptno가 두개 나타남,
+    
+select * from dept;
+select *  from emp e
+    join emp d
+    on e.mgr = d.empno
+    join dept p
+    on e.deptno = p.deptno --and d.deptno = p.deptno;
+    join dept p
+    on p.deptno = d.deptno;
+
+ 
+/*
+오라클 문법인 where절을 활용하면 문제는 조건식으로 판단이 된다. 만약 상사와 직원의 부서 코드
+인 deptno값을 dept 테이블을 조인 히려고 한다면 오라클 문법이 아닌 join on 구물을 활용하는게 좋은것 같다
+*/
+--using를 사용할 경우 .deptno는 쓰면 안됨
+select empno, ename, deptno 
+from emp e join dept d using(deptno)
+where sal >= 3000;
+
+select empno, ename, d.deptno 
+from emp e join dept d 
+on e.deptno = d.deptno
+where sal >= 3000;
+
+
+select e2.empno,
+e1.ename, 
+e1.deptno
+from emp e1 left outer join emp e2 
+on e1.mgr = e2.empno;
+
+----------------q1------------------------
+select e.deptno, dname, empno, ename, sal
+from  emp e
+join dept d on e.deptno = d.deptno
+where sal >2000
+order by e.deptno;
+
+
+---------------------q2-------------
+select e.deptno, d.dname,
+avg(sal), max(sal), 
+min(sal), count(sal) as cnt
+from emp e join dept d 
+on e.deptno = d.deptno
+group by e.deptno,d.dname;
+
+------------------3-------------
+select e.deptno,
+dname, 
+empno, ename, job, sal
+from emp e right outer join dept d on e.deptno = d.deptno
+order by deptno,dname;
+
+select * from emp;
+
+-------------------------------4-----------------------
+--
+select     
+e.ename , d.dname, 
+e.empno, e.ename, 
+e.mgr, e.sal, 
+e.deptno, s.losal,
+s.hisal, s.grade, 
+e.empno as MGR_empno, 
+e.ename as MGR_ENAME
+from emp e left OUTER JOIN  emp e1
+on e.mgr = e1.empno
+join dept d
+on d.deptno = e.deptno
+join salgrade s 
+on e.sal between s.losal and s.hisal
+order by e.deptno,e.empno;
 
