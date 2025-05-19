@@ -307,3 +307,163 @@ select 'sfasf' + '100sdsd0' from emp; --error
 select to_char(HIREDATE, 'yyyy"년" mm-dd hh"시" mi"분" SS"초"') from EMP; --날자 포멧할때 한글은 ""사용
 
 SELECT TO_DATE('2025-05-15', 'YYYY-MM-DD') - TO_DATE('2005-05-12' ,'YYYY-MM-DD') FROM DUAL;
+
+--null 값일 경우 null값이 출력되기 떄문에 조건문으로 계산한다(null=0). comm은 정확한 인센이라 정확한 연봉은 아님
+select ename, 
+    case
+        when comm is null 
+            then sal * 12 +0 
+            else sal * 12 + comm
+    end total_pay
+    from emp;
+
+
+select job , sal ,
+    decode(job, 'MANAGER', sal*1.1,
+                'SALESMAN', SAL*1.05) AS UPSALE
+from emp;
+
+
+--소수점이 없는 정수 형을 출력하거나 정수형으로 만들어보자.
+--1. 1로 나눈 나머지가 0보다 근경우 -> 오라클에서 1로 나누는것은 숫자 자체에 영향을 끼치지 않는 방식이기 떄문에 소수점 이하의 값이 그대로 출력된다.
+--  WHERE MOD((sal * 1.814),2) >=0 ;
+
+--2. 문자형으로 변환한후 ','가 있는경우 옆의 글자 제거
+-- 소수점의 경우 문자형으로 변환시 소수점(.)은 뭊자로 인식되지 않는다.
+SELECT TO_CHAR(SAL * 1.814)  AS UPSALE FROM EMP
+    WHERE  TO_CHAR(SAL * 1.814) LIKE '2';
+
+--3. 버림이나 반올림을 한다 (ROUND, TRUNC)
+SELECT TRUNC(SAL * 1.814) AS UP_SALE FROM EMP;
+
+
+SELECT COMM, 
+    CASE
+        WHEN COMM IS NULL THEN '해당없음'
+        WHEN COMM = 0 THEN '0원'
+        WHEN COMM > 0 THEN '수당 : ' || COMM
+    END AS CASE
+FROM EMP;
+    
+--궁금한점 : CASE COMM  WHEN NULL과 다른점이 뭐지???????
+--ANSWER : CASE COMM의 경우 COMM값이 먼저 입력되기 때문에 조건문을 판별할수 없다.
+
+SELECT ENAME, COMM, 
+    CASE 
+        WHEN COMM IS NULL
+            THEN -1
+            ELSE COMM
+    END AS CASE,
+    DECODE(COMM, NULL ,-1,COMM) AS DECO
+ 
+ FROM EMP;
+
+
+
+--------------1----------------------- 
+SELECT EMPNO,RPAD(SUBSTR(EMPNO,1,2),LENGTH(EMPNO), '*') AS MASKING_EMPNO, 
+       ENAME,RPAD(SUBSTR(ENAME,1,1),LENGTH(ENAME), '*') AS  MASKING_ENAME
+       FROM EMP
+       WHERE LENGTH(ENAME) = 5;
+    
+--------------------2---------------
+SELECT EMPNO, ENAME, SAL, 
+       TRUNC((SAL / 21.5),2) AS DAY_PAY,
+       ROUND((SAL / 21.5)/8,1) AS THE_PAY
+
+FROM EMP;
+
+---------------3--------------
+SELECT EMPNO, ENAME, HIREDATE, 
+    NEXT_DAY(ADD_MONTHS(HIREDATE,3),'월요일') AS R_JOB, NVL(TO_CHAR(COMM),'N/A') AS COMM
+    FROM EMP
+  --NEXT_DAY 다음주 요일 반환, COMM변수가 숫자형 이기 떄문에 문자형으로 변환한 후 문자형 'N/A'로 변환  
+;
+
+---------4--------
+--데이터 타입이 숫자형이라 0하나밖에 출력이 안됨 -> 문자열로 바꿈
+
+SELECT EMPNO, ENAME, MGR,
+    TO_CHAR(
+        CASE
+            WHEN MGR IS NULL THEN 0
+            WHEN SUBSTR(TO_CHAR(MGR), 1, 2) = '75' THEN 5555
+            WHEN SUBSTR(TO_CHAR(MGR), 1, 2) = '76' THEN 6666
+            WHEN SUBSTR(TO_CHAR(MGR), 1, 2) = '77' THEN 7777
+            WHEN SUBSTR(TO_CHAR(MGR), 1, 2) = '78' THEN 8888
+            ELSE MGR
+        END,
+        'FM0000'
+    ) AS CHG_MGR
+FROM EMP;
+
+
+SELECT EMPNO, ENAME, MGR, 
+    CASE
+        WHEN MGR IS NULL THEN '0000'
+        WHEN SUBSTR(MGR,1,2) = 75 THEN '5555'
+        WHEN SUBSTR(MGR,1,2) = 76 THEN '6666'
+        WHEN SUBSTR(MGR,1,2) = 77 THEN '7777'
+        WHEN SUBSTR(MGR,1,2) = 78 THEN '8888'
+        ELSE TO_CHAR(MGR)
+
+    END AS CHG_MGR
+
+
+FROM EMP;
+
+
+select * from car_history;
+--car_history : 자동차 대여 목록 ,
+--car_id : 자동차 아이디,
+--start_date : 대여 시작일
+--end_date : 대여 종료일
+
+desc car_history;
+--10월 22일을 기준으로 대여중인것은 '대여중', 대여 가능한것은 '대여가능'으로 표시하라
+--10월 22일 기준 반납했을경우도 대여중으로 취급한다.
+
+select car_id, stat from
+    (select car_id, start_date, end_date,
+        case
+            when to_date('2022-10-22') between start_date and end_date
+                then '대여중'
+                else '대여가능'
+            end as stat
+    from car_history)
+    where stat = '대여중';
+
+--select
+--    case
+--        when mgr is null
+--            then  '0000'
+--        when substr(mgr,2,1) in ('5','6','7','8')
+--            then  lpad(substr(mgr,2,1), length(mgr), substr(mgr,2,1))  
+--        
+--    end as lp
+--    from emp;
+
+-- select ~~ group by 구문중 연산되는 함수의 경우 null값을 제외하고 계산한다.
+--예를들어 avg 의 경우 null값 자체를 무시하기 때문에 분모(전체 크기가 작아진다.
+
+--이름에 a가 들어가는 사람 수
+
+select count(*)  from emp
+    where ename like '%A%';
+   
+select avg(sal) from emp;
+   
+
+select
+    sum(sal)/count(*) as mean
+     ,sal > sum(sal)/count(*)
+    grou
+    from emp;
+   
+   
+select deptno
+from emp
+group by deptno;
+    
+
+
