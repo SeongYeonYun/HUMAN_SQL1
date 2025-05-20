@@ -158,6 +158,10 @@ select
     from animal_outs o
         left outer join animal_ins s
         on o.animal_id = s.animal_id
-            where s.animal_id is null;
+        where s.animal_id is null
+        order by animal_id, name;
+            
+select * from  animal_outs;
 
-
+select * from  animal_ins;
+--https://school.programmers.co.kr/learn/courses/30/lessons/131534
