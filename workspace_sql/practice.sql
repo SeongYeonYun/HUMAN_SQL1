@@ -61,7 +61,8 @@ INSERT INTO july (SHIPMENT_ID, FLAVOR, TOTAL_ORDER) VALUES (112, 'pineapple', 20
 INSERT INTO july (SHIPMENT_ID, FLAVOR, TOTAL_ORDER) VALUES (208, 'mango', 110);
 INSERT INTO july (SHIPMENT_ID, FLAVOR, TOTAL_ORDER) VALUES (209, 'strawberry', 220);
 
-
+--q: 7월과 전반기 총 주문량을 더하고 상위 3개의 맛을 추력하라
+--https://school.programmers.co.kr/learn/courses/30/lessons/133027
 -- 1. 우선 7월과 싱빈기의 주문값을 더한다.
 -- -> 1. union all 을 한다음 group by sum
 -- -> 2. shipent_id를 기준으로 조인한다. flavor 은 증복값이 있기 떄문에 pass
@@ -77,6 +78,7 @@ INSERT INTO july (SHIPMENT_ID, FLAVOR, TOTAL_ORDER) VALUES (209, 'strawberry', 2
     --chocolate
 -------------------------1----------------------
 select * from july;
+select * from first_half;
 
 select flavor from(
     select flavor 
@@ -90,7 +92,8 @@ select flavor from(
        
     group by flavor  
     order by sum(total_order) 
-        desc)
+        desc
+    )
     
     --상위 n개를 추출, mysql에서는 limit n 함수를 사용한다. 헷살리지 말것;
     where rownum <= 3;  
@@ -98,31 +101,48 @@ select flavor from(
     
 
 --------------------2----------------------
-select flavor from (
-   select flavor ,sum(total_order)
-        from (
-            select 
-               j.shipment_id,
-               j.flavor,
-               j.total_order + f.total_order as total_order
-               from july j 
-               join FIRST_HALF f
-               on j.shipment_id = f.shipment_id
-              
-                   
-           )
-       group by flavor     
-       order by sum(total_order) desc
-          
-       )
-   where rownum <=3;
-        
-  
-    
+
+select * from(
+    select flavor from(
+        select
+            j.shipment_id,
+            j.flavor,
+            j.total_order,
+            f.total_order,
+            
+            --join 했을때 생기는 null값을 고려해야함,
+            case
+                /* 상반기 주문량의 값이 null일 경우 */
+                when f.total_order is null        
+                    then 
+                        case
+                            /* 상반기와 7월달의 데이터가 둘다 null값 일경우 */
+                            when j.total_order is null
+                                then null
+                                
+                                /* 상반기 null, 7월이 not null */
+                                else j.total_order
+                        end 
+                    else 
+                        case 
+                            /* 상반기 값이 null이 아니고 7월값이 null인경우 */
+                            when j.total_order is null
+                                then f.total_order
+                                /* 상반기와 7월 둘다 null이 아닌경우 */
+                                else j.total_order + f.total_order
+                        end
+                
+            end t_order
+            
+            --shipment_id 는 july테이블의 기본키 이다.
+            --궁금한점 : left or right 조인을 할때 기본키를 키로 조인해야 하는가?
+            -- answer : 상관없다. 단 두 테이블의 기본키가 동일할경우 더 깔끔하고 증복의 가능성이 없기 떄문에 안정적이다.
+            from july j 
+                full outer join FIRST_HALF f
+                on j.shipment_id = f.shipment_id)
+                
+            group by flavor
+            order by sum(t_order) desc)
+            where rownum <= 3; 
 
 
-  
-
-    
-
-    
