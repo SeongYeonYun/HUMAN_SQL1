@@ -610,5 +610,157 @@ select
 ;
 
 
+select * from(
+    select * 
+        from emp
+        where sal > 2975
+    )
+    where deptno = 10;
+
+--스캇보다 일찍 입사한 사람
+select * from emp
+    where hiredate < (
+                select hiredate 
+                from emp 
+                where ename = 'SCOTT');
+         
+ --평균보다 돈을 믾이 받는사람               
+select ename from emp
+    where sal >= ( 
+        select avg(sal) from emp        
+        );
+        
+--부서별 최대급여를 받는 사람들 목록        
+select deptno,ename, sal 
+    from emp 
+    where sal in (        
+        select        
+            max(sal) 
+        from 
+            emp 
+        group by 
+            deptno
+        )
+    order by deptno;
+
+    
+select 
+    e10.empno,
+    e10.ename,
+    e10.deptno,
+    d.dname,
+    d.loc
+
+    from (select * from emp where deptno = 10) e10,
+    (select * from dept) d
+    
+    where e10.deptno = d.deptno;
 
 
+select * 
+    from (
+        select job , count(*) as cnt
+        from emp
+        group by job          
+        )
+     where cnt >= 3
+        ; 
+select * 
+    from(
+        select rownum as rn,emp.* from emp
+        order by sal desc
+        )
+    where rn between 2 and 4;
+ --------p249--------------
+ ---------1---------
+ select 
+    job, 
+    empno,
+    ename,
+    sal,
+    e.deptno,
+    d.dname
+    
+from emp e
+
+    join dept d 
+        on e.deptno = d.deptno
+        
+     where job in (
+        select job  
+        from emp
+        where ename = 'ALLEN'
+        );
+        
+--------2--------------
+select 
+    empno,
+    ename,
+    dname,
+    hiredate,
+    loc,
+    sal,
+    grade
+    
+    from emp e
+        join dept d
+        on e.deptno = d.deptno
+        
+        join salgrade s
+            on e.sal  between s.losal and s.hisal
+    
+    where sal > (select avg(sal) from emp)
+    
+    order by sal desc,empno;
+    
+ ----------------3--------------------------
+ select 
+    e.empno,
+    e.ename,
+    job,
+    e.deptno,
+    dname,
+    loc
+    
+    from 
+        emp e 
+        join dept d
+        on e.deptno = d.deptno
+        
+    where e.deptno = 10 
+    and job not in (    
+            select job from emp
+            where deptno = 30);
+        
+--select job from emp
+--    where deptno = 10 
+--    and job not in (    
+--            select job from emp
+--            where deptno = 30)
+ 
+ -------------------4----------------
+ select 
+    empno,
+    ename,
+    sal,
+    grade
+    
+    from emp e
+        join salgrade s
+        on e.sal between s.losal and s.hisal
+        
+    where sal >
+        (select max(sal) 
+            from emp
+            where job = 'SALESMAN')
+            
+    order by empno asc;        
+ 
+ --재귀
+ with e10 as (
+    select * from emp where deptno = 10)
+    select ename from e10
+    ;
+
+
+        
