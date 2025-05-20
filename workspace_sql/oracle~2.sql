@@ -571,19 +571,19 @@ select * from emp;
 
 -------------------------------4-----------------------
 --
-select     
-e.ename , d.dname, 
+
+
+select e.ename , d.dname, 
 e.empno, e.ename, 
 e.mgr, e.sal, 
 e.deptno, s.losal,
 s.hisal, s.grade, 
 e.empno as MGR_empno, 
 e.ename as MGR_ENAME
-from emp e left OUTER JOIN  emp e1
-on e.mgr = e1.empno
-join dept d
-on d.deptno = e.deptno
-join salgrade s 
-on e.sal between s.losal and s.hisal
-order by e.deptno,e.empno;
-
+    from emp e 
+    full outer join dept d
+    on e.deptno = d.deptno
+    full outer join salgrade s
+    on e.sal between s.losal and s.hisal
+      
+;    
