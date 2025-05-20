@@ -553,11 +553,14 @@ order by e.deptno;
 
 
 ---------------------q2-------------
-select e.deptno, d.dname,
-avg(sal), max(sal), 
-min(sal), count(sal) as cnt
+select 
+    e.deptno, d.dname,
+    trunc(avg(sal)), max(sal), 
+    min(sal), count(sal) as cnt
+    
 from emp e join dept d 
-on e.deptno = d.deptno
+    on e.deptno = d.deptno
+    
 group by e.deptno,d.dname;
 
 ------------------3-------------
@@ -573,17 +576,39 @@ select * from emp;
 --
 
 
-select e.ename , d.dname, 
-e.empno, e.ename, 
-e.mgr, e.sal, 
-e.deptno, s.losal,
-s.hisal, s.grade, 
-e.empno as MGR_empno, 
-e.ename as MGR_ENAME
-    from emp e 
-    full outer join dept d
-    on e.deptno = d.deptno
-    full outer join salgrade s
-    on e.sal between s.losal and s.hisal
-      
+select 
+    e.ename ,
+    d.dname, 
+    e.empno,
+    e.ename, 
+    e.mgr,
+    e.sal, 
+    e.deptno,
+    s.losal,
+    s.hisal, 
+    s.grade, 
+    e.empno as MGR_empno, 
+    e.ename as MGR_ENAME
+    
+from dept d 
+    left outer join emp e
+        on e.deptno = d.deptno
+    left outer join salgrade s
+        on e.sal between s.losal and s.hisal      
 ;    
+
+
+--각 부서별 급여가 가장 높은 사람 , 낮은 사원의 차이와 부서번호 
+select 
+    deptno,
+    (max(sal)- min(sal)) as dif_sal,
+    round(stddev(sal),2) as stdev, --표준편차 구하기, group_by 함수가 아니다
+    round(variance(sal) ,2) as val --분산 구하기 , 이하동문
+    from emp
+    group by deptno
+    order by (max(sal)- min(sal))
+;
+
+
+
+
