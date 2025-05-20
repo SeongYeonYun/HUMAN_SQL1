@@ -81,7 +81,7 @@ select * from july;
 select * from first_half;
 
 select flavor from(
-    select flavor 
+    select flavor  
 
     from
         (
@@ -96,7 +96,8 @@ select flavor from(
     )
     
     --상위 n개를 추출, mysql에서는 limit n 함수를 사용한다. 헷살리지 말것;
-    where rownum <= 3;  
+    where rownum <= 3
+    ;  
     
     
 
@@ -144,5 +145,19 @@ select * from(
             group by flavor
             order by sum(t_order) desc)
             where rownum <= 3; 
+-----------------------------------------------------------------------------------------------------------
+--https://school.programmers.co.kr/learn/courses/30/lessons/59042
+
+
+--animal_out을 기준으로 left join , key = animal_id
+
+select 
+    o.animal_id, 
+    o.name
+    
+    from animal_outs o
+        left outer join animal_ins s
+        on o.animal_id = s.animal_id
+            where s.animal_id is null;
 
 
