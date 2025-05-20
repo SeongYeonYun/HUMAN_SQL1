@@ -762,5 +762,42 @@ select
     select ename from e10
     ;
 
+---rownum이 아닌 또 달른 순위 매기는법
+--함수명	설명
+--RANK()	동일 순위가 있을 경우, 그 다음 순위는 건너뜀 (ex: 1,1,3)
+--DENSE_RANK()	동일 순위가 있어도 다음 순위를 건너뛰지 않음 (ex: 1,1,2)
+--ROW_NUMBER()	무조건 고유한 순번을 부여 (ex: 1,2,3...)
+
+--?ORDER BY: 정렬 기준
+--어떤 기준으로 순위를 매길지 정합니다.
+--
+--ORDER BY가 없으면 RANK()는 사용할 수 없습니다.
+--
+--RANK() OVER (ORDER BY TOTAL_ORDER DESC)
+--→ 주문량이 높은 순서대로 순위를 매긴다.
+--
+--(2) PARTITION BY: 그룹 나누기 (선택)
+--그룹별로 순위를 다시 시작하고 싶을 때 사용합니다.
+--→ FLAVOR_TYPE이라는 그룹 내에서만 순위를 매긴다
+
+
+RANK() OVER (PARTITION BY FLAVOR_TYPE ORDER BY TOTAL_ORDER DESC)
+
+select ename, sal , rownum from (
+    select ename, sal from emp
+        order by sal desc
+        )
+    where rownum <=3;
+
+
+
+select * from(
+    select 
+        ename,sal, 
+        dense_rank() over(order by sal desc) as order_rank
+        --rank() over(order by sal desc) as order_rank
+        
+        from emp)
+    where order_rank<=3;
 
         
