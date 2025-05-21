@@ -727,10 +727,12 @@ select
         join dept d
         on e.deptno = d.deptno
         
-    where e.deptno = 10 
+    where e.deptno = 10
+    
     and job not in (    
             select job from emp
-            where deptno = 30);
+            where deptno = 30)
+    ;
         
 --select job from emp
 --    where deptno = 10 
@@ -746,13 +748,15 @@ select
     grade
     
     from emp e
-        join salgrade s
+        left outer join salgrade s
         on e.sal between s.losal and s.hisal
         
     where sal >
         (select max(sal) 
             from emp
             where job = 'SALESMAN')
+            --all을 쓰면 다중행 함수를 사용하지  않아도 된다.
+            
             
     order by empno asc;        
  
@@ -799,5 +803,54 @@ select * from(
         
         from emp)
     where order_rank<=3;
+    
+-----------------1------------------------
+select * from emp
+    where comm is null
+    order by sal asc;
 
+------------2-------------------
+select
+    grade,    
+    count(*) as cnt
+        
+    from (select * 
+        from emp e
+        right outer join salgrade s
+        on e.sal between s.losal and s.hisal)
+        
+    group by grade 
+    order by cnt asc;
+-------------3----------------------
+select 
+    e.ename,
+    e.sal,
+    s.grade,
+    d.dname
+    
+    from emp e
+        join salgrade s
+        on e.sal between s.losal and s.hisal
+        join dept d
+        on e.deptno = d.deptno
+        
+    where grade >=3
+    
+    order by grade desc, sal desc;
+    
+----------------4-------------------------
+select *
+    
+    from emp e
+        join salgrade s
+        on e.sal between s.losal and s.hisal
+        join dept d
+        on e.deptno = d.deptno
+    where d.dname = 'SALES' and grade in (2,3)
+    
+    order by  sal desc;
+
+   
+select *from salgrade;
+    
         
