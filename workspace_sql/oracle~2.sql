@@ -852,5 +852,58 @@ select *
 
    
 select *from salgrade;
-    
+
+---------------------------------------------------------------------------------
+rename emp_alter to emp_rename;
+
+desc emp_alter; --출력이 안되는게 정강상임, 이름이 바뀜
+
+select * from emp_rename;
+
+create table emp_temp
+as select * from emp;
+
+--모든 데이터가 사라짐
+truncate table emp_temp;
+select * from emp_temp;
         
+create table emp_hw(
+    empno number(4),
+    ename varchar2(10),
+    job   varchar2(9),
+    mgr   int(4),
+    hiredate date,
+    sal number(7,2),
+    comm number(7,2),
+    deptno int(2)
+    );
+drop table emp_hw;
+desc emp_hw;
+
+---------------311----------1-------------------
+CREATE TABLE emp_hw (
+    empno    NUMBER(4),
+    ename    VARCHAR2(10),
+    job      VARCHAR2(9),
+    mgr      number(4),
+    hiredate DATE,
+    sal      NUMBER(7,2),
+    comm     NUMBER(7,2),
+    deptno   number(2)
+);
+
+desc emp_hw;
+
+-------------311 2------------------
+alter table emp_hw
+    add bigo varchar2(20);
+   
+---------------311-3--------------    
+alter table emp_hw
+    modify bigo varchar2(30);
+    
+select * from emp_hw;
+--------------311-4------------------
+
+alter table emp_hw
+    rename column bigo to remark;
