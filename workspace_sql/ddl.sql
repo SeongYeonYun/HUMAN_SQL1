@@ -173,10 +173,10 @@ CREATE TABLE emp_hw (
     mgr      number(4),
     hiredate DATE,
     sal      NUMBER(7,2),
-    comm     NUMBER(7,2),
+    comm     NUMBER(7,2) not null ,
     deptno   number(2)
 );
-
+drop table emp_hw;
 desc emp_hw;
 desc emp;
 -------------311 2------------------
@@ -205,3 +205,136 @@ SELECT
 FROM emp;
 
 --drop table emp_hw;
+
+--drop table online_sale;
+
+--미리 오라클에서 정의된 
+select * from dict;
+
+--우저가 만든 db목록
+select table_name from user_tables;
+
+select * from user_indexes;
+
+--인덱싱 order by 처럼 정령을 해서 가지고 있는것,
+
+create index idx_emp_sal on emp(sal);
+
+--descend 가 정렬의 기준임
+select * from user_ind_columns;
+
+--계획 설명에서 cost가 높을떄 인덱스를 하면 속도가 빨라짐, cost는 높으면 속도가 빨라진다.
+select /*+ index(emp idx_emp_sal)*/ --강제 hint
+    * 
+    from emp
+        where sal >2000;
+
+--ORA-01031: insufficient privileges,  view셍성권한 없음    
+create view vw_emp20
+    as (
+        select 
+            empno,
+            ename,
+            job,
+            deptno
+            
+            from emp
+            where deptno = 20
+        );
+        
+--삭제할떄는 drop view
+
+select * from dept ;
+
+-- sequence 생성권한 없음
+create sequence seq_dept_sequence
+    start with 10,
+    increment by 20;
+    
+SELECT sequence_name
+FROM user_sequences;
+
+select seq_dept_sequence.nextval 
+from dual;
+
+/*
+한번 생성된 sequence는 수정할수 없다. 단 drop sequence를 통해 삭제한후 다시 생성하거나
+alter sequence로 수정한다.
+start with 속성은 최초값이기 때문에 한번이라도 실행하면 수정이 불가능하다.
+last_number과 충돌이 있을수 있다. 이미 진행된 상테에서 바꾸면 정합성 오류가 일어난다.
+*/
+
+create table dept_temp
+    as select * from dept;
+    
+insert into dept_temp (deptno, dname, loc)
+    values (seq_dept.nextval, '테스트', '천안');
+    
+select * from dept_temp;
+
+------------347p-1----------------------
+create table empidx
+    as select * from emp;
+
+create index 
+    empidx on emp(ename);
+
+select * from user_indexes
+    where index_name = 'EMPIDX';
+
+
+create table table_pk(
+    login_id varchar2(20) primary key,
+    login_pwd varchar2(20) not null,
+    tel varchar2(20)
+    );
+
+desc table_pk;
+select * from table_pk;
+select * from user_ind_columns;
+
+--증복 불가능
+insert into table_pk values('id','pw',null);
+insert into table_pk values('id','pw2',null);
+
+--null값 추가 불가능
+insert into table_pk values(null,null,null);
+
+--null로업데이트가 불가능
+update table_pk
+set login_id = null
+where login_id = 'id';
+
+
+create table emp_fk(
+    empno number(4) constraint deptfk_empno_pk primary key,
+    ename varchar2(10),
+--    deotno number(2) constraint fk_emp_fk references dept_fk(deptno)
+--  foreign key는 하나밖에 없다. constraint가 없는 경우도 가능하다.
+
+     deotno number(2), foreign key (deptno) reference dept_fk(deptno)
+);
+
+desc dept_fk;
+
+insert into emp_fk 
+    values (1000,'name',10);
+
+select  * from dept_fk;
+
+
+insert into dept_fk
+    values(10, '부서', '위치');
+    
+update dept_fk set deptno = 20
+where deptno = 10;
+
+delete dept_fk
+    set deptno = 10
+    where deptno =20;
+    
+delete emp_fk
+    where deptno = 20;
+    
+--fk key 사룔시 cascade를 사용하면 참조하는 것들을 한번에 지우거다 수정한다.
+
