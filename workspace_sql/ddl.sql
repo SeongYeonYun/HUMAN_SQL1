@@ -338,3 +338,107 @@ delete emp_fk
     
 --fk key 사룔시 cascade를 사용하면 참조하는 것들을 한번에 지우거다 수정한다.
 
+
+
+
+
+
+-----------------------------------------------------------------------------
+CREATE TABLE game (
+	game_name	varchar2(20)		NOT NULL,
+	price	number(2,1)		NULL,
+	score	number(2,1)		NULL,
+	year	date		NULL,
+	img_url	varchar2(50)		NULL,
+	publisher	varchar2(10)		NULL
+);
+
+CREATE TABLE publisher (
+	publisher	varchar2(10)		NULL,
+	country	varchar2(15)		NULL,
+	start_date	date		NULL
+);
+
+CREATE TABLE game_genre (
+	game_id	number(2)		NOT NULL,
+	game_name	varchar2(20)		NOT NULL
+);
+
+CREATE TABLE genre_tag (
+	game_genre	varchar2(10)		NULL,
+	game_id	number(2)		NOT NULL
+);
+
+ALTER TABLE game ADD CONSTRAINT PK_GAME PRIMARY KEY (
+	game_name
+);
+
+ALTER TABLE publisher ADD CONSTRAINT PK_PUBLISHER PRIMARY KEY (
+	publisher
+);
+
+ALTER TABLE game_genre ADD CONSTRAINT PK_GAME_GENRE PRIMARY KEY (
+	game_id
+);
+
+ALTER TABLE game ADD CONSTRAINT FK_publisher_TO_game_1 FOREIGN KEY (
+	publisher
+)
+REFERENCES publisher (
+	publisher
+);
+
+ALTER TABLE game_genre ADD CONSTRAINT FK_game_TO_game_genre_1 FOREIGN KEY (
+	game_name
+)
+REFERENCES game (
+	game_name
+);
+
+ALTER TABLE genre_tag ADD CONSTRAINT FK_game_genre_TO_genre_tag_1 FOREIGN KEY (
+	game_id
+)
+REFERENCES game_genre (
+	game_id
+);
+
+select * from game_genre;
+
+SELECT 
+    f.game_name,  -- 게임 이름
+    f.price,      -- 가격
+    f.score,      -- 평점
+    f.year,       -- 출시 연도
+    f.img_url,    -- 이미지 URL
+    --f.game_id,    -- 게임 ID
+    t.game_genre       -- 장르 (genre_tag 테이블에 있다고 가정)
+    
+    FROM (
+        SELECT 
+            g.game_name,
+            g.price,
+            g.score,
+            g.year,
+            g.img_url,
+            ge.game_id
+            
+            FROM game g
+            JOIN game_genre ge
+                ON g.game_name = ge.game_name
+        ) f
+        
+    JOIN genre_tag t
+        ON t.game_id = f.game_id;
+        
+        
+--날자를 차라리 문자로 할까?       
+insert into game (game_name,price,score,year,img_url,publisher ) 
+        values ('ssc', 2.1,3.9, TO_DATE('2012', 'YYYY'),'RR', 'mg');
+        
+desc game;
+--가격 데이터 수정(너무 작음) 
+select * from game;
+        
+
+    
+                
