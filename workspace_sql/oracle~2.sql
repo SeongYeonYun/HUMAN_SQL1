@@ -929,3 +929,5 @@ select * from dept;
 --        else 'etc' 
 --        end as area
 --        from dept;
+
+desc dept;
