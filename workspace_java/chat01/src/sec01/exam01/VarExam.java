@@ -8,7 +8,7 @@ public class VarExam {
 		int result = value + 10;
 		
 		System.out.println("결과  : " + result);
-		System.out.println("결과  : " + result);
+		System.out.println("결과  : " + result+1);
 		System.out.println("결과  : " + result);
 		System.out.println("결과  : " + result);
 		//ctrl + alt + 위아래 방향키 -> 복사, 붙혀널기
