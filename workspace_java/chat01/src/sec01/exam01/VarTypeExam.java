@@ -132,9 +132,12 @@ public class VarTypeExam {
 				);
 		
 		
-		char ci1 = 'a';
+		char ci1 = 'a'; //문자 a 는 숫자로 97 
 		int ci2 = ci1 + 1; //a1
+		char cc3 = (char)ci2;
 		
+		//만약 char이 아닌 string이었다면 문자 + 1은 문자1 이지만 char은 한자리밖에 반영할수 없기
+		//떄문에 숫자형으로 반영된다.
 		char cc1 = 'a';
 		char cc2 = (char)(cc1 + 1);
 		System.out.println(cc2);
