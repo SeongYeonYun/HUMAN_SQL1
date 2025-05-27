@@ -492,3 +492,78 @@ select
     
     order by dname desc;
 
+-- 부서 테이블
+CREATE TABLE departments (
+    department_id   NUMBER PRIMARY KEY,
+    department_name VARCHAR2(100)
+);
+
+-- 직원 테이블
+CREATE TABLE employees (
+    employee_id     NUMBER PRIMARY KEY,
+    employee_name   VARCHAR2(100),
+    department_id   NUMBER,
+    CONSTRAINT fk_department FOREIGN KEY (department_id)
+        REFERENCES departments(department_id)
+);
+
+-- 부서 데이터
+INSERT INTO departments VALUES (10, 'HR');
+INSERT INTO departments VALUES (20, 'IT');
+INSERT INTO departments VALUES (30, 'Finance');
+
+-- 직원 데이터
+INSERT INTO employees VALUES (1, 'Kim', 10);
+INSERT INTO employees VALUES (2, 'Lee', 20);
+INSERT INTO employees VALUES (3, 'Park', 10);
+INSERT INTO employees VALUES (4, 'Choi', 30);
+INSERT INTO employees VALUES (5, 'Jung', 20);
+
+COMMIT;
+
+-- DEPARTMENTS 테이블에는 기본키 인덱스가 자동 생성됨 (PK)
+-- 필요 시 인덱스를 수동으로 추가
+CREATE INDEX idx_emp_dept_id ON employees(department_id);
+
+SELECT /*+ USE_NL(d) */
+       e.employee_id,
+       e.employee_name,
+       e.department_id,
+       d.department_name
+FROM   employees e
+JOIN   departments d
+  ON   e.department_id = d.department_id;
+  
+EXPLAIN PLAN FOR
+SELECT /*+ USE_NL(d) */
+       e.employee_id,
+       e.employee_name,
+       d.department_name
+FROM   employees e
+JOIN   departments d
+  ON   e.department_id = d.department_id;
+
+SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY);
+  
+--| 힌트 명령어                | 설명                                    |
+--| --------------------- | ------------------------------------- |
+--| `USE_NL(table)`       | 해당 테이블을 내부로 두고 Nested Loop Join 사용 유도 |
+--| `USE_HASH(table)`     | 해시 조인 사용 유도                           |
+--| `USE_MERGE(table)`    | 병합 조인 (Sort Merge Join) 사용 유도         |
+--| `LEADING(table)`      | 조인 순서 지정 (어떤 테이블을 먼저 읽을지)             |
+--| `INDEX(table column)` | 인덱스를 사용하도록 유도                         |
+
+--EXPLAIN PLAN FOR 
+--SELECT ...;
+--
+--SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY);
+
+
+SELECT 
+    ROUND(
+        TO_DATE('2024-02-20 14:00:00', 'YYYY-MM-DD HH24:MI:SS'),
+            'MONTH') AS D1,
+            
+        TRUNC(
+            TO_DATE('2024-09-12 09:00:00', 'YYYY-MM-DD HH24:MI:SS'))
+                AS D2 FROM DUAL;
