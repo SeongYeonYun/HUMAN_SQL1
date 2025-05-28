@@ -1,8 +1,11 @@
 package sec01.exam01;
 
+import java.io.IOException;
+import java.util.Scanner;
+
 public class VarTypeExam {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		
 		byte b1; //선언하는 즉시 1바이트를 활용하게됨
@@ -141,10 +144,51 @@ public class VarTypeExam {
 		char cc1 = 'a';
 		char cc2 = (char)(cc1 + 1);
 		System.out.println(cc2);
-
 		
+		System.out.printf("이름 : %s","김자바\n");
+		System.out.printf("이름 : %s, 나이 : %d\n","김자바",25);
+		System.out.printf("이름 : %6s, 나이 : %04d\n","김자바",25);
+		//6s -> 길이를 6으로 LPAD, 04d -> 4자리에 나머진 0으로 LPAD
+		System.out.printf("이름 : %s","김자바\n");
+		System.out.println(String.format("이름 : %s", "김자바"));
+		
+		
+		
+		System.out.println("----------------------------------------");
+		//스케너 연습하려고 주석 처리
+//		int keyCode1;
+//		
+//		System.out.println("Keycode를 입력해 주세요");
+//		keyCode1 = System.in.read();
+//		System.out.println("Keycode = "+ keyCode1);
+//		
+//		System.out.println("Keycode를 입력해 주세요");
+//		keyCode1 = System.in.read();
+//		System.out.println("Keycode = "+ keyCode1);
+//		
+//		keyCode1 = System.in.read();
+//		System.out.println("Keycode = "+ keyCode1);
+//		
+//		
+//		keyCode1 = System.in.read();
+//		System.out.println("Keycode = "+ keyCode1);
+		
+		Scanner scan = new Scanner(System.in); //ctrl shift o
+//		String inputData = scan.nextLine();
+//		System.out.println(inputData);
+//		
+//		String inputData2 = scan.next(); //next는 띄어쓰기 전까지만 출력한다.
+//		System.out.println(inputData2);
+//		
+//		int inputData3 = scan.nextInt(); 
+//		System.out.println("input = " + (inputData3*10));
+		int input = scan.nextInt();
+		System.out.print("x값을 입력 하세요");
+		System.out.println("x = " + (input));
 		
 		
 	} 
-
+	
 }
+
+
