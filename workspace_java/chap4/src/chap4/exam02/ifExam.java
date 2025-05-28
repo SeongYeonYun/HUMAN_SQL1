@@ -33,8 +33,20 @@ public class ifExam {
 			System.out.println("D등급 입니다.");
 		}
 		
-	
-	
+		
+//		if (score%2==0) { // !(score%2==0) -> not 짝수
+//			System.out.println("짝수");
+//			
+//		} else {
+//			System.out.println("짝수");
+//			}	
+//	
+///////////////////////////////////////////////////////////////////
+		// random
+		//set seed?????? 컴퓨터는 랜덤이란 없다. 아마 랜덤한 시드를 자동으로 생성하여 실행하는거 같다.
+		
+		double random = Math.random();
+		System.out.println(random);
 
 }
 }
