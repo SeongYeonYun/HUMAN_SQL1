@@ -127,6 +127,8 @@ public class OpExam {
 		int score2 = 95;
 		char grade = (score2 > 90) ? 'A' : 'B'; 
 		System.out.println(grade);
+		
+		
 	}
 
 }
