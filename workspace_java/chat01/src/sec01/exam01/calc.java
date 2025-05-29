@@ -7,7 +7,8 @@ public class calc {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		Scanner scan = new Scanner(System.in); //ctrl shift o
+		Scanner scan = new Scanner(System.in); 
+		//ctrl shift o, 스케너를 열면 항상 scan.close해줘야 한다.
 	
 		
 		
@@ -31,13 +32,9 @@ public class calc {
 					double input_1 = scan.nextDouble();
 					
 					result = input_0 + input_1;
-					System.out.println(
-							String.format("%f + %f = ",
-									input_0,
-									input_1) + 
-							
-							result
-							);
+					//만약 (input % 1.0) > 0이면 double값을 출력하고,  (input % 1.0) = 0 이라면 int값을 출력
+				
+					System.out.printf("%.3f + %.3f = %.3f\n", input_0, input_1, result);
 					
 					break;
 			
@@ -52,14 +49,9 @@ public class calc {
 					
 					result = input_2 - input_3;
 					
-					System.out.println(
-							String.format("%f - %f = ",
-									input_2,
-									input_3) +
-							 result
-							 );
+					System.out.printf("%.3f - %.3f = %.3f\n", input_2, input_3, result);
 				
-					
+					System.out.println("계산 종료");
 					break;
 				
 					
@@ -73,33 +65,34 @@ public class calc {
 						double input_5 = scan.nextDouble();
 						
 						if (input_5 != 0) {
+												
+							System.out.printf("%.3f / %.3f = %.3f\n", input_4, input_5, result);
 							
-	//						double re;
-	//						
-	//						re = ((int)((input_4/input_5)*1000)/1000.0); //3자리 까지 표시
-	//							값이 커지면 결측값이 있을것이다.
+//							System.out.println(
+//									String.format("%f / %f = ",
+//											(double)input_4,
+//											(double)input_5) + 								
+//									Math.round((input_4/input_5)*1000)/1000.0
+//											);
 							
-							
-							System.out.println(
-									String.format("%f / %f = ",
-											(double)input_4,
-											(double)input_5) + 								
-									Math.round((input_4/input_5)*1000)/1000.0
-											);
-						
-							break;				
-						
+							System.out.println("계산 종료");			
+							break;
 						}
+						
 						
 						
 						else 
 							
 							System.out.println("division error or infitiny error");	//0으로는 나눌수 없다.										
-							
+						
 							continue;	//while문을 처음부터 다시 시작
 										//연산 선택을 다시 하지 않도록 case2의 시작부로 돌아갈순 없나???
 										//case2안에 반복문을 더 넣어야 하나??
+										//재귀 함수
+							
 					}
+					
+					break;
 				
 						
 				case 3:
@@ -112,33 +105,20 @@ public class calc {
 					
 					result = input_6 * input_7;
 					
-					System.out.println(
-							String.format(
-									"%d * %d = ",
-									input_6,
-									input_7) +
-							result
-							);
+					System.out.printf("%.3f * %.3f = %.3f\n", input_6, input_7, result);
+					
+					System.out.println("계산 종료");
 					
 					break;
 				
 				default: 
 					
-					System.out.println("잘못된 값을 입력했습니다. 다시 입력해 주세요");					
+					System.out.println("잘못된 값을 입력했습니다. 다시 입력해 주세요");
 					continue;
 
 				}
-		
+		scan.close(); 		
 		break;
 		}
 	}
 }
-			
-			 
-			
-			
-		
-		
-	
-
-
