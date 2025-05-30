@@ -149,7 +149,9 @@ public class for_exam {
 			int y;
 			if(ww>=0) {
 				y = (29-ww)/2; //한방향의 공백수
-				System.out.println( " ".repeat(y) + "*".repeat(ww) + " ".repeat(y));
+				System.out.println( " ".repeat(y) +
+						"*".repeat(ww) +
+						" ".repeat(y));
 			}
 		}
 		//////////////////////7///////////////////////////////////
@@ -159,7 +161,8 @@ public class for_exam {
 					System.out.print(y);
 				}
 				
-				else {System.out.println(y);
+				else {
+					System.out.println(y);
 					
 				}
 			}
@@ -173,7 +176,9 @@ public class for_exam {
 					System.out.print("*");
 				}
 				
-				else {System.out.println("*" + "-".repeat(yy-x));
+				else {
+					System.out.println("*" +
+							"-".repeat(yy-x));
 					
 				}
 			}
@@ -184,7 +189,9 @@ public class for_exam {
 		for (int y = 5;y<=yy;y++) {
 			for(int x = 1;x<=y;x++) {
 				if (x<y) {
-					System.out.println("-".repeat(yy-x) +"*".repeat(x));
+					System.out.println("-".repeat(yy-x) +
+							"*".repeat(x)
+							);
 				}
 				
 				//else {System.out.print("*");}
@@ -196,7 +203,9 @@ public class for_exam {
 	
 		int range = 9;
 		for(int x =1; x< range; x = x+2) {
-				System.out.println("-".repeat((range-x)/2) + "*".repeat(x));
+				System.out.println("-".repeat((range-x)/2) +
+						"*".repeat(x)
+						);
 		}
 		
 
@@ -207,12 +216,15 @@ public class for_exam {
 		
 		range = 9;
 		for(int x =1; x< range; x = x+2) {
-				System.out.println("-".repeat((range-x)/2) + "*".repeat(x)+"-".repeat((range-x)/2));
+				System.out.println("-".repeat((range-x)/2) +
+						"*".repeat(x)+
+						"-".repeat((range-x)/2)
+						);
 		}
 		
 		///////////////12/////////////////////////////////////
 		System.out.println("12번");
-		int input = 3;
+		int input = 10;
 		int r = 1+ 2*(input-1);
 		
 		for(int u = 1; u<=r; u = u+2) {
@@ -223,9 +235,10 @@ public class for_exam {
 				System.out.println("-".repeat((r-u)/2) + "*".repeat(u)+"-".repeat((r-u)/2));			
 			}
 			
-			else {System.out.println("*".repeat(u));
+			else {
+				System.out.println("*".repeat(u));
 			}
-			}
+		}
 	
 		
 		
