@@ -88,6 +88,7 @@ public class ifExam {
 
 	
 ////////문제 1/////////////////////////	
+	System.out.println("문제 1");
 	int pra = 1;
 	if(pra < 0) {
 		System.out.println("음수");
@@ -99,8 +100,53 @@ public class ifExam {
 		else {
 			System.out.println("0");
 		}
-
+	/////////////2////////////////////
+	System.out.println("문제 2");
+	int a = 0;
+	int b = 215;
+	
+	if(a>b) {
+		System.out.println(String.format("a > b 중에 큰 수는 %d입니다.", a));
+	}
+	else if(a<b) {
+		System.out.println(String.format("b > a 중에 큰 수는 %d입니다.", b));
+	}
+	else {
+		System.out.println("두수가 같다.");
+	}
+	//////////////3////////////////
+	System.out.println("문제 3");
+	//시간 더하기 
+		int hour = 12;
+		int min = 40;
+		int min_add = 35;
+		//조건문?????안쓰고 되나????
+		//35분 더해
+		
+		hour = ((hour * 60) + min + min_add)/60;
+		//사건울 분으로 나눈뒤 다시 시간으로 변환한다.
+		
+		min = ((hour * 60) + min + min_add)%60; 
+		//분을 분으로 반환한다
+		
+		System.out.println(String.format(hour + "시" + min + "분 입니다"));
+		System.out.println(String.format("%s시%s분 입니다",hour,min));
+		System.out.printf("%d시%s분 입니다\n",hour,min); //자동 줄바꿈이 안됨
+		
+	///////4////////////////////
+	System.out.println("문제 4");
+	int num = 88;
+	if(num >= 15 && num <= 20) {
+		System.out.println("num은 15이상, 20이하 입니다.");
+	}
+	else {
+		System.out.println("해당없음");
+	}
+	
+	
+	
 	//////////////5/////////////
+	System.out.println("문제 5");
 	int minus = 115;
 	int amount = 10000;
 	if(amount - minus < 0) {
@@ -114,11 +160,90 @@ public class ifExam {
 			System.out.println("정확히 입력해 주세요");
 		}
 	
+	////////////6////////////////////////
+	System.out.println("문제 6");
+	int xa = 125;
+	if(xa<100 && xa%2 ==0) {
+		if(xa<0 ) {
+			System.out.println("100보다 작다, 음수이다, 짝수이다");
+			
+		}
+		else {
+			System.out.println("100보다 작다, 0이상이다, 짝수이다");
+		}
+		
+	}
+		
+	else if(xa<100 && xa%2 ==1) {
+		if(xa<0 ) {
+			System.out.println("100보다 작다, 음수이다, 홀수이다");
+			
+		}
+		else {
+			System.out.println("100보다 작다, 0이상이다, 홀수이다");
+		}
+	}
+	
+	else if(xa>=100 && xa%2 ==0) {
+		if(xa<0 ) {
+			System.out.println("100이상, 음수이다, 짝수이다");
+			
+		}
+		else {
+			System.out.println("100이상, 0이상이다, 짝수이다");
+		}
+	}
+	
+	else {
+		System.out.println("100이상, 0이상이다, 홀수이다");
+		
+	}
+	
+	//////////////////7//////////////////////////
+	System.out.println("문제 7");
+	int dgr = 2;
+	int dgr_y = -3; //저날기온 
+	if (dgr_y < dgr) {
+		System.out.printf("오늘은 영하 %d도 입니다. 어제보다 %d도 높습니다.\n",
+				Math.abs(dgr_y),
+				dgr-dgr_y);
+	}
+	else if (dgr_y < dgr) {
+		System.out.printf("오늘은 영하 %d도 입니다. 어제보다 %d도 낮습니다.\n",
+				Math.abs(dgr_y),
+				dgr-dgr_y);
+		}
+	else System.out.println("두 수가 값습니다.");
+	/////////////8/////////////////////////////
+	System.out.println("문제 8");
+	int asd = 77;
+	if (10<=asd && asd<=99) {
+		if (asd %10 == (asd - asd%10)/10) {//asd %10 == asd % 1.0 double 과 int 이기 떄문에 다름
+			System.out.println("두수의 십과 일의 자리 숫자가 같다");
+		}
+		
+		else {
+			System.out.println("두수의 십과 일의 자리 숫자가 다르다");
+		}
+	}
+	
+			
+	
+	
 	//////////////9///////////////////////
+	System.out.println("문제 9");
 	int x1 = 10;
 	int y1 = 20;
 	int x2 = 90;
 	int y2 = 100;
+	int x3 = 50;
+	int y3 = 50;
+	
+	if(x3>=20 && x3<=90) {
+		if (y3 >=20 && y3<=100) {
+			System.out.println("사각형 안에 있습니다.");
+		}
+	}
 			
 	
 //	int month = 1;
