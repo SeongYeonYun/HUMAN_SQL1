@@ -111,7 +111,7 @@ public class BreakExam {
 		int type = sscan1.nextInt();
 		
 		
-		
+		 
 		int amount = 500000;
 		while(true) {
 			switch(type) {
@@ -146,6 +146,9 @@ public class BreakExam {
 			}
 			break;
 			}
+	
+
+		
 		}
 				
 		}
