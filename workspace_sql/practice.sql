@@ -443,9 +443,13 @@ FROM ONLINE_SALE A
 LEFT JOIN USER_INFO B ON B.USER_ID = A.USER_ID
 WHERE EXTRACT(YEAR FROM B.JOINED) = '2021'
 GROUP BY EXTRACT(MONTH FROM A.SALES_DATE),EXTRACT(YEAR FROM A.SALES_DATE)
-ORDER BY YEAR,MONTH
+ORDER BY YEAR,MONTH;
 
-
+select /*+ USE_HASH(o) */
+    e.ename, d.deptno
+    from emp e
+        join dept d
+        on e.deptno = d.deptno;
 
 
 

@@ -907,6 +907,7 @@ select * from emp_hw;
 
 alter table emp_hw
     rename column bigo to remark;
+<<<<<<< HEAD
 
 --칼럼명이 일치하지 않는다    
 insert into emp_hw
@@ -920,3 +921,29 @@ SELECT
 FROM emp;
 
 --drop table emp_hw;
+=======
+    
+select sal, deptno, sal + deptno from emp;
+
+select ascii('A') from dual;
+
+select * from emp;
+select * from emp
+where hiredate in to_date('1981-02', 'yyyy-mm')  ; --아무것도 출력되지 않는다 .
+
+select to_char(to_date('2023.01.01 10','yyyy.mm.dd hh24') + 
+    1/24/(60/10),'yyyy.mm.dd hh24:mi:ss') 
+    from dual;
+
+select * from dept;    
+--select 
+--    loc,     
+--    case 
+--        when loc is 'NEW YORK' 
+--        then 'east' 
+--        else 'etc' 
+--        end as area
+--        from dept;
+
+desc dept;
+>>>>>>> 7a5ec7c0f4671ed482214d9b7716f11b655d7a28
