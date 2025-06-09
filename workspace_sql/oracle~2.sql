@@ -893,7 +893,7 @@ CREATE TABLE emp_hw (
 );
 
 desc emp_hw;
-
+desc emp;
 -------------311 2------------------
 alter table emp_hw
     add bigo varchar2(20);
@@ -907,3 +907,16 @@ select * from emp_hw;
 
 alter table emp_hw
     rename column bigo to remark;
+
+--칼럼명이 일치하지 않는다    
+insert into emp_hw
+ select * from emp;
+ 
+INSERT INTO emp_hw (
+    empno, ename, job, mgr, hiredate, sal, comm, deptno, remark
+)
+SELECT
+    empno, ename, job, mgr, hiredate, sal, comm, deptno, NULL
+FROM emp;
+
+--drop table emp_hw;
