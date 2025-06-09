@@ -212,7 +212,9 @@ public class ArrExam {
 		
 //	    + 8-3 : 숫자2개 이상, 대/소문자 각 1개 이상 
 		System.out.println("-----------문제 8-3번 ------------------");
-		
+//		char [] char_pw2 = new char[8];
+//		char arr03[0] = (char)((int)(Math.random()*10));
+//		char arr03[1] = (char)((int)(Math.random()*10));
 		
 		System.out.println("-----------문제 9번 ------------------");
 //		자리가 10개 있는 소극장의 예약 시스템
@@ -280,22 +282,42 @@ public class ArrExam {
 		for(int i = 1; i<=45;i++) {
 			rotto[i-1] = i;
 		}
-		for(int i =0;i<=5;i++) {
-			int rand = (int)(Math.random() * 46);
-			//System.out.println(rand);
-			for(int x = 0;x<buy_number.length-1; x++) {
-				if (buy_number[x] != rand) {
-					if(buy_number.length ==6) {				
-						buy_number[i] = rotto[rand-1];
-					}
+		while(true) {
+			for(int i = 0; i<=5;i++) {
+				int rand = (int)(Math.random() * 46);
+				buy_number[i] = rand;
+			}
+			
+			for (int x = 0; x<buy_number.length; x++) {
+				for(int y = buy_number.length-1;y>=0;y--) {
+					if(buy_number[x] == buy_number[y]) {
+						continue;
+					} 
 				}
 			}
 			
+			
+			System.out.println(Arrays.toString(buy_number));
+			break;
 		}
-		System.out.println(Arrays.toString(buy_number));
+				 
+//		for(int i =0;i<=5;i++) {
+//			int rand = (int)(Math.random() * 46);
+//			//System.out.println(rand);
+//			for(int x = 0;x<buy_number.length-1; x++) {
+//				if (buy_number[x] != rand) {
+//					if(buy_number.length ==6) {				
+//						buy_number[i] = rotto[rand-1];
+//					}
+//				}
+//			}
+//			
+//		}
+		
+		
 		
 
-		
+		//max Integer.MIN_VALUE; 가장 작은값, MAX_VALUE도 가능
 		
 		
 	}
