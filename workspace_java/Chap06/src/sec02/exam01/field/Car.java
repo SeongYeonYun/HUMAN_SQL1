@@ -1,7 +1,7 @@
 package sec02.exam01.field;
 
 public class Car {
-
+	 // 공용변수 선언 static String company = "현대자동차";
 	//필드의 선언과 동시에 초기화
 	String company = "현대자동차";
 	String model = "그랜저";
