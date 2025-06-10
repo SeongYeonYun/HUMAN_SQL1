@@ -14,6 +14,7 @@ public class ArrExam5 {
 		
 		//2호점
 		//얕은 복사
+		//2호점에서 메뉴 추가
 		String[] menu2 = new String[3];
 		menu2[0] = menu [0];
 		menu2[1] = menu [1];
@@ -25,6 +26,8 @@ public class ArrExam5 {
 		list.add(menu);
 		//system.out.println(Arrays.toString(list));
 		System.out.println("list size = " + list.size());
+		//배열 안의 배열
+		
 //		if(list.get(2) == null) {
 //			System.out.println("sdsdd");
 //		}
@@ -48,7 +51,7 @@ public class ArrExam5 {
 		
 		
 		
-		//2호점에서 메뉴 추가
+	
 		
 		
 	}
