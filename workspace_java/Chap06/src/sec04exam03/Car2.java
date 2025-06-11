@@ -1,6 +1,6 @@
 package sec04exam03;
 
-public class Car {
+public class Car2 {
 	
 	int gas;
 	void setGas(int g) {
@@ -39,12 +39,20 @@ public class Car {
 			if(gas >0) {
 				System.out.println("달립니다. ㅍ! 잔량 : " + gas);
 				gas --;
+				setSpeed(gas*10);
 				
 			}else {
 				System.out.println("stop. ㅍ! 잔량 : " + gas);
 				return;
 			}
 		}
+	}
+	
+	void setSpeed(int s) {
+		int speed = s;
+		System.out.println(
+				String.format("속도를 %d로 만듭니다.", speed)
+				);
 	}
 	
 	

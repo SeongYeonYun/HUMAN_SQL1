@@ -10,6 +10,7 @@ public class CarExam {
 		System.out.println(car1.company == car2);
 		System.out.println(car1.company.equals(car2));
 		//왜 둘다 true가나오지?????
+		//주소값과 값이 같아서
 		System.out.println("제작회사 : "+ car1.company);
 		
 		Car car3 = new Car();
