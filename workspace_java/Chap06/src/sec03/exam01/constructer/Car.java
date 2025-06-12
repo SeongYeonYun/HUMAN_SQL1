@@ -6,12 +6,37 @@ public class Car {
 //		System.out.println("Car 실행");
 //	}
 	
-	Car(){
-		
-	}//아무런 역할도 없는경우 생략가능 ==생성자를 생략한 경우 기본 생성자가 자동완성된다.
+/////////////////////////////////////////////////////////////////////////////////
+//	String color;				                                               //					//////////////////////////////
+//	Car(){                                                                     //  ==============	//String model = "aventa";	//
+//		color = "red";                                                         // 					//							//			
+//		                                                                       //  ==============   //String color = "red";		//
+//	}//아무런 역할도 없는경우 생략가능 ==생성자를 생략한 경우 기본 생성자가 자동완성된다.   //					//////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////	
 	
-	void test() {
+	String model = "aventa";
+	String color;
+	int maxspeed;
+	CarExam carExam = new CarExam(); 
+	
+	Car(String m ,String c,int ms ){
+		model = "아반떄";
+		color = c;
+		maxspeed = 240;
+		
 		
 	}
+	
+	Car(String c){
+		this("as",c,44);
+		c = "red";
+	}
+	
+	void setColor(String color) {
+		this.color = "red";
+		
+	}
+	
+
 	
 }
