@@ -6,7 +6,7 @@ public class CalcExam {
 		// TODO Auto-generated method stub
 		System.out.println("Calc,pi = "+Calc.pi);
 		
-		System.out.println(a);
+		System.out.println(Calc.a);
 		Calc c1 = new Calc();
 		c1.color = "black";
 		c1.pi = 3.141592;
