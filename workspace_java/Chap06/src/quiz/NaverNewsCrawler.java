@@ -1,3 +1,5 @@
+package quiz;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -14,7 +16,7 @@ public class NaverNewsCrawler {
     	int rows = 0;
     	for(int page = 1; page<=10;page++) { //1번 페이지 부터 10번 페이지 까지 크롤링
     		System.out.println("///////////////////////" + page + "////////////////////////////");
-	        String listUrl = "https://news.naver.com/main/list.naver?mode=LSD&mid=sec&sid1=101&date=20250613&page="+page;
+	        String listUrl = "https://news.naver.com/main/list.naver?mode=LSD&mid=sec&sid1=101&date=20250616&page="+page;
 //	        sid1 100 = 정치.
 //	        101 경제,
 //	        102 사회,
@@ -54,11 +56,13 @@ public class NaverNewsCrawler {
 	                
 	                
 	            }
-	            rows = rows + rows;
+	            rows = rows + 1;
 	          
 	        }
+	        rows =+rows;
+	        
 	      //3초후 반복, 한번에 너무 많은 요청이 있으면 차단당할수 있음
-            Thread.sleep(3000);
+            Thread.sleep(3000); //3초후에 다음 코드 실행
     	}
     	System.out.println("총 데이터 수 " + rows); 
     }

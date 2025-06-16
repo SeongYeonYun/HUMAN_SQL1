@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class UpdownExam {
 	int goal =(int)(Math.random() * 201) - 100;
 	int ttry = 1;
-	
+//	
 	String Gamestart() {
 		Scanner scan = new Scanner(System.in);
 		
@@ -28,6 +28,7 @@ public class UpdownExam {
 				}
 			
 			}
+		return "";
 		}
 
 	

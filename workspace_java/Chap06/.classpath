@@ -21,16 +21,14 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/human">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-11">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry exported="true" kind="lib" path="C:/Users/tis03/Downloads/jsoup-1.20.1.jar"/>
+	<classpathentry kind="lib" path="D:/workspace_1/workspace_java/jackson-annotations-2.15.2.jar"/>
+	<classpathentry kind="lib" path="D:/workspace_1/workspace_java/jackson-core-2.15.2.jar"/>
+	<classpathentry kind="lib" path="D:/workspace_1/workspace_java/jackson-databind-2.15.2.jar"/>
+	<classpathentry kind="lib" path="D:/workspace_1/workspace_java/jsoup-1.20.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
