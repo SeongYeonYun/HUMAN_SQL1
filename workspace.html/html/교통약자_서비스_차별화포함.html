@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>교통약자 서비스 기술정리</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding-top: 80px;
+    }
+
+    /* 마우스 감지용 hover zone */
+    .hover-zone {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 50px;
+      width: 100%;
+      z-index: 1001;
+    }
+
+    /* 숨겨진 상단바 */
+    .header-area {
+      position: fixed;
+      top: -100px;
+      left: 0;
+      width: 100%;
+      background: rgb(176, 180, 230);
+      border-bottom: 1px solid #ccc;
+      text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
+      z-index: 1000;
+      transition: top 0.3s ease;
+    }
+
+    /* hover-zone 위에 마우스 올라가면 상단바 노출 */
+    .hover-zone:hover + .header-area {
+      top: 0;
+    }
+
+    h2 {
+      color: #008080b2;
+      margin-top: 40px;
+      margin-left: 20px;
+    }
+    ol{
+        margin-left: 20px;
+        margin-bottom: 10px;
+    }
+    ul {
+      list-style-type: square;
+      margin-left: 20px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin-left: 10px;
+    }
+
+    table {
+      border: 1px solid #ccc;
+      border-collapse: collapse;
+      margin-left: 20px;
+      width: 95%;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+    }
+
+    thead {
+      background-color: #7a9af3;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 마우스 hover 감지용 영역 -->
+  <div class="hover-zone"></div>
+
+  <!-- 상단바 -->
+  <div class="header-area">
+    <h1>주제 : 교통약자 서비스</h1>
+  </div>
+
+  <!-- 본문 내용 -->
+  <h2>■ 서비스 개요</h2>
+  <ul>
+    <li>고령자 및 교통약자를 위한 예약형 이동 서비스</li>
+    <li>자원봉사 기반 Ride Credit 시스템 도입</li>
+    <li>실시간 위치 추적, 사용자 맞춤형 UI, 관리자 통계 포함</li>
+  </ul>
+
+  <h2>■ 작동 원리</h2>
+  <ol>
+    <li>사용자는 웹/모바일 화면에서 회원가입 및 로그인</li>
+    <li>이동이 필요한 경로를 입력하여 예약을 신청</li>
+    <li>백엔드(Spring Boot)는 해당 요청을 REST API로 수신</li>
+    <li>자원봉사자 운전자와의 매칭 수행</li>
+    <li>이동 완료 후 자원봉사자에게 Ride Credit 적립, 관리자는 통계 확인</li>
+    <li>위치 정보는 실시간 지도 API와 연동, 데이터는 Oracle DB에 저장</li>
+  </ol>
+
+  <h2>■ 사용자 구성</h2>
+  <ul>
+    <li>일반 사용자 (고령자, 교통약자)</li>
+    <li>운전자 (자원봉사자 또는 계약 기사)</li>
+    <li>관리자 (예약 승인, 통계 확인)</li>
+  </ul>
+
+  <h2>■ 기술 스택</h2>
+  <ul>
+    <li>프론트엔드: HTML, CSS, JavaScript</li>
+    <li>백엔드: Java(Spring Boot)<br>→ Python(Django/Flask)도 가능하지만, 안정성과 팀 호환성을 고려해 Spring 사용</li>
+    <li>DB: Oracle<br>→ MySQL도 가능하나 학습 기반은 Oracle</li>
+    <li>API: RESTful JSON</li>
+    <li>지도 API: KakaoMap 또는 Google Maps</li>
+    <li>인증: JWT, OAuth</li>
+    <li>배포: Docker, Tomcat, Nginx</li>
+  </ul><br>
+
+  <table>
+    <thead>
+      <tr>
+        <th>항목</th>
+        <th>Oracle</th>
+        <th>MySQL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>개발사</td><td>Oracle Corporation</td><td>Oracle (MySQL 인수)</td></tr>
+      <tr><td>라이선스</td><td>유료(기업용 중심)</td><td>대부분 무료</td></tr>
+      <tr><td>주요 용도</td><td>대규모 트래픽 처리</td><td>스타트업, 중소규모 웹 서비스</td></tr>
+      <tr><td>성능</td><td>고성능, 안정적 트랜잭션</td><td>가볍고 빠름</td></tr>
+      <tr><td>기능</td><td>고급 기능 다수</td><td>일부 고급 기능 미지원</td></tr>
+    </tbody>
+  </table>
+
+  <h2>■ 기술 선택 이유</h2>
+  <ul>
+    <li><strong>Spring Boot</strong>: 구조화와 보안성, 확장성 고려</li>
+    <li><strong>Oracle</strong>: 중요한 데이터 처리에 안정적</li>
+    <li><strong>JavaScript</strong>: 다양한 기기 호환</li>
+    <li><strong>지도 API</strong>: 실시간 위치 시각화, KakaoMap 추천</li>
+  </ul>
+
+  <h2>■ 주요 기능</h2>
+  <ul>
+    <li>회원가입 및 로그인</li>
+    <li>예약 신청 및 배정</li>
+    <li>Ride Credit 적립</li>
+    <li>실시간 이동 추적</li>
+    <li>관리자 통계 기능</li>
+  </ul>
+
+  <h2>■ 추천 아키텍처</h2>
+  <ul>
+    <li>[Client] - HTML, JS, CSS</li>
+    <li>→ [Spring Boot REST API]</li>
+    <li>→ [JPA/Hibernate]</li>
+    <li>→ [Oracle]</li>
+    <li>+ 지도 API, JWT 인증</li>
+  </ul>
+
+  <h2>■ ITNAmerica와의 비교</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>항목</th>
+        <th><a href="https://pajuutc.or.kr/ouz/fclty/traffic/guide/guide/contents.do?utm_source=chatgpt.com">국내 교통약자 서비스</a></th>
+        <th><a href="https://en.wikipedia.org/wiki/ITNAmerica">ITNAmerica</a></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>운영 주체</td><td>지자체, 공공기관</td><td>비영리 민간 조직</td></tr>
+      <tr><td>운전 인력</td><td>유급 기사 중심</td><td>자원봉사자 + 유급 혼합</td></tr>
+      <tr><td>비용 체계</td><td>고정요금</td><td>Ride Credit + 유료</td></tr>
+      <tr><td>사용자 대상</td><td>장애인 등</td><td>60세 이상 + 시각장애인</td></tr>
+      <tr><td>예약 방식</td><td>전화, 문자, 앱</td><td>웹/전화 예약</td></tr>
+      <tr><td>서비스 구조</td><td>단순 이동 지원</td><td>Door-through-door 돌봄</td></tr>
+      <tr><td>플랫폼</td><td>지역별 시스템</td><td>ITNRides 통합</td></tr>
+    </tbody>
+  </table>
+
+  <h2>■ 기존 서비스와의 차별화 포인트</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>차별 항목</th>
+        <th>기존 국내 서비스</th>
+        <th>내 아이디어</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>예약 방식</td><td>전화·문자 위주</td><td>웹/앱 기반 UI</td></tr>
+      <tr><td>운행자</td><td>유급 기사만</td><td>자원봉사자 포함</td></tr>
+      <tr><td>비용/보상</td><td>고정 요금</td><td>Ride Credit 보상</td></tr>
+      <tr><td>경로 설계</td><td>주소 기반</td><td>실시간 위치 추적</td></tr>
+      <tr><td>운영 구조</td><td>지역별 분산</td><td>중앙 통합</td></tr>
+      <tr><td>사회성</td><td>행정 중심</td><td>시민 참여 유도</td></tr>
+    </tbody>
+  </table>
+
+</body>
+</html>
