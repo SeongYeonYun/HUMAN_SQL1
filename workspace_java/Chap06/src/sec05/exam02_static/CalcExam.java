@@ -7,10 +7,14 @@ public class CalcExam {
 		System.out.println("Calc,pi = "+Calc.pi);
 		
 <<<<<<< HEAD
+<<<<<<< HEAD
 		
 =======
 		System.out.println(a);
 >>>>>>> parent of dfd9646 (지니 뮤직 크롤링, UTF boom)
+=======
+		System.out.println(Calc.a);
+>>>>>>> main
 		Calc c1 = new Calc();
 		c1.color = "black";
 		c1.pi = 3.141592;
