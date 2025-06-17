@@ -26,9 +26,13 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="D:/workspace_1/workspace_java/jackson-annotations-2.15.2.jar"/>
 	<classpathentry kind="lib" path="D:/workspace_1/workspace_java/jackson-core-2.15.2.jar"/>
 	<classpathentry kind="lib" path="D:/workspace_1/workspace_java/jackson-databind-2.15.2.jar"/>
 	<classpathentry kind="lib" path="D:/workspace_1/workspace_java/jsoup-1.20.1.jar"/>
+=======
+	<classpathentry exported="true" kind="lib" path="C:/Users/tis03/Downloads/jsoup-1.20.1.jar"/>
+>>>>>>> parent of dfd9646 (지니 뮤직 크롤링, UTF boom)
 	<classpathentry kind="output" path="bin"/>
 </classpath>

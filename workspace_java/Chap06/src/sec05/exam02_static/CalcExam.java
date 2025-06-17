@@ -6,7 +6,11 @@ public class CalcExam {
 		// TODO Auto-generated method stub
 		System.out.println("Calc,pi = "+Calc.pi);
 		
+<<<<<<< HEAD
 		
+=======
+		System.out.println(a);
+>>>>>>> parent of dfd9646 (지니 뮤직 크롤링, UTF boom)
 		Calc c1 = new Calc();
 		c1.color = "black";
 		c1.pi = 3.141592;
