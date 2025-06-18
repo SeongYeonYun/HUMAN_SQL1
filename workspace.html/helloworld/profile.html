@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>포트폴리오 대시보드</title>
+  <style>
+    body {
+        display: flex;
+        gap: 20px;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+    }
+
+    .left-column {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .middle-column {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .right-column {
+        flex-grow: 1;
+    }
+
+    .box {
+        border: 2px solid black;
+        border-radius: 10px;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .box.photo {
+        width: 170px;
+        height: 180px;
+        border: 2px solid black;
+        border-radius: 10px;
+        overflow: hidden;        /* 이미지가 박스를 넘지 않도록 */
+        padding: 0;
+        
+    }
+
+    .box.profile {
+        width: 150px;
+        height: 300px;
+       
+    }
+
+    .box.skill {
+        width: 150px;
+        height: 200px;
+    }
+
+    .box.year-goals {
+        width: 320px;
+        height: 350px;
+    }
+
+    .box.monthly-todo {
+        width: 320px;
+        height: 370px;
+    }
+
+    .box.project {
+        width: 650px;
+        height: 765px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- 왼쪽 세로 박스들 -->
+    <div class="left-column">
+        <div class="box photo">
+            <img src = "/cat.jpg" width = 150 height = 200 >
+        </div>
+
+        <div class="box profile">프로필<hr></div>
+        <div class="box skill">직무역량<hr></div>
+    </div>
+
+<!-- 가운데 -->
+    <div class="middle-column">
+        <div class="box year-goals">년도 목표 리스트<hr></div>
+        <div class="box monthly-todo">월별 to do list<hr></div>
+    </div>
+
+<!-- 오른쪽 -->
+    <div class="right-column">
+        <div class="box project">프로젝트 소개<hr></div>
+            <a target="_blank" href="https://gitlab.com/dbstjddus329/bot">주식 ai프로젝트</a>
+            <br>
+            <a target="_blank" href="https://gitlab.com/papa2618/textmining/">뉴스 데이터 분석</a>
+            <br>
+            <a target="_blank" href="https://github.com/SeongYeonYun/HUMAN_SQL1/">휴먼 교육센터</a>
+    </div>
+
+</body>
+</html>

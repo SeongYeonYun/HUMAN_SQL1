@@ -1,0 +1,78 @@
+<DOCTYPE html>
+<html lang = "en">
+
+    <head>
+        <title>Document</title>
+
+    
+    </head>
+
+    <body>
+        <form>
+            text(기본값) : <input type = "text" > <br>
+            text(value) : <input type = "text" value = "rkqt" > <br>
+            text(readonly) : <input type = "text" value = "rkqt" readonly = "true" > <br><!--수정 불가, 읽기보드-->
+            text(disabled) : <input type = "text" value = "rkqt" disabled = "disabled" > <br><!--수정 불가, 읽기보드-->
+            text(placeholder) : <input type = "text" placeholder = "rkqt" > <br>
+            <br>
+            password : <input type="password"><br>
+            password(placeholder) : <input type="password",placeholder = "sdsd"><br>
+            <br>
+            
+            radio :<!-- 선택 목록 생성-->
+            <input type = "radio" name = "gender" value = "male">남자 
+            <input type = "radio" name = "gender" value = "female"> 여자
+            <input type = "radio" name = "gender" checked = "checked" value = "nothing"> 비공개
+            <!--체크드 설정 : 체크 된 상태로 시작--> 
+            
+            <br>            
+            radio : 
+            <input type = "radio" name = "meeting"checked = "checked"> 참석
+            <input type = "radio" name = "meeting"checked = "checked"> 미참
+            <input type = "radio" name = "meeting"checked = "checked"> 미응답
+            <!-- 마지막 것만 남는다-->
+            <br>
+
+            <!--버튼을 누르면 서버로 데이터가 전송이 됨-->
+            submit : <input type = "submit" value = "전송">
+            <br>
+            <br>
+            checkbox : 
+            <input type = "checkbox" value = "1"> 생크림
+            <input type = "checkbox" value = "2"> 초코
+            <input type = "checkbox" value = "3"checked = "checked"> 카푸티
+            <br>
+            <!-- 체크박스는 분류나 정령해주는 기준이라 생각하자, radio 같은 경우는 설문조가, 
+             checkbox는 아래 표가 있다고 생각하고 분류 표를 떠올려 보자
+             떄문에 체크 박스는 체크 한다고 해도 요청하는 url값이 변하지 않는다-->
+            submit : <input type = "submit" value = "전송">
+            
+            <br>
+            file : <input type = "file">
+            <br>
+            reset : <imput type = "reset">
+            
+            <br>
+            input button : <input type = "button" value = "버튼임">
+            <br>
+            input button : <button type = "button">버튼명</button>
+            
+            
+            
+                
+
+
+        </form>
+        <!-- 메소드의 종류는 4가지 이나 form에서의 매소드 종류는 2가지
+         : get(기본값), post
+
+         action 은 전송할 주소, 기본값은 지금 내 주소
+         -->
+        <form method ="" action="http://search.naver.com/search.naver">
+            <input type = "text" name = "query" value = "dsdsd">
+            submit : <input type = "submit" value = "네이버 검색">
+            
+        </form>
+
+    </body>
+</html>
