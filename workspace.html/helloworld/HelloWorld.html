@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>To-Do 달력 앱</title>
+  <style>
+    body {
+      display: flex;
+      gap: 20px;
+      padding: 40px;
+      font-family: sans-serif;
+    }
+
+    .todo {
+      width: 400px;
+      height: 732px;
+      background-color: white;
+      border: 3px solid black;
+      border-radius: 10px;
+      padding: 10px;
+      overflow-y: auto;
+    }
+
+    .calendar {
+      display: flex;
+      flex-direction: column;
+
+      
+    }
+
+    .calendar-box {
+      width: 400px;
+      height: 340px;
+      background-color: black;
+      border: 2px solid black;
+      border-radius: 10px;
+      color: white;
+      padding: 10px;
+      margin-bottom:  10px;
+    }
+
+    .calendar-box div {
+      display: inline-block;
+      width: 56px;
+      height: 56px;
+      line-height: 28px;
+      text-align: center;
+      margin: 4px;
+      cursor: pointer;
+      background-color: #333;
+      border-radius: 5px;
+    }
+
+
+    .calendar-box div:hover {
+      background-color: white;
+      color: black;
+    }
+
+    .holiday {
+        
+
+      width: 400px;
+      height: 360px;
+      background-color: whitesmoke;
+      border: 2px solid black;
+      border-radius: 10px;
+      padding: 10px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 분홍색: To-Do List -->
+  <div class="todo" id="todo-list">
+    <h4>To-Do List</h4><hr>
+    <ul id="tasks"></ul>
+  </div>
+
+  <!-- 달력 + 공휴일 -->
+  <div class="calendar">
+    <div class="calendar-box" id="calendar">
+      <h4 style="margin:0;">6월</h4>
+      <!-- 날짜들 -->
+    </div>
+
+    <div class="holiday">
+      <h4>6월 공휴일</h4>
+      <ul>
+        <li>6월 6일: 현충일</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    // 간단한 날짜별 할일 예시
+    const todoData = {
+      "2025-06-17": ["병원 예약", "코딩 테스트 준비"],
+      "2025-06-18": ["운전 연습", "플젝 정리"],
+      "2025-06-25": ["친구 생일", "회의 참석"]
+    };
+
+    const tasksEl = document.getElementById('tasks');
+    const calendarEl = document.getElementById('calendar');
+
+    // 달력 날짜 생성
+    for (let d = 1; d <= 30; d++) {
+      const day = document.createElement('div');
+      day.innerText = d;
+      day.addEventListener('click', () => {
+        const dateKey = `2025-06-${d.toString().padStart(2, '0')}`;
+        const tasks = todoData[dateKey] || ["할 일이 없습니다."];
+        tasksEl.innerHTML = tasks.map(task => `<li>${task}</li>`).join('');
+      });
+      calendarEl.appendChild(day);
+    }
+
+    // 기본 오늘 날짜 설정
+    const today = new Date();
+    const todayKey = "2025-06-" + today.getDate().toString().padStart(2, '0');
+    const todayTasks = todoData[todayKey] || ["오늘 할 일이 없습니다."];
+    tasksEl.innerHTML = todayTasks.map(task => `<li>${task}</li>`).join('');
+  </script>
+</body>
+</html>
