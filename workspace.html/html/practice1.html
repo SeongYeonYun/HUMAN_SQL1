@@ -1,0 +1,98 @@
+<DOCTYPE html>
+    <html lang = en>
+    <head>
+    <style>
+        /* .logo{
+            background-image:url(https://ssl.pstatic.net/static/nid/login/m_sp_00_common_978240a6.png);
+            background-size:244px 107px;
+            background-repeat:no-repeat;
+            
+        } */
+      .logo {
+            background-image: url("https://ssl.pstatic.net/static/nid/login/m_sp_00_common_978240a6.png");
+            background-position: 0 -51px;
+            background-size: 244px 107px;
+            width: 155px;
+            height: 30px;
+            /* 파일 하나로 올리는 이유는 용량 자체는 손해지만 파일을 한번 읽는 작업 하나하나가 생각보다 오래 걸리기 떄문에 
+            하나의 파일을 불러 계속 사용하기 위함이다. */
+            }
+
+
+
+    </style>
+    
+    </head>
+    
+    <body>
+    
+        <!-- <form>
+            네이버 이미지 불러오기-->
+            <!-- <img src = "https://ssl.pstatic.net/static/nid/login/m_sp_00_common_978240a6.png"
+            width = 450px height = 300px><br>
+            <div class = logo ><br>
+
+        </form> -->
+        <!-- <h1 class ="blind">NAVER</h1> -->
+
+        <div class = "region" style = "width : 400 ; height: 900">
+            <div class="logo"></div>
+
+            <form method = "get">
+                <br>
+                <fieldset style="width: 351px;">
+                    <legend>                    
+                        <input type = "button" value = "ID/전화번호">--
+                        <input type = "button" value = "일회용 인증">--
+                        <input type = "button" value = "QR코드">
+
+
+
+
+                        <!-- 탭을 어떻게 표현하지????-->
+                        <!-- <input type = "checkbox" value = "ID/전화번호">ID/전화번호
+                        <input type = "checkbox" value = "일회용 번호">일회용 번호
+                        <input type = "checkbox" value = "QR코드">QR코드                 -->
+                    </legend>
+                    <!--로그인창 -->
+                        <!--ID input-->
+                    <input type = "text" required placeholder = "아이디 또는 전화번호" style = "width: 350;
+                    height : 70;border-top-left-radius: 10px; border-top-right-radius: 10px;" >
+                    <br>
+                    <!--PW input-->
+                    <input type = "text" required placeholder = "비밀번호" style = "width: 350;
+                    height : 70;border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;"><br>
+
+                    <!--체크박스-->
+                    <input type = "checkbox" value = "로그인 상태 유지" >로그인 상태 유지 
+                    <input type = "checkbox" value = "ip보안" >ip보안
+                    <br>
+
+                    <!-- 로그인 버튼-->
+                    <input type = "button" value = "로그인" style = "width : 350; 
+                    height : 30; color : white; background-color : deepskyblue; border-radius: 10px;"><br>
+                                
+                    
+                    <p>지문, 얼굴 인증을 설정했다면</p><br>
+
+                    <!-- 패스키 로그인 버튼-->
+                    <input type = "button" value = "패스키 로그인" style = "width : 350; 
+                    height : 30; color : green; background-color : white;
+                    border-radius: 10px; border-color: green;"><br>
+                </fieldset>
+
+            </form>
+        </div>
+
+    
+
+
+        
+    </body>
+    
+    
+    
+    
+    
+    
+    </html>
