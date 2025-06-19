@@ -4,39 +4,38 @@
         <meta charset  = "UTF-8">
         <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
         <tile>Document</tile>
+        <!-- <style>
+            .wrap{width: 2000px; margin: 0 auto;}
+            .map_area{width: 100%; height: 500px; border-radius: 7px; background-color: #eee;}
+        </style> -->
 
     </head>
     <body>
         <h1>휴먼 교육 센터</h1>
-        <iframe src = "https://human.or.kr",width = "100%", height = "1000px">
-        loding---
-        </iframe>
+        <iframe src = "https://human.or.kr",width = "100%", height = "1000px"></iframe>
 
+        <div class="wrap">
+        <div class="map_area">
 
-<table>
-    <th>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-    </th>
-    <tbody>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-    </tbody>
-</table>
-        
-    </body>
-</html>
+        <!-- * 카카오맵 - 지도퍼가기 -->
+    <!-- 1. 지도 노드 -->
+    <div id="daumRoughmapContainer1750293923264" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+
+    <!--
+	    2. 설치 스크립트
+	    * 지도 퍼가기 서비스를 2개 이상 넣을 경우, 설치 스크립트는 하나만 삽입합니다.
+    -->
+    <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+
+    <!-- 3. 실행 스크립트 -->
+    <script charset="UTF-8">
+        new daum.roughmap.Lander({
+            "timestamp" : "1750293923264",
+            "key" : "3sq4yvv4saz",
+            "mapWidth" : "500",
+            "mapHeight" : "300"
+        }).render();
+    </script>
+    
+</body>
+

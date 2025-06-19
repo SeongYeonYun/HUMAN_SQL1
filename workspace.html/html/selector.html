@@ -1,0 +1,102 @@
+<DOCTYPE html>
+    <html>
+        <head>
+            
+            <style>
+                /* 전체 선택자 */
+                *{
+                    color : red;
+                }
+
+                body{
+                    background-color: green;
+                }
+                h2
+                {
+                    color : blue;
+                    font-size: 40px;
+                    margin-top: 5x;
+                    margin-left: 100px;
+                    width : 200px;
+                    height: 300px;
+                    /* background-color: aqua; */
+                    /* padding : 100px; */
+
+
+                }
+                .b1{
+                    color : red;
+                }
+
+                /* #a1{ 아이디 선택자
+
+                } */
+                
+                /* hover 마우스를 올렸을때 */
+                
+                #div1:hover{
+
+                    color : red;
+                    font-size : 40px;
+                    width : 200px;
+                    height : 300px;
+                    background-color: aqua;
+                }
+                #a1:active{
+
+                    color : red;
+                    font-size : 40px;
+                    width : 200px;
+                    height : 300px;
+                    background-color: aqua;
+                }
+                /* active 은 마우스를 눌렀을떄  */
+               
+               
+                #al{
+
+                    color : red;
+                    font-size : 40px;
+                    width : 200px;
+                    height : 300px;
+                    background-color: aqua;
+                }
+                #a1
+                {
+                    color :purple;
+                }
+
+                .text1:focus{
+                    color : black;
+                }
+                /* 아이디 테그가 개별 태그보다 더 우선순위가 높나 보다  */
+                
+            </style>
+
+        </head>
+        <body>
+            <h1>HELLO WORLD</h1>
+            <h2 id = a1 title = "제목">HLO WORLD</h2>
+            <h3 id = a1>HELLO WORLD</h3>
+            <h5 id = a1 class = b1>HELLO WORLD</h5>
+            <h5 class = b1 id = a1 >HELLO WORLD</h5>
+            <!-- 아이디 테그가 클레스 테그보단 우선 순위를 가진다. -->
+            <h5 class = b1 >HELLO WORLD</h5>
+            <h4 id = a1 style = "color :blue">HELLO WORLD</h4>
+            <!-- html에 직접 태그된게 좀더 우선순위가 높다. -->
+
+            <div id = "div1" stype = "right = 100">
+                hover 연습
+
+
+            </div>
+
+            <input type = "text" class ="text1">text1 <br>
+            <input type = "text" style = "color : blue ">text2<br>
+            <hr style = "width: 500px ; color : red" >
+
+
+
+        </body>
+
+    </html>
