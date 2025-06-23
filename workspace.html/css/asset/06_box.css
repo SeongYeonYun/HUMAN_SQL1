@@ -1,0 +1,57 @@
+/* body{
+  border : 1px solid  black;
+  width : 500px;
+  height : 500px;
+
+} */
+
+.first{
+    border : 10px solid red;
+    margin : 100px;
+    /* margin-top : 50px;
+    margin-bottom : 50px;
+    margin-right : 50%; */
+    width : 250px;
+    height : 250px;
+    border-top-width: 10;
+    border-top-style: dotted;
+    border-top-color: green;
+    border-right: 2px dashed green;
+    background-color: purple;
+    border-right-width: 10px;
+    border-right-style: dotted;
+    
+
+}
+.second{
+    box-sizing: border-box;
+    border : 10px solid red;
+    margin : 100px;
+    /* margin-top : 50px;
+    margin-bottom : 50px;
+    margin-right : 50%; */
+    width : 250px;
+    height : 250px;
+    border-top-width: 10;
+    border-top-style: dotted;
+    border-top-color: green;
+    border-right: 2px dashed green;
+    background-color: purple;
+    border-right-width: 10px;
+    border-right-style: dotted;
+    
+
+}
+#img {
+  border : 1px solid black;
+  width : 500px;
+  height : 500px;
+  border-radius: 50%;
+  background-image: url("photo.webp");
+  background-size: cover;
+  margin-top: 10px;  
+  
+
+
+
+}
