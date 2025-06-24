@@ -1,0 +1,17 @@
+.img{
+    background-image: url("https://html5up.net/uploads/demos/tessellate/images/header.jpg");
+    width : 100%;
+    height : 70%;
+    background-position: 0,0;
+    
+    /* background-position: top; */
+    /* position: relative; */
+    /* background-position: center; */
+    background-size: cover;
+
+}
+
+/* .img .bolck {
+    color : white;
+
+} */
