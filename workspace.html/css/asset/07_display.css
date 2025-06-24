@@ -1,0 +1,77 @@
+.block{
+    border: 1px solid red;
+    width : 50px;
+    height : 50px;
+    margin: auto; 
+    /* 가운데 정렬 */
+}
+
+#div{
+    border : 1px solid blue;
+    /* 내용이 없어도 표시는 됨, 컨탠츠의 높이나 너비 
+    만큼 범위가 지정된다. */
+
+
+}
+
+.inline{
+    border : 1px solid red;
+    width : 50px;
+    height : 100px;
+
+    /* 좌우만 되고 위 아래 안됨 */
+    margin : auto;
+
+    /* 좌우만 되고 위 아래 안됨 , 단 border은 멀어짐*/
+    padding : 20px;
+    display: block;
+    /* 옆으로 출력되는게 아닌 위 아래로 출력됨 */
+
+}
+
+.bg_blue{
+    background-color: blue;
+    color :white;
+}
+
+.parent{
+    border : 5px dotted green;
+    width : 100%;
+
+}
+.parent > div{
+    border : 1px dashed red;
+    width : 500px;
+    /* no wrap 인라인 요소를 한줄로 출력되게 하는 기능  
+    display inline-block의 박스가 작아지면 자동으로 아래로 됨*/
+    /* 반응형 웹 : 모니터에 맞춰서 출력되는 것 */
+    display : inline-block;
+    /* 인라인 블록들은 기본적으로 폰트의 베이스 라인에 맞춰진다 */
+    /* vertical-align 은 인라인과 인라인 블럭에만 적용이 된다 */
+    vertical-align: top;
+
+
+
+
+}
+
+.hide{
+    color : red;
+    display: none;
+    /* 이 공간은 화면상에서 안보이는 애야 보이고 싶지 않은경우 */
+}
+
+.table{
+    display : table;
+}
+
+.table .td{
+    display : table-cell;
+    border : 1px solid red;
+    height : 100px;
+    width : 100px;
+    vertical-align: middle;
+}
+
+
+

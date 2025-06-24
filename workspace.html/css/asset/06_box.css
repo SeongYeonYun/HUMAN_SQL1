@@ -52,6 +52,24 @@
   margin-top: 10px;  
   
 
+}
 
+#div1, #div2, #div3{
+    border : 3px solid red;
+    overflow: hidden;
+  }
+
+
+#div2, #div3{
+  margin: 30px;
+}
+
+#div3{
+  margin : 30px;
 
 }
+
+#div1{
+  margin : 30px;
+}
+
