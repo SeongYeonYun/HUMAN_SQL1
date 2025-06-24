@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      margin-top: 5%;
+      font-family: Arial, sans-serif;
+    }
+
+    .screen {
+      border: 3px solid blue;
+      width: 100%;
+      height: 100%;
+    }
+
+    .box {
+      border: 3px solid red;
+      width: 80%;
+      height: 80%;
+      margin: 10%;
+    }
+
+    .text {
+      width: 80%;
+      height: 30%;
+      border: 3px solid green;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 1.2em;
+      padding: 10px;
+    }
+
+    .table {
+      display: flex;
+      justify-content: space-around;
+      width: 80%;
+      margin: 5% auto;
+      border: 3px solid black;
+      height: 60%;
+    }
+
+    .img {
+      border: 2px solid black;
+      width: 32%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .img img {
+      width: 100%;
+      height: auto;
+      flex-shrink: 0;
+    }
+
+    .name, .price, .view {
+      flex: 1;
+      text-align: center;
+      padding-top : 10%;
+      border-top: 1px solid #aaa;
+    }
+
+    .name {
+      background-color: #f8f8f8;
+      font-weight: bold;
+    }
+
+    .price {
+      background-color: #fff;
+      color: green;
+    }
+
+    .view {
+      border-bottom: 1px dotted black;
+      padding-top : 10%;
+      padding-bottom: 10%;
+      width: 100%;
+      margin: 0 auto;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="screen">
+    <div class="box">
+      <div class="text">
+        <strong>Extraordinary rooms with elegant, yet a rustic atmosphere</strong>
+      </div>
+      <div class="table">
+        <div class="img">
+          <img src="https://assets.nicepagecdn.com/d2cc3eaa/88834/images/34.jpg" alt="product1">
+          <div class="name">아늑한 거실</div>
+          <div class="price">$45.00</div>          
+          <div class="view"><span style="border-bottom: 5px dotted deeppink;"">view</span></div>
+        </div>
+        <div class="img">
+          <img src="https://assets.nicepagecdn.com/d2cc3eaa/88834/images/modern-studio-apartment-design-with-bedroom-living-space_1262-12375.jpg" alt="product2">
+          <div class="name">스튜디오 룸</div>
+          <div class="price">$35.00</div>
+          <div class="view"><span style="border-bottom: 5px dotted deeppink;"">view</span></div>
+        </div>    
+        <div class="img">
+          <img src="https://assets.nicepagecdn.com/d2cc3eaa/88834/images/4.jpg" alt="product3">
+          <div class="name">모던 침실</div>
+          <div class="price">$40.00</div>
+          <div class="view"><span style="border-bottom: 5px dotted deeppink;"">view</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
