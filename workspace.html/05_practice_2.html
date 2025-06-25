@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 5%;
+      background-color: #fdfdfd;
+      display: flex;
+      justify-content: center;
+      padding: 40px;
+      /* border: 1px solid blue; */
+    }
+    .container {
+      display: flex;
+      max-width: 1200px;
+      width: 100%;
+      gap: 40px;
+      /* border: 1px solid blue; */
+    }
+    .left {
+      margin-left: 15%;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      /* border: 1px solid blue; */
+    }
+    .left img {
+      margin-top : 20%;
+      width: 100%;
+      height: 40%;
+    
+      /* border: 1px solid blue; */
+    }
+    .left h1 {
+      
+      font-size: 2em;
+      margin: 0;
+    }
+    .left p {
+      color: #555;
+      line-height: 1.6;
+      font-size: 1em;
+    }
+
+    .right {
+      border: 1px solid blue;
+      margin-right: 15%;
+      margin-bottom: 10%;
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 20px;
+    }
+    .right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border: 1px solid blue;
+      
+    }
+    .right .wide {
+      grid-column: span 2;
+      height: 300px;
+      border: 1px solid red;
+    }
+    
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left">
+      <img src="https://images03.nicepage.com/c461c07a441a5d220e8feb1a/0dedaa8602ba5d6d818dec9f/houseofsilencemariamarinina03.jpg" alt="Main house">
+      <h1>Thai Style Home Wabi Sabi</h1>
+      <p>
+        The home is surrounded by a landscaped garden and there are lots of different neighbours in the area.
+        The average home is created for a single family.
+      </p>
+    </div>
+    <div class="right">
+      <img src="https://images03.nicepage.com/c461c07a441a5d220e8feb1a/42568883ba365e639e3fc0a9/0f9a91f61af2dac432841181deef820c.jpg" alt="Side image 1"
+      style = "padding-bottom: 5px; margin-top : 88%; height:250px">
+      <img src="https://images03.nicepage.com/c461c07a441a5d220e8feb1a/2dd335aa72b0516cb1df543c/22c7537e24e94a7b5fc4c74be769544a.jpg" alt="Side image 2"
+      style = "margin-top : 110%; height:200px">
+      <img class="wide" src="https://images03.nicepage.com/c461c07a441a5d220e8feb1a/add58d50d86d5fb4a773eff5/0ee610f6080f69b8179888943e49b794.jpg" alt="Bottom image">
+    </div>
+  </div>
+</body>
+</html>

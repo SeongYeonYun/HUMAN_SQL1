@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      display: flex;
+      margin: 0;
+      height: 100vh;
+    }
+
+    .sidebar {
+      width: 30%;
+      padding: 10px;
+      border-right: 2px solid #ccc;
+    }
+
+    .sidebar label {
+      display: block;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    .sidebar img {
+      width: 100%;
+      border: 2px solid skyblue;
+      
+    }
+
+    /* .sidebar img:hover {
+      
+      
+    } */
+
+    .viewer {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f5f5f5;
+      position: relative;
+      border : 5px solid red;
+    }
+
+    .viewer img {
+      max-width: 100%;
+      max-height: 100%;
+      display: none;
+      border: 3px solid #333;
+    }
+
+    input[type="radio"] {
+      display: none;
+    }
+
+    #img1:hover ~ .viewer #big1,
+    #img2:hover ~ .viewer #big2,
+    #img3:hover ~ .viewer #big3 {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- input radio로 선택 상태를 저장 -->
+  <input type="radio" name="image" id="img1" checked>
+  <input type="radio" name="image" id="img2">
+  <input type="radio" name="image" id="img3">
+
+  <!-- 왼쪽 작은 이미지들 -->
+  <div class="sidebar">
+    <label for="img1"><img src="https://image8.coupangcdn.com/image/retail/images/2024/09/10/15/7/6b7801e4-d222-42db-8eef-2fc07db5876c.jpg"></label>
+    <label for="img2"><img src="https://thumbnail6.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2024/09/10/15/3/768dce66-1d95-4e3b-ab93-304decdf3326.jpg"></label>
+    <label for="img3"><img src="https://image10.coupangcdn.com/image/retail/images/2024/09/10/15/2/8e07f068-4bfc-4013-b819-9600e63453e6.jpg"></label>
+  </div>
+
+  <!-- 오른쪽 큰 이미지 표시 -->
+  <div class="viewer">
+    <img src="https://image8.coupangcdn.com/image/retail/images/2024/09/10/15/7/6b7801e4-d222-42db-8eef-2fc07db5876c.jpg" id="big1">
+    <img src="https://thumbnail6.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2024/09/10/15/3/768dce66-1d95-4e3b-ab93-304decdf3326.jpg" id="big2">
+    <img src="https://image10.coupangcdn.com/image/retail/images/2024/09/10/15/2/8e07f068-4bfc-4013-b819-9600e63453e6.jpg" id="big3">
+  </div>
+
+</body>
+</html>
