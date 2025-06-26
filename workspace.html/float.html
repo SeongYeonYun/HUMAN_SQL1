@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meata charset = "UTf-8">
+    <style>
+        article img{
+            /*float전에는 글자 취급을 당했지만, float를 하게 될경우 그냥 띄워주는 느낌
+            글씨를 한정으로 float를 피해서 나오고 그 외의 이미지 같은 다른 것들은 float밑에 뭍혀서 출려됨 */
+            float:left 
+
+        }
+        .box{
+            border : 1px solid red;
+            height : 200px;
+            width : 200px;
+            margin : 10px;
+        }
+
+        .left_2 {
+            float : left;
+            border: 1px solid blue;
+            height : 100px;
+            width : 100px;
+        }
+        .right_2 {
+            float : right;
+            border: 1px solid red;
+            height : 100px;
+            width : 100px;
+        }
+
+        .box.left {
+            float : left;
+            border: 1px solid blue;
+        }
+        .box.right {
+            /* position : relative;
+           
+            left : 5px; */
+            float : right; /*오른쪽을 우선적으로 정렬하기 떄문에 3번 막스가 먼저 정령되고 4번이 정렬된다.*/
+        }
+
+        .d2{
+            /* width : 100%; */
+            background-color: yellow;
+        }
+        .d1{
+            background-color: rgba(135, 207, 235, 0.514);
+        }
+
+        .d3{
+            background-color: blue;
+            height: 50px;
+            color : white
+
+        }
+        .clear{
+            clear: both;
+
+        }
+        .clearfix:after {
+            content : "";
+            display:block;
+            clear : both;
+        }
+        .logo {       
+            margin : auto;
+            background-color: cornflowerblue;
+            width : 100px;
+            border: 10px solid red;
+        }
+
+
+        .menu {
+            text-align: center;
+            background-color: deeppink;
+        }
+        
+
+
+
+
+        </style>
+    </head>
+
+
+<body>
+    <article>
+        <img src = "cat.jpg" width = 20%>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque ad, error aliquam explicabo dignissimos, nobis ea illo vero optio atque sint necessitatibus. Quas nemo dolores dolorem aspernatur, qui iste? Ullam?
+        <!--LOrem을 입력하면 즐다 예문 나옴-->    
+    </article>
+    <div style = "clear : both;"></div>
+    <div class = "box left">1</div>
+    <div class = "box left">2</div>
+    <!-- right의 경우 border은 이미지 이기 떄문에 left와 겹치지만 3은 문자 이기 떄문에 float에 겹치지 못한다.-->
+    <div class = "box right">3</div>
+    <div class = "box right">4</div>
+    <div style = "clear: both;"></div>
+
+    <!-- <div class = "box left">11</div>
+    <div class = "box left">12</div>
+    <div class = "box right">13</div>
+    <div class = "box right">14</div> -->
+
+    <!-- <div style = "overflow: hidden;"> -->
+
+    <div>    
+        <div class = "box d1 left">d1</div>
+        <div class = "box d2 right">d2</div>
+        <div class = "clear"></div>
+    </div>
+    <div class = "d3">d3</div>
+
+    <div class = "clearfix">    
+        <div class = "box d1 left">d1</div>
+        <div class = "box d2 right">d2</div>
+        
+    </div>
+    <div class = "d3">d3</div>
+
+    <div>글씨몇개</div>
+
+    <div class="menu">
+        <div class="left_2">왼쪽 매뉴</div>
+        <div class="logo">가운데 매뉴</div>
+        <div class="right_2">오른쪽 매뉴</div>
+    </div>  
+
+
+
+
+
+    </body>    
+
+
+
+
+
+
+</html>
