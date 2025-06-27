@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .flex-container{
+            border : 1px solid green;
+            height : 300px;
+            display: inline-flex;
+            /* display : inline-flex; */
+            /* display : inline-block; */
+            /* flex-direction: column;  main 축과 cross축이 위에서 아래로 */
+            flex-direction: column-reverse;
+            /* flex-wrap: nowrap; 기본값, 한줄에 모든 item을 표시하려고 노력  */
+            /*넘치는 경우 다음줄로*/
+            flex-wrap : wrap; 
+
+        }
+        .flex-container .flex-item{
+            border : 1px solid red;
+            /* height : ; */
+            width : 1500px;
+
+        }
+
+        </style>
+    </head>
+    
+    <body>
+        <div class="flex-container">
+            <div class="flex-item">1</div>
+            <div class="flex-item">2</div>
+            <div class="flex-item">3</div>
+            <div class="flex-item">4</div>
+            <div class="flex-item">5</div>
+        </div>
+
+
+
+
+        </body>
+
+
+
+
+</html>

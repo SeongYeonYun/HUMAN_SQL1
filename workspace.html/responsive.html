@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        ul {
+            border :1px solid red;
+            list-style: none;
+            padding-left:0;
+
+        }
+
+        li{
+            border : 1px solid blue;
+            width : 100px;
+            display: inline-block;
+            text-align: center;
+        }
+        span{
+            display: none;
+
+        }
+        /* 조건문 같은 녀석, media -> 출력 (조건) PC버전과 모바일 버전의 차이 */
+        @media screen and (max-width:600px){
+            span{
+            display: block;
+            }
+            li{
+                display: block;
+                width : 100%;
+            }
+        }
+        </style>
+
+    </head>
+<body>
+<span> 메뉴 열기</span>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    </ui>
+
+
+
+</body>
+
+    </html>
