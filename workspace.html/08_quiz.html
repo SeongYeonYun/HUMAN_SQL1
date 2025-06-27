@@ -5,17 +5,25 @@
 <head>
     <style>
         .main {
-            background-color: green;
-            height : 300px;
+    
+            height : 70vh;
             position: relative;
+            background-size: cover; /*이미지 전체 출력*/
+            background-image: url("https://images03.nicepage.com/a1389d7bc73adea1e1c1fb7e/846b63b1f34d58a4addcd7cb/pexelsphoto415945.jpeg");
         }
 
         .main .band{
-            background-color: red;
-            height: 280px;
-            width: 200px;
+            background-color: gray;
+            height: 70vh;
+            width: 40vh;
             position: absolute;
-            left : 900px;
+            left : 600px;
+            position: relative;
+        }
+
+        .main .band p{
+            text-align: center;
+            position : absolute;
         }
   
         
@@ -26,6 +34,11 @@
 <body>
     <div class = "main">
         <div class = "band">
+            <p style = "top : 30% ; left : 40%">ABOUT US</p>
+            <p style = "top : 40% ; left : 30%">Industry Solutions</p>
+            <p style = "top : 50% ; left : 5%">We’re your partner, but we’re also your advocate—every step of the way to satisfying your vision.</p>
+            <p style = "top : 60% ; left : 40% ; border-bottom: 1px solid black;">READ_MORE</p>
+
 
         </div>
     </div> 

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <style>
+            .body{
+                position: relative;
+            }
+            .container{
+                top : 10%;
+                position : absolute;
+                border : 1px solid red;
+                width : 100%;
+                height : 80%;
+
+
+            }
+            .textbox{
+                position : absolute;
+                left : 50%;
+                top : 50%;
+                text-align: left;
+                color : white;
+                width : 300px;
+                height : 300px;
+                background-color: black;
+            }
+            .band {
+                position : absolute;
+                left : 35%;
+                width : 30%;
+                height : 100%;
+                background-color: bisque;
+                z-index: 0;
+            }
+
+            #bigsize{
+                position : absolute;
+                width : 500px;
+                height : 300px;
+                z-index: 1;
+            }
+
+            #smallsize{
+                position : absolute;
+                width : 300px;
+                height : 300px;
+                z-index: 1;
+            }
+
+            
+
+
+
+
+        </style>
+
+    </head>
+
+    <body>
+        <div class = "container">
+            <div class = "band"></div>
+            <div class = "textbox">
+                <Strong><p>We believe a community of diversity and acceptance starts in a safe and inclusive place of worship.</p></Strong>
+                Images from<span style = "border-bottom: 1px solid white ;">Freepik </span>
+            </div>
+            <!--책읽는 남자-->
+            <img id = smallsize style = "top: 50%;left : 20%;"
+            src="https://images01.nicepage.com/c461c07a441a5d220e8feb1a/ea6de3a355c35c3fb5e2e8fb/gfgg.jpg" >
+            <!--책-->
+            <img id = smallsize  style = "top : 3% ; right : 25%;"
+            src="https://images01.nicepage.com/c461c07a441a5d220e8feb1a/fe2b4f4f73b2545cb746601b/spirituality-religion-hands-folded-prayer-holy-bible-church-concept-faith_1150-148781.jpg">
+            <img id = bigsize src="https://images01.nicepage.com/c461c07a441a5d220e8feb1a/4583c5e5778759d5bf354095/dfggdf-min.jpg"><!--가족-->
+           
+
+
+
+
+
+
+
+        </div>
+
+
+        </body>
+    </html>
