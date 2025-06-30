@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        div { 
+            border : 1px solid black;
+        }
+        .title {
+            background-color: white;
+            height : 100px;
+            width : 100%;
+            
+
+        }
+        .category{
+            background-color: rgb(20, 2, 124);
+            width : 100%;
+            height : 40px;
+            color : white;
+
+        }
+        .recent_visit{
+            margin-left : 5%;
+            
+
+            width : 90%;
+            height : 20px;
+        }
+        .container {
+            display: flex;            /* inline-flex → flex */
+            width: 100%;              /* 부모가 전체 폭 차지하도록 */
+            min-height: 1000px; 
+            flex-wrap: nowrap;        /* 줄바꿈 방지 (기본값이긴 하지만 명시적으로 적는 것이 좋음) */
+        }
+        .left_container {
+            width: 60%;
+            margin-left: 5%;
+            min-height: 600px;
+            
+        }
+
+        .right_container {
+            width: 30%;
+            margin-right: 5%;
+        }
+       
+       
+        tr {
+            border-bottom: 3px solid blue;  
+            display: inline;
+            
+        }
+
+        #picture {
+            display: flex;
+            justify-content: space-around;
+                       
+
+        }
+       
+
+        /* 좌측 하단 게시글 */
+        #board{ 
+            border : 3px solid green;
+            display: flex;
+            flex-wrap: wrap;
+            height : 28%;
+            width: 100%; 
+
+        
+           
+        }
+        #board > div{
+            width: 50%;
+            height: 50%;
+            border: 1px solid red;
+            box-sizing: border-box;
+            
+        }
+
+
+        .small {
+            height : 15%;
+            margin-top : 5%;
+            margin-left : 5%;
+            margin-right : 0;
+
+        }
+
+        input{
+            background-color: rgba(36, 21, 3, 0.123);
+            margin : 2%;
+            height : 45px;
+            border: 0px;
+        }
+        /* 다른 리스트들 안보이게 */
+       .viewer ul {
+            display: none;
+            
+        }
+       .viewer table {
+            display: none;
+            
+        }
+       
+        input[type="radio"] {
+            display: none;
+        }
+
+        /* 조건문 */
+        #tap1:checked ~ .viewer #list1,
+        #tap2:checked ~ .viewer #list2,
+        #tap3:checked ~ .viewer #list3,
+        #tap4:checked ~ .viewer #list4 {
+            display: block;
+        }
+
+        /* 실북갤|홍한갤 tap */
+        .tab-labels {           
+            display: flex;
+            justify-content: center;
+            
+        }
+        .tab-labels label {
+            height : 20px;
+            cursor: pointer;
+            padding: 5px 10px;
+            background-color: white;
+            border: 1px solid #aaa;
+        
+        }
+
+        </style>
+    </head>
+
+
+    <body>
+        <div class = "title">
+            <!-- 로고, 검색창 -->
+             <div style = "margin-left: 5%;">
+                <img  src = "https://nstatic.dcinside.com/dc/logo_day/dc_logo.gif">
+                </div>
+            </div>
+
+        <div class = "category">
+            <!-- 남색 띠, JS제외 -->
+             <div style = "margin-left: 5%;">갤러리 마이너갤미니갤 인물갤 갤로그 디시트렌드</div>
+
+            </div>
+        <div class = "recent_visit">
+            <!-- 최근 방문 -->
+        </div>
+        <div class = "container">
+            <div class = "left_container">
+                <div class = "row_list" id = "real_time">
+                    <!-- 실사간 베스트 -->
+                     <div id = "text">
+                        <!-- 텍스트 -->
+                         실시간 베스트 실베라이트
+                        </div>
+                    <div id = "picture" >
+                        <img style = "width : 20%;" src = "dc_img2.PNG">
+                        <img style = "width : 20%;" src = "dc_img2.PNG">
+                        <img style = "width : 20%;" src = "dc_img2.PNG">
+                        <img style = "width : 20%;" src = "dc_img2.PNG">
+                        <img style = "width : 20%;" src = "dc_img2.PNG">
+                        
+                        
+                        <!-- 사진 -->
+                        </div>
+                
+                    </div>
+
+                <div id = "contents">
+                    <!-- 주 내용 -->
+                     <table >
+                        <tbody>
+                            <tr>    
+                                <th scope="row">
+                                    <img src = "dc_img.PNG" style = "align-content: center;">
+                                </th>
+                                <td>中, 지진나도 밥부터 처먹는 레전드 식탐 화제... 목숨보다 밥이</td>
+                                <td>대만</td>
+                                <td>date</td>
+                            </tr>
+                            <tr>    
+                                <th scope="row">
+                                    <img src = "dc_img.PNG" style = "align-content: center;">
+                                </th>
+                                <td>中, 지진나도 밥부터 처먹는 레전드 식탐 화제... 목숨보다 밥이</td>
+                                <td>대만</td>
+                                <td>date</td>
+                            </tr>
+                            <tr>    
+                                <th scope="row">
+                                    <img src = "dc_img.PNG" style = "align-content: center;">
+                                </th>
+                                <td>中, 지진나도 밥부터 처먹는 레전드 식탐 화제... 목숨보다 밥이</td>
+                                <td>대만</td>
+                                <td>date</td>
+                            </tr>
+                            <tr>    
+                                <th scope="row">
+                                    <img src = "dc_img.PNG" style = "align-content: center;">
+                                </th>
+                                <td>中, 지진나도 밥부터 처먹는 레전드 식탐 화제... 목숨보다 밥이</td>
+                                <td>대만</td>
+                                <td>date</td>
+                            </tr>
+                            <tr>    
+                                <th scope="row">
+                                    <img src = "dc_img.PNG" style = "align-content: center;">
+                                </th>
+                                <td>中, 지진나도 밥부터 처먹는 레전드 식탐 화제... 목숨보다 밥이</td>
+                                <td>대만</td>
+                                <td>date</td>
+                            </tr>
+                            <tr>    
+                                <th scope="row">
+                                    <img src = "dc_img.PNG" style = "align-content: center;">
+                                </th>
+                                <td>中, 지진나도 밥부터 처먹는 레전드 식탐 화제... 목숨보다 밥이</td>
+                                <td>대만</td>
+                                <td>date</td>
+                            </tr>
+                            <tr>    
+                                <th scope="row">
+                                    <img src = "dc_img.PNG">
+                                </th>
+                                <td>中, 지진나도 밥부터 처먹는 레전드 식탐 화제... 목숨보다 밥이</td>
+                                <td>대만</td>
+                                <td>date</td>
+                            </tr>
+                            <tr>    
+                                <th scope="row">
+                                    <img src = "dc_img.PNG">
+                                </th>
+                                <td>中, 지진나도 밥부터 처먹는 레전드 식탐 화제... 목숨보다 밥이</td>
+                                <td>대만</td>
+                                <td>date</td>
+                            </tr>
+                            <tr>    
+                                <th scope="row">
+                                    <img src = "dc_img.PNG">
+                                </th>
+                                <td>中, 지진나도 밥부터 처먹는 레전드 식탐 화제... 목숨보다 밥이</td>
+                                <td>대만</td>
+                                <td>date</td>
+                            </tr>
+                            <tr>    
+                                <th scope="row">
+                                    <img src = "dc_img.PNG">
+                                </th>
+                                <td>中, 지진나도 밥부터 처먹는 레전드 식탐 화제... 목숨보다 밥이</td>
+                                <td>대만</td>
+                                <td>date</td>
+                            </tr>
+                            <tr>    
+                                <th scope="row">
+                                    <img src = "dc_img.PNG">
+                                </th>
+                                <td>中, 지진나도 밥부터 처먹는 레전드 식탐 화제... 목숨보다 밥이</td>
+                                <td>대만</td>
+                                <td>date</td>
+                            </tr>
+                            <tr>    
+                                <th scope="row">
+                                    <img src = "dc_img.PNG">
+                                </th>
+                                <td>中, 지진나도 밥부터 처먹는 레전드 식탐 화제... 목숨보다 밥이</td>
+                                <td>대만</td>
+                                <td>date</td>
+                            </tr>
+                            
+
+
+
+                        </tbody>
+                     </table>
+                    </div>
+                
+                <div>
+                    뉴스
+                    </div>
+            
+                <div class = "row_list">
+                    <!-- 하단의 가로 형태 뉴스 -->
+                     <div id = "picture" >
+                        <img style = "width : 20%;" src = "dc_img3.PNG">
+                        <img style = "width : 20%;" src = "dc_img3.PNG">
+                        <img style = "width : 20%;" src = "dc_img3.PNG">
+                        <img style = "width : 20%;" src = "dc_img3.PNG">
+                        <img style = "width : 20%;" src = "dc_img3.PNG">
+                        
+                        
+                        <!-- 사진 -->
+                        </div>
+
+                    </div>
+
+           
+                <div>
+                    개념글/게임연예/방송스포츠여행/음식/생물취미/생활 
+                    </div>
+                <div id = "board">
+                    <!-- 좌측 하단 게시판 -->
+                    <div style = "width : 50%; height : 50%;">
+                        <div style = "border-bottom: 2px solid pink;;
+                        border-style : dotted">국내야구 갤러리</div>
+                        
+                            <li>sdsdsdsd</li>
+                            <li>sdsdsdsd</li>
+                            <li>sdsdsdsd</li>
+                            <li>sdsdsdsd</li>
+                            <li>sdsdsdsd</li>
+                        
+                    </div>
+                    <div style = "width : 50%; height : 50%;">
+                          <div style = "border-bottom: 2px solid pink;;
+                        border-style : dotted">동물, 기타 겔러리</div>
+                        
+                            <li>sdsdsdsd</li>
+                            <li>sdsdsdsd</li>
+                            <li>sdsdsdsd</li>
+                            <li>sdsdsdsd</li>
+                            <li>sdsdsdsd</li>
+                        
+                    
+                    </div>
+                    <div style = "width : 50%; height : 50%;">
+                            <div style = "border-bottom: 2px solid pink;;
+                        border-style : dotted">기타음식 겔러리</div>
+                        
+                            <li>sdsdsdsd</li>
+                            <li>sdsdsdsd</li>
+                            <li>sdsdsdsd</li>
+                            <li>sdsdsdsd</li>
+                            <li>sdsdsdsd</li>
+
+                    </div>
+                    <div style = "width : 50%; height : 50%;">
+                            <div style = "border-bottom: 2px solid pink;;
+                        border-style : dotted">나는 솔로 겔러리</div>
+                        
+                            <li>sdsdsdsd</li>
+                            <li>sdsdsdsd</li>
+                            <li>sdsdsdsd</li>
+                            <li>sdsdsdsd</li>
+                            <li>sdsdsdsd</li>
+
+                    </div>
+                </div>
+            </div> 
+
+            <div class = "right_container">
+                <div class = "small" id = "login" style = "margin-top : 0;">
+                    <!-- 로그인 창 -->
+                     
+                    <div id = "login_main" style = "height : 80%;display: flex;">
+                        <div id = "login_left" style = "width : 65%">
+                            <input type = "text"  placeholder="식별코드" >
+                            <input type = "text" placeholder="비밀번호">
+                        </div>
+
+                        <div id = "login_right" style = "font-size: 13px; width : 35%; ">
+                            <input type = "checkbox" >코드저장<br>
+                            <!-- height옵션을 없애면 정상 출력 됨 -->
+                            <!--렌더링 문제, input은 인라인 형태로 동작하는데 브라우저 마다 체크 박스가 베이스라인 기준선
+                            보다 약간 위쪽, 또는 아래쪽에 랜더링 되어 텍스트와 어긋나 보일수도 있다.
+                            style="vertical-align: middle;"으로 수직 정렬을 맞춰준다.
+                            span, img, input에만 적용 되고 블록에는 적용되지 않는다.-->
+                            <button style = "height : 17px; font-size: 15px;">off</button>보안접속<br>
+                            <button style = "background-color: blue;
+                            width : 75px; height : 50px; color : white"> 로그인</button>
+                        </div>
+
+
+
+                    </div>
+                    <div style =" height : 20%;">
+                        <!-- <strong>고정닉신청</strong>| 식별 코드비밀번호찾기| -->
+                        <div class="options">
+                            <a href="https://sign.dcinside.com/join/?step=agree">
+                                <strong>
+                                    <em class="interval m">고정닉</em>신청
+                                </strong>
+                            </a>
+                            <a href="https://sign.dcinside.com/myinfo/find_id" class="id">
+                                식별 코드
+                                <em class="sp_img img_dot">                                    
+                                </em>
+                            </a>
+                            <a href="https://sign.dcinside.com/myinfo/reset_pwd" class="pw">
+                                비밀번호찾기</a>
+                            <span class="sp_loginout noti " onclick="alarmList($(this), 'on','W')" style="cursor:pointer;"><em class="blind">
+                                알림
+                            </em>
+                        </span><!-- 알림 온시 on클래스 -->
+                        </div>
+
+                        </div>
+                    
+                    
+                     
+                    </div>
+
+                <div  class = "small" id = "real_time_rank" style = "height : 20%">
+                    <!-- 실사간 검색어 랭킹 -->
+                     <div id = "tap_1" style = "height : 10%; text-align: center;">
+                        실북갤  |  흥한갤
+                     </div>
+                     <div id = "tap_2" style = "height : 5%">
+                        <input type="radio" name="tap" id="tap1" checked>
+                        <input type="radio" name="tap" id="tap2">
+                        <input type="radio" name="tap" id="tap3">
+                        <input type="radio" name="tap" id="tap4">
+                        
+                        <div class="tab-labels">
+                            <label for="tap1">메인</label>
+                            <label for="tap2">마이너</label>
+                            <label for="tap3">미니</label>
+                            <label for="tap4">인물</label>
+                        </div>
+
+                        <div class="viewer">
+                            <!-- <ul id="list1">
+                                 <li>1</li>
+                                 <li>2</li>
+                                 <li>3</li>
+                                 <li>4</li>
+                                 <li>5</li>
+                                </ul> -->
+                            <table id="list1">
+                                <tbody>
+                                     <tr>    
+                                        <th scope="row">
+                                        <img src = "dc_img.PNG">
+                                        </th>
+                                        <td>中, 지진나도 밥부터 처먹는 레전드 식탐 화제... 목숨보다 밥이</td>
+                                        <td>대만</td>
+                                        <td>date</td>
+                                    </tr>
+                                     <tr>    
+                                        <th scope="row">
+                                        <img src = "dc_img.PNG">
+                                        </th>
+                                        <td>中, 지진나도 밥부터 처먹는 레전드 식탐 화제... 목숨보다 밥이</td>
+                                        <td>대만</td>
+                                        <td>date</td>
+                                    </tr>
+                                     
+                                   
+                                    
+                                </tbody>
+                            </table>
+                             
+                            <ul id="list2">
+                                 <li>6</li>
+                                 <li>7</li>
+                                 <li>8</li>
+                                 <li>9</li>
+                                 <li>10</li>
+                                 </ul>
+                            <ul id="list3">
+                                 <li>11</li>
+                                 <li>12</li>
+                                 <li>13</li>
+                                 <li>14</li>
+                                 <li>15</li>
+                                 </ul>
+                            <ul id="list4">
+                                 <li>16</li>
+                                 <li>17</li>
+                                 <li>18</li>
+                                 <li>19</li>
+                                 <li>20</li>
+                                 </ul>
+                        </div>
+
+                        
+
+                    </div>
+                    </div>
+                <div class = "small" id = "dc_vote">
+                    <!-- 디씨트랜드 투표 -->
+                     <div class = "vote" style = "width : 100%;height : 20%;display : flex; flex-wrap: nowrap;
+                     justify-content : space-between">
+                        <div style = "width : 40%">
+                            디시 트랜드 투표  
+                        </div>
+                        <div style = "width : 40% ; text-align: right;">
+                            투표 더보기  
+                        </div>
+                    </div>
+                </div>
+
+                <div  class = "small" id = "new_gallery">
+                    <!-- 신선갤 -->
+                     신선갤
+
+                    </div>
+                <div class = "small" id = "dc_media">
+                    <!-- 디시 미디어 -->
+                     디시 미디어
+                    </div>
+
+                <div  class = "small" id = "dc_issue">
+                    <!-- 디씨 이슈 -->
+                     디시이슈
+
+                    </div>
+
+
+            
+
+                </div>
+        </div>
+        </body>
+
+    </html>
+
+
+
+
+    
