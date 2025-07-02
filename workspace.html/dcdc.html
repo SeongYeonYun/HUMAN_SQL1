@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>dcinside 클론 통합</title>
+  <title>dcinside</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: Arial, sans-serif; font-size: 13px; }
@@ -149,7 +149,7 @@
   <div class="title" style="display: flex; justify-content: space-between; align-items: center; padding: 0 30px;">
   <!-- 왼쪽: 로고 -->
   <div>
-    <img src="https://nstatic.dcinside.com/dc/logo_day/dc_logo.gif" alt="DC 로고" style="height: 40px;">
+    <img src="https://nstatic.dcinside.com/dc/logo_day/dc_logo.gif" alt="DC 로고" style="height: 80px;">
   </div>
 
   <!-- 가운데: 검색창 -->
@@ -172,7 +172,8 @@
       <div id="real_time">
         <div id="text">실시간 베스트 실베라이트</div>
         <div id="picture">
-          <img src="dc_img2.PNG"><img src="dc_img2.PNG"><img src="dc_img2.PNG"><img src="dc_img2.PNG"><img src="dc_img2.PNG">
+          <img style = "width : 23%;" src="dc_img2.PNG"><img style = "width : 23%;" src="dc_img2.PNG"><img style = "width : 23%;" src="dc_img2.PNG"><img style = "width : 23%;" src="dc_img2.PNG">
+   
         </div>
       </div>
       <table>
@@ -195,7 +196,7 @@
         </tbody>
       </table>
       <div id="picture" style="margin-top: 20px;">
-        <img src="dc_img3.PNG"><img src="dc_img3.PNG"><img src="dc_img3.PNG"><img src="dc_img3.PNG"><img src="dc_img3.PNG">
+        <img style = "width : 23%;" src="dc_img3.PNG"><img style = "width : 23%;" src="dc_img3.PNG"><img style = "width : 23%;" src="dc_img3.PNG"><img style = "width : 23%;" src="dc_img3.PNG">
       </div>
       <div id="board">
         <div><strong>국내야구 갤러리</strong>
@@ -272,22 +273,57 @@
     <input type="radio" name="tap" id="tap4">
 
     <!-- 테이블 -->
-    <div class="viewer" style="font-size: 12px; ">
+    <div class="viewer" style="font-size: 12px; text-align: left;">
         <table id="list1" style="width: auto;">
-        <tr><td>1</td><td>롯데 자이언츠</td></tr>
-        <tr><td>2</td><td>만화</td></tr>
-        <tr><td>3</td><td>한화 이글스</td></tr>
-        <tr><td>4</td><td>메이플스토리</td></tr>
-        <tr><td>5</td><td>남자 연예인</td></tr>
-        <tr><td>6</td><td>삼성 라이온즈</td></tr>
-        <tr><td>7</td><td>인터넷방송</td></tr>
-        <tr><td>8</td><td>리그 오브 레전드</td></tr>
-        <tr><td>9</td><td>국내야구</td></tr>
-        <tr><td>10</td><td>월드 오브 스트릿 우먼 파이터</td></tr>
+          <tr><td>1</td><td>롯데 자이언츠</td></tr>
+          <tr><td>2</td><td>만화</td></tr>
+          <tr><td>3</td><td>한화 이글스</td></tr>
+          <tr><td>4</td><td>메이플스토리</td></tr>
+          <tr><td>5</td><td>남자 연예인</td></tr>
+          <tr><td>6</td><td>삼성 라이온즈</td></tr>
+          <tr><td>7</td><td>인터넷방송</td></tr>
+          <tr><td>8</td><td>리그 오브 레전드</td></tr>
+          <tr><td>9</td><td>국내야구</td></tr>
+          <tr><td>10</td><td>월드 오브 스트릿 우먼 파이터</td></tr>
         </table>
-            <ul id="list2"><li>마이너 내용</li></ul>
-            <ul id="list3"><li>미니 내용</li></ul>
-            <ul id="list4"><li>인물 내용</li></ul>
+
+        <table id="list2" style="width: auto;">
+          <tr><td>1</td><td>치지직</td></tr>
+          <tr><td>2</td><td>미국 주식</td></tr>
+          <tr><td>3</td><td>마비노기 스타일</td></tr>
+          <tr><td>4</td><td>붕괴 스타레일</td></tr>
+          <tr><td>5</td><td>던파 ip</td></tr>
+          <tr><td>6</td><td>퓨처스 리그</td></tr>
+          <tr><td>7</td><td>블루 아카이브</td></tr>
+          <tr><td>8</td><td>해외주식</td></tr>
+          <tr><td>9</td><td>중도정지</td></tr>
+          <tr><td>10</td><td>보이즈 2 플래닛</td></tr>
+        </table>
+        <table id="list3" style="width: auto;">
+          <tr><td>1</td><td>버츄얼 스나</td></tr>
+          <tr><td>2</td><td>숲인방</td></tr>
+          <tr><td>3</td><td>이세계 아이돌</td></tr>
+          <tr><td>4</td><td>숲 롤대남</td></tr>
+          <tr><td>5</td><td>숲 스트리밍</td></tr>
+          <tr><td>6</td><td>숲 인터넷 방송</td></tr>
+          <tr><td>7</td><td>터치플러스</td></tr>
+          <tr><td>8</td><td>숲 종합</td></tr>
+          <tr><td>9</td><td>투디갤 게임 뒷담</td></tr>
+          <tr><td>10</td><td>국내 지하 아이돌</td></tr>
+        </table>
+        <table id="list4" style="width: auto;">
+          <tr><td>1</td><td>주르르</td></tr>
+          <tr><td>2</td><td>로페</td></tr>
+          <tr><td>3</td><td>도로롱</td></tr>
+          <tr><td>4</td><td>홀리오 로그리게스</td></tr>
+          <tr><td>5</td><td>류학의</td></tr>
+          <tr><td>6</td><td>계춘회</td></tr>
+          <tr><td>7</td><td>스티브</td></tr>
+          <tr><td>8</td><td>노무현</td></tr>
+          <tr><td>9</td><td>이승만</td></tr>
+          <tr><td>10</td><td>하동수</td></tr>
+        </table>
+       
         </div>
     </div>
 
@@ -297,25 +333,26 @@
           <span>디시 트랜드 투표</span>
           <a href="#" style="font-size: 12px;">투표 더보기</a>
         </div>
-        <div style="margin-bottom: 5px;"> 지금 가장 기대되는 여름 영화는?</div>
-        <ul style="padding-left: 15px;">
-          <li><input type="radio" name="vote"> 범죄도시 4</li>
-          <li><input type="radio" name="vote"> 한산: 용의 출현</li>
-          <li><input type="radio" name="vote"> 밀수</li>
-          <li><input type="radio" name="vote"> 기타</li>
-        </ul>
+          <table>
+            <tr><td>1</td><td><img style = "width : 50px" src = "dc_vote.PNG"></td><td>실력으로 직진하는 진국남! 믿고듣는 대한민.. [3346879]</td></tr>
+            <tr><td>2</td><td><img style = "width : 50px" src = "dc_vote.PNG"></td><td>실력으로 직진하는 진국남! 믿고듣는 대한민.. [3346879]</td></tr>
+            <tr><td>3</td><td><img style = "width : 50px" src = "dc_vote.PNG"></td><td>실력으로 직진하는 진국남! 믿고듣는 대한민.. [3346879]</td></tr>
+            <tr><td>4</td><td><img style = "width : 50px" src = "dc_vote.PNG"></td><td>실력으로 직진하는 진국남! 믿고듣는 대한민.. [3346879]</td></tr>
+            
+          </table>
+        
         
       </div>
 
       <div class="small">
         <div style="font-weight: bold; margin-bottom: 5px;">신선갤</div>
-        <ul style="padding-left: 15px;">
-          <li><a href="#">마늘빵 갤러리</a></li>
-          <li><a href="#">무지개 갤러리</a></li>
-          <li><a href="#">AI그림 갤러리</a></li>
-          <li><a href="#">시골생활 갤러리</a></li>
-          <li><a href="#">성우 갤러리</a></li>
-        </ul>
+          <table>
+            <tr><td><a href="https://gall.dcinside.com/mgallery/board/lists?id=guiano">Guiano</td></tr>
+            <tr><td><a href="https://gall.dcinside.com/mgallery/board/lists?id=webtoonpenholder">펜홀더</a></td></tr>
+            <tr><td>맥 빌딩 디펜스</td></tr>
+            <tr><td>보안경비</td></tr>
+            <tr><td>장녀</td></tr>
+            </table>
       </div>
 
       <div class="small">
