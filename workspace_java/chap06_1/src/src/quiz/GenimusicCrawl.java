@@ -20,7 +20,7 @@ import org.jsoup.select.Elements;
 public class GenimusicCrawl {
 
     public static void main(String[] args) {
-        String baseUrl = "https://www.genie.co.kr/chart/top200?ditc=D&ymd=20250604&hh=13&rtm=N&pg=";
+        String baseUrl = "https://www.genie.co.kr/chart/top200?ditc=D&ymd=20250702&hh=13&rtm=N&pg=";
         HttpClient client = HttpClient.newHttpClient();
         List<String> musicData = new ArrayList<>();
         musicData.add("Rank,Title,Artist");
@@ -60,7 +60,7 @@ public class GenimusicCrawl {
         }
 
         // 저장
-        String filePath = "genie_music_20250604.csv";
+        String filePath = "genie_music_20250702.csv";
         try (FileOutputStream fos = new FileOutputStream(filePath);
              Writer writer = new BufferedWriter(new OutputStreamWriter(fos, "UTF-8"))) {
 
