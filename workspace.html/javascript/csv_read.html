@@ -1,0 +1,86 @@
+<html>
+    <head>
+        <style>
+
+            form {
+                background-color: green;
+            }
+            #myForm{
+                border : 1px solid blue;
+            }
+
+            #DvCSV{
+                /* border : 1px solid red; */
+                width : 800px;
+                border-collapse: collapse;
+                /* background-color: aqua; */
+                /* 아마 텍스트나 안의 내용은 javascript를 html로 불러오는 구조인거 같다. 그래서 css가 안먹히는게 아닐까? */
+                /* answer : 개발자 도구를 보니 내용물이 table로 지정되어 있다. */
+                /* justify-content: center;
+                text-align: center; */
+
+
+            }
+            table,td{
+                text-align: center;
+                border:  1px solid black;
+                border-collapse: collapse;
+            }
+            
+            </style>
+        </head>
+
+    <body>
+        <form id="myForm">
+            <input type="file" id="csvFile" accept=".csv" />
+            <br />
+            <input type="submit" value="Submit" />
+        </form>
+
+        <div id="dvCSV" style = "font-size: 10px;"></div>
+
+        <script>
+            const myForm = document.getElementById("myForm");
+            const csvFile = document.getElementById("csvFile");
+
+            myForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const input = csvFile.files[0];
+            const reader = new FileReader(); //브라우저 내부 함수인거 같다.
+
+            reader.onload = function (e) {
+                const text = e.target.result.trim(); // 마지막 줄 빈 줄 방지
+                const rows = text.split("\n"); //줄바꿈 구분
+                const table = document.createElement("table"); //테이블 형태로 생성
+                for (let i = 0; i < rows.length; i++) {
+                    const cells = rows[i].split(","); //csv 구분자인 ,으로 구분
+                    const row = table.insertRow(-1);
+                    for (let j = 0; j < cells.length; j++) {
+                        const cell = row.insertCell(-1);
+                        cell.innerHTML = cells[j]; //자바 스크립트에서 가져온 내용들을 html로 보내주기 위함인가?
+                    }
+                }
+                // const th = document.createElement("th");
+                
+                // const cells = rows[1].split(","); //csv 구분자인 ,으로 구분
+                // const row = th.insertRow(-1);
+                // for (let j = 0; j < cells.length; j++) {
+                //     const cell = row.insertCell(-1);
+                //     cell.innerHTML = cells[j]; //자바 스크립트에서 가져온 내용들을 html로 보내주기 위함인가?
+                // }
+            
+                //element를 각각 선언하고 그 줄에? 
+                // 맞춰서 값을 입력하면 내가 원하는 엘리먼트로 만들수 있다.
+
+
+                const dvCSV = document.getElementById("dvCSV"); //위의 div class = "dsCsv로 연결 된거 같다."
+                dvCSV.innerHTML = "";
+                // dvCSV.appendChild(th);
+                dvCSV.appendChild(table);
+            };
+
+            reader.readAsText(input);
+            });
+        </script>
+    </body>
+</html>
