@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <script>
+            let now = new Date();
+            console.log(now);
+            const y = now.getUTCFullYear();
+            console.log("년 : ",y);
+            const m = now.getMonth();
+            console.log("월 : ",m);
+            const d = now.getDay();
+            console.log("일 : ",d);
+            const h = now.getHours();
+            console.log("시 : ",h);
+            const min = now.getMinutes();
+            console.log("분 : ",min);
+            const s = now.getSeconds();
+            console.log("초 : ",s);
+            let iso = now.toISOString();
+            console.log(iso);
+
+            let a = iso.split(`T`);
+            console.log(a[0]);
+            console.log(a[1].split('.'));
+            
+
+            //1970년도 1월 1일 자정 기준으로 지금까지 샌 초
+            //https://www.epochconverter.com/  변환하는 사이트
+            //시간이 지난것을 계산할때 사용할수 있다.
+            //시간을 재는데 많이 사용함, 각 작업별 걸리는 시간을 파악하여 오래걸리는 작업을 찾고 해결할수 있다.
+            let timestamp = now.getTime();
+            
+            console.log(timestamp); 
+
+
+            //시간을 재는데 많이 사용함, 각 작업별 걸리는 시간을 파악하여 오래걸리는 작업을 찾고 해결할수 있다.
+           let before = new Date().getTime();
+
+            for (let i = 0; i < 5000; i++) {
+                console.log(i);
+            }
+
+            let after = new Date().getTime();
+
+            console.log(`after - before`, after - before, 'ms');
+
+
+
+            let time = new Date();
+            console.log(time.toISOString);
+            
+            
+
+
+
+
+
+        </Script>
+    
+    </head>
+    
+    <body>
+        <div id = "clock">
+            <script>
+                setInterval( //특정 시간마다 반볻
+                    function(){
+                        let clock = new Date()
+                        let bun = clock.getMinutes();
+                        let cho = clock.getSeconds();
+                        let text = "<strong>" + bun + "분" + cho + "초 </strong>";
+                        
+                        document.querySelector("#clock").innerHTML=text;
+                        console.log(text);
+
+                    },1000*1
+                )
+                </script>
+
+
+        </div>
+      
+        </body>
+</html>
