@@ -35,6 +35,43 @@
         console.log(str);
         console.log(str5);
 
+        let mail = "datascience123@naver.com";
+        //@전까지 추출 하는, 어떤 아이디가 와도
+        // let l = mail.indexOf("@");
+        // console.log(l);
+        let l_2 = mail.substr(0,mail.indexOf("@"));
+        console.log(l_2);
+        console.log(mail.split("@")[0]);
+        console.log(mail.search("@"));
+        let l_3 = mail.substr(0,mail.search("@"));
+        console.log(l_3);
+        console.log(mail);
+
+        //메일 주소 앞 두자리를 제외한 ID는 마스킹 처리
+       console.log("**" + l_2.substr(2,l_2.length) + "@" +mail.split("@")[1] )
+       console.log("**" + mail.split("@")[0].substr(2,l_2.length) + "@" +mail.split("@")[1] )
+
+
+        
+
+        //인터넷 주소 중 2차 도메인 출력
+        let address_naver = "comic.naver.com";
+        let address_human = "human.or.kr";
+
+        console.log(address_human.split(".")[1]);
+        console.log(address_naver.split(".")[1]);
+
+        
+        
+
+
+
+
+
+
+
+
+
 
         </script>
 
