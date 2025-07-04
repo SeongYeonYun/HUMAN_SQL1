@@ -1,0 +1,34 @@
+<html>
+
+    <head>
+        <script>
+            //새창 변수가 설정되지 않은경우 기존 브라우저가 열려 있으면 그 브라우저 의 크기로 열린다.
+            //팝업이 차단되있을 경우 나타나지 않는다.
+
+            const win = window.open("http://naver.com","새창변수","width = 500");
+            //새창 변수는 결국 공간을 나타낸다고 생각하면 될것이다. 이 경우 아래의 google이 naver를 덮어쓰기 떄문에 
+            //naver은 나오지 않고 goolgle만 나온다.
+
+            // const win2 = window.open("http://google.com","새창변수","width = 500");
+            // 두개를 선언한다고 해서 두개가 나오는건 아닌가 보다
+            // const win2 = window.open("http://naver.com","새창변수","width = 500");
+            //3초후 자동으로 꺼짐
+            setTimeout(()=> {
+                win.close()
+
+            },3000)
+
+            console.log("location.href : ", location.href);
+            location.href = "http://naver.com"; //a링크랑 비슷하게 생각하자
+            //history.go 뒤로가기
+
+
+
+
+            </script>
+        </head>
+
+        <body>
+            
+            </body>
+    </html>

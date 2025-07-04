@@ -1,0 +1,49 @@
+<html>
+    <head>
+        </head>
+
+        <body>
+             <!-- <script>
+                    let msg = document.querySelector('#msg');
+                    console.log(msg);
+                </script> -->
+            <div id = "msg">
+                <span>원래 </span> 있던 글씨
+                </div>
+
+                 <script>
+                    let msg = document.querySelector('#msg');
+                    console.log(msg);
+
+                    // 자바 스크립트는 위에서 아래로 읽어 나가는 인터프린터 방식. 스크립트는 항상 아래로
+                    console.log('textcontent', msg.textContent); //소스에서 텍스트만 그대로 반환
+                    console.log('innerhtml', msg.innerHTML); //HTMl소스 자체를 그냥 반환
+                
+                    console.log('innertext', msg.innerText); 
+                    //브라우저에 나오는 것과 똑같이 그대로 나온다
+                    //연산이 진행된 후 나오는것이기 떄문에 상대적으로 속도가 조금 느리다.
+
+                    //둘다 추가가 아닌 덮어쓰기 계념, 컨탠츠를 변경해줌 , 태그도 글씨로 인식한다.
+                    msg.textContent = "<h1>제목</h1> a b c";
+                    msg.innerText = "<h1>제목</h1> a b c";
+
+                    //html을 직접 수정할수 있다.
+                    msg.innerHTML = "<h1>제목</h1> a b c";
+                    msg.innerHTML = "<script>alert(1)<" + "/script>"; //이건 실행 안됨 ㄲㅂ
+                        
+
+
+                    
+
+
+
+                
+                
+                </script>
+
+
+                            
+            </body>
+
+           
+    </html>
