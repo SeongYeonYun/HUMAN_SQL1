@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>폼 요소 테스트</title>
+</head>
+<body>
+    <input type="text" id="id" value="미리적은 글"><br>
+    <input type="password" id="pw"><br>
+    <input type="date" id="date"><br>
+
+    <input type="radio" name="ai" value="1">CHAT GPT
+    <input type="radio" name="ai" value="2">gemini
+    <input type="radio" name="ai" value="3">bing
+    <input type="radio" name="ai" value="4" checked="checked">perplexiy<br>
+
+    <input type="checkbox" class="room" value="에어컨">에어컨
+    <input type="checkbox" class="room" value="식기세척기">식기세척기
+    <input type="checkbox" class="room" value="로봇청소기">로봇청소기<br>
+
+    <select id="select">
+        <option value="1">javascript</option>
+        <option value="2" selected>SQL</option>
+        <option value="3">java</option>
+        <option value="4">css</option>
+    </select><br>
+
+    <textarea id="textarea"></textarea>
+    <div id="view"></div> <!--메세지를 보여주는 곳-->
+
+    <script>
+        setTimeout(function () {
+            const text = document.querySelector("#id");
+            text.value = 1234;
+            console.log("text = ", text.value);
+
+            const pw = document.querySelector("#pw");
+            pw.value = 1234;
+            console.log("pw = ", pw.value);
+
+            const date = document.querySelector("#date");
+            console.log("date(before) = ", date.value);
+
+            date.value = new Date().toISOString().split("T")[0];
+            console.log("date(after) = ", date.value);
+
+            let radio = document.querySelector('[name="ai"]:checked');
+            console.log("선택된 라디오:", radio.value);
+            let radios = document.querySelectorAll('[name="ai"]');
+            radios[1].checked = true;
+            console.log("변경된 라디오:", document.querySelector('[name=\"ai\"]:checked').value);
+
+            let checkbox = document.querySelectorAll(".room:checked");
+            for (let x = 0; x < checkbox.length; x++) {
+                console.log("선택된 체크박스:", checkbox[x].value, checkbox[x].checked);
+            }
+
+            const select = document.querySelector("#select");
+            console.log('선택 전 select.value:', select.value);
+
+            select.value = "1"; // 문자열 "1"로 설정해야 동작함
+            const option = document.querySelector("#select option:checked"); // 새로 선택된 항목
+            console.log("변경된 선택 항목:", option.innerText);
+
+            const textarea = document.getElementById("textarea");
+            textarea.value = "sdad\nsadsad<br>sd\nsd"; // \n -> 줄바꿈
+            console.log("textarea  = ", textarea.value);
+
+            const view = document.querySelector("#view");
+            view.innerHTML = textarea.value.replace(/\n/g, `<br>`); // 줄바꿈 모두 반영
+
+        }, 1000 * 4);
+    </script>
+</body>
+</html>

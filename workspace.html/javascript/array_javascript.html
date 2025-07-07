@@ -357,7 +357,69 @@
             arr.sort((x,y) => y-x); //function생략, return생략
             console.log(arr);
 
+            const arr3 = ["a", "b","c","d"];
+
+            //forEach(element, index,array)
+            let r1 = arr3.forEach(
+                //return 없음
+                function(a,b,c,d){
+                    console.log("-----------------------------------")
+                    // console.log(a,b,c,d);
+                    console.log("a = ", a);
+                    console.log("b = ", b);
+                    console.log("c = ", c);
+                    console.log("d = ", d);
+                }
+            );
+            console.log(r1);
+
+            const movies = [
+                `노이즈`,`더 무비`,`드래곤 길들이기`
+                ,`쥬라기 월드 : 새로운 시작`,`그을린 사랑`
+            ]
             
+            
+            //forEach : 각 항목별로 함수를 실행
+            //함수의 전달인자 : 현제값, 현제 index, 전체 배열
+            //return 없음
+
+            //map 각 항목별로 하나하나 실행해서 return값으로 새로운 배열을 반환한다.
+            
+            let len3 = movies.map(function(el, i, arr){
+                console.log(`elememt : `, el);
+                console.log(`index : `, i);
+                console.log(`array : `, arr);
+                console.log(`---------------------------------`)
+                return el.length;
+            })
+            let len = movies.map(e1 => e1.length);
+            console.log(`len` , len);
+
+            let filtered = movies.filter( function(element,index,array){
+                    console.log("-----------------------------------")
+                    // console.log(a,b,c,d);
+                    console.log("a = ", element);
+                    console.log("b = ", index);
+                    console.log("c = ", array);
+
+                    let len = element.legth;
+                    // if(len >4){
+                    //     return true;
+                    // } else {
+                    //     return false;
+                    // }
+
+                    return element.length > 4;
+
+                    
+                }
+
+            );
+            console.log(filtered);
+
+            
+            let filtered2 = movies.filter(e => e.length > 4);
+            console.log("filtered2 = ", filtered2);
 
             
 

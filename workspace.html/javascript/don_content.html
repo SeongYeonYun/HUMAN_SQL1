@@ -1,49 +1,181 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        </head>
+<head>
+    <style>
+        #h2{
+            height : 150px;
+            border :1px solid red;
+        }
+        </style>
 
-        <body>
-             <!-- <script>
-                    let msg = document.querySelector('#msg');
-                    console.log(msg);
-                </script> -->
-            <div id = "msg">
-                <span>원래 </span> 있던 글씨
-                </div>
+</head>
+<body>
 
-                 <script>
-                    let msg = document.querySelector('#msg');
-                    console.log(msg);
+  <div id="msg">
+      <span>원래 </span> 있던 글씨
+  </div>
 
-                    // 자바 스크립트는 위에서 아래로 읽어 나가는 인터프린터 방식. 스크립트는 항상 아래로
-                    console.log('textcontent', msg.textContent); //소스에서 텍스트만 그대로 반환
-                    console.log('innerhtml', msg.innerHTML); //HTMl소스 자체를 그냥 반환
-                
-                    console.log('innertext', msg.innerText); 
-                    //브라우저에 나오는 것과 똑같이 그대로 나온다
-                    //연산이 진행된 후 나오는것이기 떄문에 상대적으로 속도가 조금 느리다.
+  <div id="tag"></div> 
 
-                    //둘다 추가가 아닌 덮어쓰기 계념, 컨탠츠를 변경해줌 , 태그도 글씨로 인식한다.
-                    msg.textContent = "<h1>제목</h1> a b c";
-                    msg.innerText = "<h1>제목</h1> a b c";
+  <table id = "table">
+    <tbody id = "tbody">
 
-                    //html을 직접 수정할수 있다.
-                    msg.innerHTML = "<h1>제목</h1> a b c";
-                    msg.innerHTML = "<script>alert(1)<" + "/script>"; //이건 실행 안됨 ㄲㅂ
-                        
+        
+        </tbody>
+    </table>
+        <hr>
+
+    <table>   
+        <tbody  id = "tbody3">
+            </tbody>
+        </table>
 
 
-                    
+    <table>
+        <tbody id = "tbody4">
+            </tbody>
+        </table>
+    
+        <h2 id = "h2" style ="color:blue"> ssdsddsd</h2>
+        <!-- <script></script> -->
+  
+
+  <script>
+    const script = document.createElement('script');
+    script.innerHTML = 'alert(1)';
+    h2.after(script);
+
+
+    let msg = document.querySelector('#msg');
+    console.log(msg);
+
+    console.log('textcontent', msg.textContent); 
+    console.log('innerhtml', msg.innerHTML); 
+    console.log('innertext', msg.innerText); 
+
+    msg.textContent = "<h1>제목</h1> a b c";
+    msg.innerText = "<h1>제목</h1> a b c";
+    msg.innerHTML = "<h1>제목</h1> a b c";
+
+    let div = document.createElement("div");
+    div.setAttribute('id','menu');
+    div.setAttribute('style', 'color:red; font-size:1.1em;');
+    div.textContent = "점매추";
+
+    const tag = document.querySelector("#tag");
+    tag.appendChild(div);
+
+    let div2 = document.createElement("div2");
+    div2.setAttribute('id','menu');
+    div2.setAttribute('style', 'color:red; font-size:1.1em;');
+    div2.textContent = "점매추2";
+    tag.appendChild(div2);
+    
+    let div3 = document.createElement("div3");
+    div3.setAttribute('id','menu');
+    div3.setAttribute('style', 'color:red; font-size:1.1em;');
+    div3.textContent = "점매추3";
+    tag.prepend(div3); //맨 앞에 붙음
+    //tag.after 바로 다음 요소로 추가, <->tag.before
+    // tag.appendChild(div1,div2,div3); 안됨 ㄲㅂ
+
+    const tr = document.createElement("tr");
+    const td = document.createElement("td");
+    td.textContent = "first";
+    tr.append(td);
+    document.querySelector("#tbody").append(tr);
+
+
+    // 이게 좀더 효율적인듯
+    tr.innerHTML = "<td>FIRST</td>";
+    document.querySelector("#tbody").append(tr);
+    
+    
+    
+    let tbody3 = document.querySelector("#tbody3");
+    let html = ``;
+    for (let x = 1; x < 10;x++){
+        // html += `
+        //    <tr>
+        //         <td>${row[x][0]}</td>
+        //         <td>${row[0][x]}</td>
+
+        //     </tr>
+        // `; 124번쨰 줄과 연관
+
+        
 
 
 
-                
-                
-                </script>
+        ////////////////////////////////////////////////////////////////////////////////////////
+        // let td = document.createElement("td"+x);
+  
+        // td.textContent = "작성자" + x;
+        // td.textContent = "제목" + x;
+        // tr.append(td);
+        // tbody3.append(tr); 
+
+        ///////////////////////////////////////////////////////////////////////////////////////////
+        // const row = [];
+        // let rows = document.createElement("row" + x);
+        // row.push(rows);
+        // tr.append(rows);
 
 
-                            
-            </body>
+        //row값들을 미리 할당해 놓은 다음 실핼
+        // const html = `
+        // <tr>
+        //     <td>${row[x][0]}</td>
+        //     <td>${row[0][x]}</td>
 
-           
-    </html>
+        //     </tr>
+        // `;
+        // tbody3.innerhtml = tbody.innerHTML +html
+        ////////////////////////////////////////////////////////////////////////////////////////////
+
+        
+    }
+    //tbody.innerHtml += html;
+
+
+
+    const h1 = document.getElementById("h2");
+    // h1.setAttribute(`style`,`color : red`);
+    h2.style.color = `red`;
+
+    console.log("backgroundcolor : " , h2.style.backgroundColor);
+    console.log("height : " , h2.style.height); // 자바스크립트로는 위의 css를 읽지 못한다, 일일이 변수에 추가해 줘야 한다.
+    h2.style.height = 150 + "px";
+    console.log("height : " , h2.style.height);
+    h2.setAttribute(`style`, `background-color`);
+    h2.style.backgroundColor = "#f0f000";
+
+    h2.style.cssText = `font-size : 40px`; //css는 유지되괴 자바 스크립트로 지정한 모든 스타일 덮어쓰기
+
+    let w = window.getComputedStyle(h2, null).getPropertyValue("width");
+    console.log(`h2.style.width = `, h2.style.width)
+    h2.style.width = (w-100) + "px";
+    console.log(w);
+    // window.getComputedStyle(h2가 가지고 있는 모든 변수 중에서, null);
+
+    
+    
+
+
+
+
+
+
+
+    
+
+
+
+
+    
+    
+   
+  </script>
+
+</body>
+</html>
