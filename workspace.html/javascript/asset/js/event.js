@@ -2,6 +2,7 @@ console.log('hello js')
 const c = document.querySelector(`#console`)
 //순서상으로 <div가 상대주소로 불러온 js 코드 보다 아래에 
 // 있기 때문에 아무런 값도 들어가지 않는다.>
+//자바스크립트는 결과값만 가지고 가는 느낌이라 반복문 같은 게 반영이 잘 안됨
 
 console.log(c)
 
@@ -9,6 +10,9 @@ window.addEventListener(`load`,init);
 function init(){ //초기에 세팅해야 하는것들 (정해진 방법은 아님)
     const c = document.querySelector(`#console`);
     console.log(c);
+    const game = document.querySelector("#game")
+    game.style.top = "10px";
+    game.style.left = "10px";
 
     bind();
 }
@@ -34,6 +38,11 @@ function bind(){ //추가적인 기능들 (정해진 방법은 아님)
         console.log(this.window.innerWidth); //창의 크기를 알수 있다.
 
 
+    })
+
+    window.addEventListener('scroll', function(){
+        console.log('scroll')
+        console.log('scrollTop',this.document.documentElement.scroll)
     })
 }
 
@@ -84,7 +93,34 @@ function loginClick(){
         } else {
             msg.innerHTML += `<br>아이디나 비밀번호를 확인해 주세요`;
         }
-      
+    // document.querySelector("#TOP").addEventListener("click", function()
+    // { document.documentElement.scrollTop = 0 //맨위로 스크롤 올리기
+
+    // })
+    document.querySelector("#TOP").addEventListener("click", function()
+    // { document.documentElement.scrollTop = 0 //맨위로 스크롤 올리기
+    {
+        window.scrollTo(
+            {
+                top : 0,
+                behavior : "smooth"
+            }
+        )
+    })
+
+    document.querySelector("body").addEventListener("keyup", function(event){
+        console.log(event.keyCode)
+        const game = document.querySelector("#game")
+        console.log(game.style.top)
+        //왼쪽
+        if(event.keyCode ==37){
+            game.style.left = (parseInt(game.style.left)-10) + "px";
+
+        }   else if(event.keyCode == 39){
+            game.style.left = (parseInt(game.style.left)+10) + "px";
+        }
+    })
+
 
     
 
