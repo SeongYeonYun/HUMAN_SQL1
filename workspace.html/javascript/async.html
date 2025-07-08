@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset = "UTF-8">
+        <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script>
+            //async 동기화
+            fn1();
+            function fn1(){
+                console.log('fn1 실행');
+
+                fn2();
+                console.log('fn2 호출 끝')
+            }
+
+            function fn2(){
+                console.log('fn2 실행');
+                fn3();
+            }
+
+            fn3();
+            fn3();
+            
+            console.log("중간에 낑긴것 1") //컴퓨터가 빠르기떄문에 실핼된것 뿐 , 이 또한 비동기이다 .
+
+
+            setTimeout( //비동기, 언제 출략될지 모른다.
+                function(){
+                    console.log("중간에 낑긴것2")
+                },0) //안바쁠때 처리한다. 안바쁠때 최대한 빨리
+            
+            fn3();
+            fn3();
+
+            function fn3(){
+                console.log('fn2 실행');
+            }
+            </script>
+        </head>
+
+        <body>
+
+            </body>
+    </html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset = "UTF-8">
+        <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src = "./asset/js/event.js"></script>
+
+
+
+    
+        </head>
+
+    <!-- <body onload = "javascript:init()">  -->
+        <!--  jwvascript:을 앞에 붙히는게 정석적인 방법이다,
+        온로드일떄 잡아서 실행 -->
+        <body>
+        <div style = "display : flex">
+            <div>
+                <button type = "button" id = "btn1">버튼1</button><br>
+                <button type = "button" id = "btn2">버튼2</button><br>
+                <button type = "button" id = "btn3" onclick = "btnClick();">버튼3</button>
+
+                <div>
+                    아이디 : <input type = "text" id = "id"><br>
+                    비밀번호 : <input type = "password" id = "pw"><br>
+                    <br>
+                    <input type = "button" id = "login"    value = "로그인">
+                    </div>
+                <!-- js파일에 있는 btnClick함수를 호출-->
+                </div>
+                <div id = 'console'></div> <!-- (id = ``)은 안먹음-->
+        </div>
+                <!-- <button type = "button" id = "btn1" />버튼  -->
+        <!-- 닫는 태그를 사용하지 않는 정식 문법 -->
+
+        <!-- `은 변하면 안되는 값에는 사용할수 없는듯 하다 -->
+
+    </body>
+
+    </html>
