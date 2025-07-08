@@ -31,6 +31,8 @@ function bind(){ //추가적인 기능들 (정해진 방법은 아님)
 
     window.addEventListener('resize', function(){
         console.log("resize");
+        console.log(this.window.innerWidth); //창의 크기를 알수 있다.
+
 
     })
 }
