@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>form</title>
+        <script src="./asset/js/14_form.js"></script>
+    
+
+    </head>
+    
+    <body>
+        <form id = "form" method = "get" action = "https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=">
+            <input type ="text" id = "keyword" name = "query" placeholder = "검색어를 입력">
+            <select id = "site">
+                <option value = "1"> naver</option>
+                <option value = "2">google</option>
+                <option value = "3">danawa</option>
+                </select>
+            
+            <button type = "submit">검색</button>    
+        
+        </form>
+
+       <div>
+            <hr>피자토핑
+            <input type="checkbox" class="chk_all">전체선택 <br>
+            <input type="checkbox" class="check" value="페페로니">페페로니
+            <input type="checkbox" class="check" value="베이컨">베이컨
+            <input type="checkbox" class="check" value="치즈">치즈
+            <input type="checkbox" class="check" value="올리브">올리브
+            <input type="checkbox" class="check" value="버섯">버섯
+            <input type="checkbox" class="check" value="옥수수">옥수수
+            <input type="button" value="선택">
+        </div>
+
+        <div id="text">
+            토핑: 
+        </div>
+            
+            
+
+
+        
+
+
+
+    </body>
+
+</html>
