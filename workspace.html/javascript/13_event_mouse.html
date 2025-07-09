@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Drag & Resize Image</title>
+  <script src="./asset/js/13_event_mouse.js"></script>
+  <style>
+    /* 컨테이너 (드래그 대상 + 리사이즈 대상) */
+    #resizable-draggable {
+      position: absolute;
+      top: 100px;
+      left: 100px;
+      width: 200px;
+      height: auto;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    /* 내부 이미지 */
+    #resizable-draggable img {
+      width: 100%;
+      height: auto;
+      display: block;
+      user-select: none;
+      pointer-events: none; /* 클릭 이벤트는 부모 div로 전달됨 */
+    }
+
+    /* 리사이저 핸들 */
+    .resizer {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border : 1px solid black;
+      /* background: #333; */
+      right: 0;
+      bottom: 0;
+      cursor: se-resize;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 드래그 + 리사이즈 가능한 이미지 컨테이너 -->
+  <div id="resizable-draggable">
+    <img src="cat.jpg" alt="Draggable Resizable Image" />
+    <div class="resizer"></div>
+  </div>
+
+</body>
+</html>
