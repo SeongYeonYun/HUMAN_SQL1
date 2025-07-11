@@ -215,6 +215,7 @@ function bind() {
 
 
     //피자정보을 담는 변수 생성
+    const outputDiv4 = document.querySelector(".pizza_info2");
     const outputDiv3 = document.querySelector("#pizza_info");  
     //버튼을 만들고 값을 각각 받아서 출려 시키자.
     document.querySelector("#pizza_option").addEventListener("submit",function(event) {
@@ -222,41 +223,195 @@ function bind() {
         let pizza_size = document.getElementById("pizza_size").value;
         let pizza_topping = document.getElementById("pizza_topping").value;
         let pizza_dow = document.getElementById("pizza_dow").value;
+        let pizza_menu = document.getElementById("pizza_menu").value;
         
         
         outputDiv3.innerHTML = `
+            메뉴 : ${pizza_menu}<br>
             사이즈 : ${pizza_size}<br>
             토핑 : ${pizza_topping}<br>
             도우 : ${pizza_dow}`
 
-    
-
-
-
+        outputDiv4.innerHTML = `
+            메뉴 : ${pizza_menu}<br>
+            사이즈 : ${pizza_size}<br>
+            토핑 : ${pizza_topping}<br>
+            도우 : ${pizza_dow}`
 
 
 
     })
 
-    const zoom = document.getElementById("img_zoom");
-    const img = document.getElementById("pizza_img");
-    let cnt = 0;
-    document.getElementById("pizza_img").addEventListener("click", function(){
-        
-        if (cnt ==0){
-            zoom.innerHTML = `<img src="${img.src}" style="width:${img.clientWidth * 1.5}px;">`;
-            cnt ++;
-        } else {
-            console.log("MAX!!!!!!!") //이거 왜 콘솔 안찍힘???
+    const pizzaImg = document.getElementById("pizza_img");
+const zoomDiv = document.getElementById("img_zoom");
 
+let isZoomed = false;
+
+const pizzaImages = {
+    menu1: "cheezepizza.png",
+    menu2: "combepizza.png",
+    menu3: "gogumapizza.png"
+};
+
+const menuButtons = ["menu1", "menu2", "menu3"];
+// const sp = document.querySelector("#span")
+
+menuButtons.forEach(menuId => {
+    const button = document.getElementById(menuId);
+    
+    button.addEventListener("click", function () {
+        // 이미지 변경
+        pizzaImg.src = pizzaImages[menuId]; //배송정보에 menuid 추가
+        // console.log(menuId)
+        // sp.innerHTML = `메뉴 : ${button.value} `
+
+        // 확대 초기화
+        isZoomed = false;
+        zoomDiv.innerHTML = "";
+
+        // 버튼 색상 초기화 및 현재 버튼 파란색
+        menuButtons.forEach(id => {
+            document.getElementById(id).style.backgroundColor = ""; // 초기화
+        });
+        button.style.backgroundColor = "green"; // 선택된 버튼 파란색
+        button.style.color = "black"; // 텍스트 색상도 잘 보이게
+    });
+});
+
+// 이미지 클릭 시 한 번만 확대
+pizzaImg.addEventListener("click", function () {
+    if (!pizzaImg.src) return;
+
+    if (!isZoomed) {
+        zoomDiv.innerHTML = `<img src="${pizzaImg.src}" style="width:${pizzaImg.clientWidth * 1.5}px;">`;
+        isZoomed = true;
+    } else {
+        console.log("이미 확대됨");
+    }
+});
+
+//appendchild와 textcontent를 활용해서 입력을 구현하자. 
+//remove메서드로 삭제를 구현하자
+
+document.querySelector("#insert_button").addEventListener("click", function () {
+    const todoInput = document.getElementById("todo_text");
+    const value = todoInput.value.trim();
+    if (!value) return;
+
+    // 전체 항목을 감쌀 div
+    const itemWrapper = document.createElement("div");
+    itemWrapper.style.display = "flex";
+    itemWrapper.style.border = "1px solid black";
+    itemWrapper.style.marginTop = "5px";
+
+    // 좌측 영역
+    const leftDiv = document.createElement("div");
+    leftDiv.style.width = "500px";
+
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.className = "check";
+    checkbox.value = value;
+
+    const label = document.createElement("span");
+    label.textContent = " " + value;
+
+    // 체크 시 취소선 토글
+    checkbox.addEventListener("change", function () {
+        if (checkbox.checked) {
+            label.style.textDecoration = "line-through";
+        } else {
+            label.style.textDecoration = "none";
         }
 
+        // 전체선택 상태도 동기화
+        const allCheckboxes = document.querySelectorAll(".check");
+        const allChecked = [...allCheckboxes].every(cb => cb.checked);
+        document.querySelector(".chk_all2").checked = allChecked;
+    });
+
+    leftDiv.appendChild(checkbox);
+    leftDiv.appendChild(label);
+
+    // 우측 빈 div
+    const rightDiv = document.createElement("div");
+    rightDiv.style.width = "80px";
+
+    itemWrapper.appendChild(leftDiv);
+    itemWrapper.appendChild(rightDiv);
+
+    document.querySelector(".todo_list").appendChild(itemWrapper);
+    todoInput.value = "";
+});
+
+//  전체선택 기능
+document.querySelector(".chk_all2").addEventListener("change", function () {
+    const checkboxes = document.querySelectorAll(".check");
+    checkboxes.forEach(cb => {
+        cb.checked = this.checked;
+
+        // 취소선 동기화
+        const label = cb.nextElementSibling;
+        label.style.textDecoration = cb.checked ? "line-through" : "none";
+    });
+});
+
+//  선택된 항목 전체삭제
+document.querySelector(".unchk_all").addEventListener("change", function () {
+    const checkboxes = document.querySelectorAll(".check");
+    checkboxes.forEach(cb => {
+        if (cb.checked) {
+            cb.closest("div").parentElement.remove();
+        }
+    });
+
+    // 삭제 후 체크박스 상태 초기화
+    this.checked = false;
+    document.querySelector(".chk_all2").checked = false;
+});
+
+
+
+
+   
+    
+    // const btn2 = document.querySelector("#menu2");
+    // btn2.addEventListener("click", function(){
+    //     const a = document.getElementById("pizza_img")
+    //         a.addEventListener("click", function(){
+    //         a.setAttribute("src", "combepizza.png")
+            
+    //             if (cnt ==0){
+    //                 zoom.innerHTML = `<img src="${img.src}" style="width:${img.clientWidth * 1.5}px;">`;
+    //                 cnt ++;
+    //             } else {
+    //                 console.log("MAX!!!!!!!") //이거 왜 콘솔 안찍힘??? 변수를 안에다 넣어서 애당초 0으로 리셋이 되어버리면 안되지 않을까? 정신차려
+
+    //             }
         
+    //     })
+
+        
+    // })
+    // document.getElementById("pizza_img").addEventListener("click", function(){
+        
+    //     if (cnt ==0){
+    //         zoom.innerHTML = `<img src="${img.src}" style="width:${img.clientWidth * 1.5}px;">`;
+    //         cnt ++;
+    //     } else {
+    //         console.log("MAX!!!!!!!") //이거 왜 콘솔 안찍힘??? 변수를 안에다 넣어서 애당초 0으로 리셋이 되어버리면 안되지 않을까? 정신차려
+
+    //     }
 
         
 
         
-    })
+
+        
+    // })
+
+  
+
     
 
     
