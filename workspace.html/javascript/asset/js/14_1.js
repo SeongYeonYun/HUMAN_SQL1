@@ -200,7 +200,7 @@ function bind() {
 
         });
 
-    // 142쨰줄의 값을 가져오자 keyeord 2
+    
 
  
 

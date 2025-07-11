@@ -3,10 +3,17 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 # Create your models here.
+class PublishedManager(models.Manager): #부모인 models.Manager의 기본 퀴리셋을 먼저 실행해서 필터 추가
+    def get_queryset(self):
+        return super().get_queryset().filter(status = Post.Status.PUBLISHED)
+
+
 class Post(models.Model):
     class Status(models.TextChoices):
         DRAFT = 'DF', 'Draft'
         PUBLISHED = 'PB', 'Published'
+
+
     
     #게시물의 제목 필드
     title = models.CharField(max_length=250) 
@@ -19,6 +26,7 @@ class Post(models.Model):
 
     #sql에서 Datetime 컬럼으로 변환되는 DateTimeField 필드.
     publish = models.DateTimeField(default = timezone.now)
+    published = PublishedManager()
 
     #게시물이 생성된 날자와 시간
     created = models.DateTimeField(auto_now_add = True) 
@@ -30,9 +38,10 @@ class Post(models.Model):
     status = models.CharField(max_length = 2,choices = Status.choices,default = Status.DRAFT) 
     
     #작성자 명을 외래키로 지정한다.
-    author = models.ForeignKey(User, on_delete = model_CASCADE, related_name = 'blog_posts')
+    author = models.ForeignKey(User, on_delete = models.CASCADE, related_name = 'blog_posts')
     
-    
+    objects = models.Manager() #기본 관리자, 잔고가 기본으로 주는 관리자
+    published = PublishedManager()  #커스텀 관리자
 
     class Meta:
         #퀴리셋의 기본 정렬 순서를 publish를 기준으로 역순으로 정렬
