@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- https://releases.jquery.com/ -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js" 
+    integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" 
+    crossorigin="anonymous"></script>
+
+    <script>
+        // $("h1").text("hello")
+        $(()=>{
+            // console.log($("h1"))
+
+            init();
+        })
+
+        function init(){
+            const list_h1 = $("h1")
+            console.log(list_h1)    //jQuery 배열 객체
+            console.log(list_h1[0]) // pure javascript
+
+            console.log($("#human")) //없으면 0개짜리 비어있는 배열
+            $("h1").text("전부변경") //전부 변경 하는법, text => innertext , queryseelctorall에 해당
+
+            $("h1").html("<a href ='#'>a tag</a>") //#보다는 javascript void(0)을 활용할수 있음, 오히려 이게 편할듯??
+            console.log($("#parent"))
+            console.log($(".child"))
+
+            $("#parent").addClass("c1")
+            $("#parent").addClass("c2") //클래스 추가
+            
+            
+            $("#parent").removeClass("c1") 
+            // $("#parent").removeClass("c2") //클래스 제거
+            $("#parent").toggleClass("c2") //없으면 추가 있으면 제거
+            $("#parent").toggleClass("c2") 
+            
+            console.log($("#parent").hasClass("c2"))
+
+
+            //전달인자가 하나면 getattribute 두개면 setattribute
+            let human = $("#chk").attr("data-human")
+            console.log(human)
+            //set
+            $("#chk").attr("data-human","123")
+            $("#chk").attr("data-game","윷놀이")
+
+
+            console.log($("#chk").data("game"))
+
+            //개발자도구에서 안보이는 속성값 추가
+            $("#chk").data("dinner","찌개")
+
+            console.log($("#chk").data("dinner","찌개"))
+
+            $("#chk").removeAttr("data-game") //제거
+
+            // $("#parent").append("")
+            let child2 = $("<div class = 'child2'>자식2</div>") //createelement
+
+            $("#parent").append(child2)
+            
+            $("#parent").prepend("<div class = 'child2'>자식2</div>")
+            $("#parent").emepty() //비워라(하위의 것을)
+            $("#parent").remove()//자식과 부모 모두 삭제, 본인 삭제
+
+
+
+
+        
+
+
+
+        
+
+
+
+
+
+
+        }
+        
+        </script>
+</head>
+<body>
+    <h1>첫번쨰</h1>
+    <h1>첫번쨰</h1>
+    <h1>첫번쨰</h1>
+    <h1>첫번쨰</h1>
+    <h1>첫번쨰</h1>
+    <h1>첫번쨰</h1>
+
+
+    <div id = "parent">
+        부모
+        <div class = "child">
+            자식
+        </div>
+    </div>
+
+    <input type = "checkbox" id = "chk" class = "cb1" value ="1" 
+        data-human = "값" checked = "checked"><br>
+
+
+
+    
+</body>
+</html>
