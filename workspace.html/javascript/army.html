@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document</title>
+</head>
+<body>
+  <button id="btn">버튼</button>
+
+  <script>
+    document.querySelector('#btn').addEventListener('click', function() {
+    //   const serviceKey = 'ZnNRKac1HEkgj8xmYJAVSGqhVsMdrNVD2WvgM3%2BNjP5DHeLJq8sc6bKwFCoc9CvYdS0bio2o6PEhlQhulzD%2BWA%3D%3D';
+      const serviceKey = 'ZnNRKac1HEkgj8xmYJAVSGqhVsMdrNVD2WvgM3+NjP5DHeLJq8sc6bKwFCoc9CvYdS0bio2o6PEhlQhulzD+WA=='
+      let url = 'https://apis.data.go.kr/1300000/sHBMGyeHeok/list?'; // 확인 필요
+    url += 'numOfRows=10';  // 디버깅을 위해 줄이기 권장
+      url += '&pageNo=1';
+      url += '?serviceKey=' + serviceKey;
+      
+
+      console.log("요청 전송 중...");
+
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', url);
+      xhr.send();
+
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          console.log(xhr.responseText);
+          
+          // XML 파싱
+          const parser = new DOMParser();
+          const xmlDoc = parser.parseFromString(xhr.responseText, "application/xml");
+
+          const items = xmlDoc.getElementsByTagName("item");
+          for (let i = 0; i < items.length; i++) {
+            console.log(items[i]);  // 각 <item> 태그 출력
+          }
+        } else {
+          console.error("요청 실패:", xhr.status);
+        }
+      };
+    });
+  </script>
+</body>
+</html>
