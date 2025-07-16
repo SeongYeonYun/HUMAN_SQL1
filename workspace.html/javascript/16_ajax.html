@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" 
+    integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" 
+    crossorigin="anonymous"></script>
     <script>
         window.addEventListener('load', bind)
         function bind(){
@@ -192,7 +195,88 @@
 
 
 
-        )}
+        )
+        $("#btn6").off("click").on("click", function(){
+            $.ajax({
+                url : 'http://naver.com', 
+                type : "get",
+                success :function(data){
+                    console.log(data) // json일 경우 알아서 json으로 넘어옴
+                } ,
+                error :function(data){ //success를 실패했을떄
+                    console.log("실패") // json일 경우 알아서 json으로 넘어옴
+                } ,
+                complete :function(data){ //무조건 실행
+                    console.log("무조건 실행") // json일 경우 알아서 json으로 넘어옴
+                } 
+
+                
+
+            })
+        })
+
+    
+    
+    
+        $("#btn7").off("click").on("click", function(){
+            const token = "8102064593:AAENo1SYW3NwuB4a3L_GxLVkcGCDLOUd0O0"; // 반드시 새로 발급받으세요!
+            const chat_id = "1905801584";
+            const text = "버튼을 눌렀습니다.";
+
+            $.ajax({
+                url: `https://api.telegram.org/bot${token}/sendMessage`,
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({
+                    chat_id: chat_id,
+                    text: text
+                }),
+                success: function(response) {
+                    console.log("메시지 전송 성공:", response);
+                },
+                error: function(error) {
+                    console.error("메시지 전송 실패:", error);
+                }
+            });
+        });
+
+        $("#btn8").off("click").on("click", function(){
+            let msg = "";
+            const key = "AIzaSyCdAAet_4EV0f081ITqIq1Hl0L-7r9LTDw";
+            const url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"
+            const data = {
+            
+                contents : {
+                    role : "user",
+                    parts : [
+                        {
+                            text : "sdsdsd"
+                        }
+                    ]
+                }
+            }
+
+            const xhr = new XMLHttpRequest();
+            xhr.open("post", url)
+            xhr.setRequestHeader("Content-Type", "application/json")
+            xhr.send(JSON.stringify(data))
+            xhr.onload = function(){
+                console.log("제미니가 말한다")
+                console.log(xhr.responseText)
+                const response = JSON.parse(xhr.responseText)
+                // $("gemini").html(answer.replace("\n"))
+            }
+        })
+
+
+
+
+    
+    
+    
+    
+    
+    }
     </script>
 </head>
 <body>
@@ -201,6 +285,9 @@
     <button type="button" id="btn3">네이버주식</button><br>
     <button type="button" id="btn4">휴먼잡스</button><br>
     <button type="button" id="btn5">날씨예보</button><br>
+    <button type="button" id="btn6">jquery</button><br>
+    <button type="button" id="btn7">telegram</button><br>
+    <button type="button" id="btn8">gemini</button><br>
 
     <div id="table-container"></div>
 </body>

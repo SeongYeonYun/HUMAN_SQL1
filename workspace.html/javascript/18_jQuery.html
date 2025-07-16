@@ -15,6 +15,7 @@
             // console.log($("h1"))
 
             init();
+            bind();
         })
 
         function init(){
@@ -61,28 +62,111 @@
             // $("#parent").append("")
             let child2 = $("<div class = 'child2'>자식2</div>") //createelement
 
+            //부모요소
             $("#parent").append(child2)
-            
             $("#parent").prepend("<div class = 'child2'>자식2</div>")
-            $("#parent").emepty() //비워라(하위의 것을)
+            
+            
+            // $("#parent").emepty() //비워라(하위의 것을)
             $("#parent").remove()//자식과 부모 모두 삭제, 본인 삭제
 
+            //형제요소
+            $("#parent").after("<div id='parent2'>parent2</div>")
+            $("#parent").before("<div id='parent3'>parent3</div>")
 
+
+
+
+        
+            $("#input1").css("backgroundColor","yellow")
+            console.log($("#input1").css("backgroundColor","yellow"))
+            $("#input1").css("backgroundColor","yellow")
 
 
         
 
 
-
         
+         
+    }
 
+    function bind(){
+            // $("#btn1").cilck(function(){})
+            $("#btn1").on("click",function(event){
+                console.log(this == event.currentTarget)
+                $("#input1").val("sss")
+                $("#chk").prop("checked",true)
+            })
+            $(".btn1").on("click", function (event){
+                console.log(event.target)
+                console.log(this)
 
+                // bind() 돔이 사라지는 순간 새로운것들을 만들어 다시 덮어쓴다고 이해, 
+                // on을 쓴다음 바로 bind를 호출하게 되면 누적된다ㅣ먼저 off로 지우고 다시 on을 해야 한다.
+            })
 
+              $(".btn1").off("click").on("click", function (event){
+                bind();
+                // bind() 돔이 사라지는 순간 새로운것들을 만들어 다시 덮어쓴다고 이해, 
+                // on을 쓴다음 바로 bind를 호출하게 되면 누적된다ㅣ먼저 off로 지우고 다시 on을 해야 한다.
+                //누적이 계속 되는 구조가 된다면 떠올릴것
+            })
+            $(".btn").off("click")
 
+            $(".btn").on("click.dom", function(){
+                console.log("dom")
+            })
+            $(".btn").on("click.ajax", function(){
+                console.log("ajax")
+            })
+            $(".btn").off("click.ajax")
 
+            $("#parent10").on('click', function(event){
+                // this != event.target
+                // event.stopPropagation()
+
+                return false //jquery에서
+
+                console.log(this);
+                console.log(event.target);
+
+            })
+            
+             $("#child10").on('click', function(event){
+                // this != event.target
+                // event.stopPropagation()
+
+                return false //jquery에서
+
+                console.log(this);
+                console.log(event.target);
+
+            })
+
+            $("#btn3").on("click",function(){
+                // $(".child10").fadeToggle() //fadein or fadeout
+                // $(".child10").hide() //단순히 display none으로 만들어줌
+                // $(".child10").show() // display 값을 뺴준다
+
+                // $(".child10").slideToggle() //슬라이드 에네미이션
+                $(".child10").animate(
+                    {
+                        width : "100px",
+                        height : "+=10px", //누적
+                        left: "100px", //position realitive여야 작동한다.
+                        // top : "100px",
+                        right : "100px",
+                        bottom : "100px"
+                        
+                    }
+                )
+            })
+            
+            
+            
 
         }
-        
+    
         </script>
 </head>
 <body>
@@ -104,7 +188,17 @@
     <input type = "checkbox" id = "chk" class = "cb1" value ="1" 
         data-human = "값" checked = "checked"><br>
 
+    <input type = "text" id = "input1">
+    <input type = "button" class = "btn1" id = "btn1" value = "버튼1">
+    <input type = "button" class = "btn1" id = "btn2" value = "버튼2">
+    <input type = "button" class = "btn1" id = "btn3" value = "버튼3">
 
+     <div id = "parent10">
+        부모10
+        <div style = "border : 1px solid red ;position: absolute; background-color:  yellow;"class = "child10">
+            자식10
+        </div>
+    </div>
 
     
 </body>
