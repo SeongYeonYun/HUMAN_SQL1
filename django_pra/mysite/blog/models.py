@@ -26,7 +26,7 @@ class Post(models.Model):
 
     #sql에서 Datetime 컬럼으로 변환되는 DateTimeField 필드.
     publish = models.DateTimeField(default = timezone.now)
-    published = PublishedManager()
+    #published = PublishedManager()
 
     #게시물이 생성된 날자와 시간
     created = models.DateTimeField(auto_now_add = True) 
