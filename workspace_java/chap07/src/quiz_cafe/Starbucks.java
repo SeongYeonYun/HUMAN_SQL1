@@ -21,9 +21,9 @@ public class Starbucks extends Cafe {
     	employee = 10;
     	
     	
-    	add_pro_init("glass", 10);
-		add_pro_init("straw", 20);
-		add_pro_init("flastic cup", 5);
+    	add_pro_init("유리잔", 10);
+		add_pro_init("빨대", 20);
+		add_pro_init("플라스틱 컵", 5);
 		
 		
 		add_menu_init("americano", 1000);

@@ -1,0 +1,6 @@
+class | 대답 여부, 회식 참여 여부, 희망사항, 공부하기, gpt활용
+
+
+필드 ㅣ 이름, 나이, 기억공간, 근로 장려금,
+
+DAO ->  service ->  CONTROLeR -> study -> studyexam 실행

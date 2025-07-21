@@ -12,6 +12,7 @@ public class AlbaExam {
         // 알바가 주문 받고 재고 처리만 담당
 		backalba.open_alarm(back);
         backalba.processOrder(back, "americano", 2000);
+        back.add_menu_init("ade", 3000);
       
         // 확인
         System.out.println("back 주문 목록: " + back.order_list);
@@ -34,7 +35,7 @@ public class AlbaExam {
         System.out.println("star 남은 비품: " + star.product_list);
 	 ///////////////////////////////////////////
 	///                                     ///
-   ///	비품목록 백다방과 달라서 에러 발생       ///
+   ///	비품목록 백다방과 달라서 에러 발생(해결)  ///
   ///									   ///
  ////////////////////////////////////////////
         //        System.out.println("star 남은 비품: " + back.product_list[1]);
