@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from .models import Post #.은 경로 지정
 from django.http import Http404
+from django.shortcuts import get_object_or_404
+
 
 # Create your views here.
 
