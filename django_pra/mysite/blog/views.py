@@ -21,5 +21,6 @@ def post_detail(request,id):
 
 def post_list(request):
     posts= Post.published.all()
-    return render(request, "blog/post/list.html", {"posts" : posts})
-    # return render(request, 'blog/post/14-3_6번_Todo.html',{"post" : post})
+    # return render(request, "blog/post/list.html", {"posts" : posts})
+    # return render(request, 'blog/post/14-3_6번_Todo.html',{"posts" : posts})
+    return render(request, 'make_account_v1.html',{"posts" : posts})
