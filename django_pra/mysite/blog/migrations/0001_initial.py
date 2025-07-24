@@ -10,6 +10,7 @@ class Migration(migrations.Migration):
 
     initial = True
 
+    #이 마이그레이션이 실행되기 전에 먼저 실행되어야 하는 마이그레이션 리스트
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
