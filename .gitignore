@@ -1,7 +1,7 @@
 # 가상환경 무시
-dacon_venv/test/Lib/site-packages
-dacon_venv/test/Scripts
-dacon_venv/test/share
+dacon_venv/
+django_pra/
+
 
 # 주피터 체크포인트 무시
 .ipynb_checkpoints/
