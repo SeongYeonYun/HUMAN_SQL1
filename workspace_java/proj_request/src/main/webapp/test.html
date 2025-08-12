@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Sum Demo</title>
+</head>
+<body>
+
+  <input type="number" id="num1" name="num1" >
+  <input type="number" id="num2" name="num2" >
+  <button id="button" type="button">Send</button>
+
+  <p id="result"></p>
+
+  <script>
+    document.querySelector("#button").addEventListener("click", function () {
+      const n1 = Number(document.getElementById("num1").value || 0);
+      const n2 = Number(document.getElementById("num2").value || 0);
+      const sum = n1 + n2;
+      const qs = new URLSearchParams({num1 : n1, num2 : n2});
+      location.href = '/Sum?' + qs.toString();
+      
+
+      document.getElementById("result").textContent = `${n1} + ${n2} = ${sum}`;
+    });
+  </script>
+
+</body>
+</html>

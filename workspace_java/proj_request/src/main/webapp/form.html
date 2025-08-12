@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<!-- <form method = "get" action = "http://localhost:8080/proj_request/Req"></form>-->
+<form method = "get" action = "Req">
+	num1 : <input type = "text" name = "num1"><br>
+	버튼은 전송 안됨<button type = "submit" value = "get 전송">ㄴㅇㄴㅇ</button><br>
+	<input name = "chk" type = "checkbox" value = "1" >1
+	<input name = "chk" type = "checkbox" value = "2" >2
+	<input name = "chk" type = "checkbox" value = "3" >3
+	<input name = "chk" type = "checkbox" value = "4" >4<br>
+	
+	<input type = "hidden" name = "hidden" value ="hival"><br>
+	
+	<input type = "radio" name="radio1" value = "r1" checked >라디오 1
+	<input type = "radio" name="radio1" value = "r2" >라디오 2
+	<input type = "radio" name="radio1" value = "r3" >라디오 3
+	<input type = "radio" name="radio1" value = "r4" >라디오 4<br>
+	
+	<input type = "date" name = "date1" value = "2025-08-12"><br>
+	<input type = "number" name = "number" value ="1234" style = "display : none"><br>
+	<!-- display : none을 해도 전송 된다 -->
+	
+	<div name = "div1">dsdsd</div>
+	
+	<select name="select1">
+	    <option value="01">옵션 1</option>
+	    <option value="02" selected>옵션 2</option>
+	    <option value="03">옵션 3</option>
+	    <option value="04">옵션 4</option>
+	</select><br>
+	
+	<input type = "textarea" name = "textarea" >
+
+
+</form>
+
+<form method = "post" action = "Req">
+	<input type = "text" name = "num2">num2
+	<input type = "submit" value = "post전송">
+
+</form>
+</body>
+</html>
