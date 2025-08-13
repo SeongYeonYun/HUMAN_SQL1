@@ -6,7 +6,20 @@
 </head>
 <body>
 
-  <input type="number" id="num1" name="num1" >
+<h1> 계산기</h1>
+<form method = "get" action = "../proj_request/input2">
+<input type = "text" name = "num1">
+<input type = "text" name = "num2">
+<input type = "submit" name = "send">
+
+
+
+
+</form>
+
+
+
+<!-- <input type="number" id="num1" name="num1" >
   <input type="number" id="num2" name="num2" >
   <button id="button" type="button">Send</button>
 
@@ -18,12 +31,12 @@
       const n2 = Number(document.getElementById("num2").value || 0);
       const sum = n1 + n2;
       const qs = new URLSearchParams({num1 : n1, num2 : n2});
-      location.href = '/Sum?' + qs.toString();
+      location.href = '../proj_request/Sum?' + qs.toString();
       
 
       document.getElementById("result").textContent = `${n1} + ${n2} = ${sum}`;
     });
-  </script>
+  </script>  -->
 
 </body>
 </html>

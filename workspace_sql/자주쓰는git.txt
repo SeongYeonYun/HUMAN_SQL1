@@ -1,0 +1,173 @@
+-- 매장
+CREATE TABLE stores (
+  store_id      NUMBER NOT NULL,
+  store_name    VARCHAR2(100) NOT NULL,
+  store_call    VARCHAR2(30),
+  store_address VARCHAR2(255) NOT NULL,
+  CONSTRAINT pk_stores PRIMARY KEY (store_id)
+);
+
+CREATE SEQUENCE seq_stores START WITH 1 INCREMENT BY 1 NOCACHE;
+
+CREATE OR REPLACE TRIGGER trg_stores_id
+BEFORE INSERT ON stores
+FOR EACH ROW
+WHEN (NEW.store_id IS NULL)
+BEGIN
+  SELECT seq_stores.NEXTVAL INTO :NEW.store_id FROM dual;
+END;
+/
+
+-- 고객
+CREATE TABLE customers (
+  customer_id   VARCHAR2(100) NOT NULL,
+  customer_name VARCHAR2(100),
+  phone         VARCHAR2(30),
+  store_id      NUMBER,
+  CONSTRAINT pk_customers PRIMARY KEY (customer_id),
+  CONSTRAINT fk_stores_to_customers FOREIGN KEY (store_id)
+    REFERENCES stores (store_id)
+);
+
+-- 메뉴
+CREATE TABLE menus (
+  menu_id   NUMBER NOT NULL,
+  menu_name VARCHAR2(100) NOT NULL,
+  price     NUMBER(10,2)  NOT NULL,
+  store_id  NUMBER,
+  CONSTRAINT pk_menus PRIMARY KEY (menu_id),
+  CONSTRAINT fk_stores_to_menus FOREIGN KEY (store_id)
+    REFERENCES stores (store_id),
+  CONSTRAINT ck_menus_price_nonneg CHECK (price >= 0)
+);
+
+CREATE SEQUENCE seq_menus START WITH 1 INCREMENT BY 1 NOCACHE;
+
+CREATE OR REPLACE TRIGGER trg_menus_id
+BEFORE INSERT ON menus
+FOR EACH ROW
+WHEN (NEW.menu_id IS NULL)
+BEGIN
+  SELECT seq_menus.NEXTVAL INTO :NEW.menu_id FROM dual;
+END;
+/
+
+-- 재고
+CREATE TABLE stock (
+  stock_code   VARCHAR2(40) NOT NULL,
+  store_id     NUMBER       NOT NULL,
+  origin       VARCHAR2(100),
+  kg_price     NUMBER(10,2),
+  exp          DATE,
+  recipe_count NUMBER,
+  stock_name   VARCHAR2(100),
+  input_date   TIMESTAMP DEFAULT SYSTIMESTAMP NOT NULL,
+  CONSTRAINT pk_stock PRIMARY KEY (stock_code, store_id),
+  CONSTRAINT fk_stores_to_stock FOREIGN KEY (store_id)
+    REFERENCES stores (store_id)
+);
+
+-- 주문
+CREATE TABLE orders (
+  order_id          NUMBER NOT NULL,
+  order_time        TIMESTAMP DEFAULT SYSTIMESTAMP NOT NULL,
+  customer_address  VARCHAR2(255),
+  paid_yn           CHAR(1) DEFAULT 'N' NOT NULL,
+  customer_id       VARCHAR2(100),
+  total_price       NUMBER,
+  CONSTRAINT pk_orders PRIMARY KEY (order_id),
+  CONSTRAINT fk_customers_to_orders FOREIGN KEY (customer_id)
+    REFERENCES customers (customer_id),
+  CONSTRAINT ck_orders_paid_yn CHECK (paid_yn IN ('Y','N'))
+);
+
+CREATE SEQUENCE seq_orders START WITH 1 INCREMENT BY 1 NOCACHE;
+
+CREATE OR REPLACE TRIGGER trg_orders_id
+BEFORE INSERT ON orders
+FOR EACH ROW
+WHEN (NEW.order_id IS NULL)
+BEGIN
+  SELECT seq_orders.NEXTVAL INTO :NEW.order_id FROM dual;
+END;
+/
+
+CREATE TABLES delivers (
+	deliver_id  VARCHAR2(100) NOT NULL,
+    order_id    NUMBER        NOT NULL,
+	locate_date VARCHAR2 	  NOT NULL,
+	
+	
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- 주문 상세
+CREATE TABLE order_items (
+  menu_id     NUMBER       NOT NULL,
+  order_id    NUMBER       NOT NULL,
+  qty         NUMBER       NOT NULL,
+  unit_price  NUMBER(10,2) NOT NULL,
+  CONSTRAINT pk_order_items PRIMARY KEY (menu_id, order_id),
+  CONSTRAINT fk_orders_to_order_items FOREIGN KEY (order_id)
+    REFERENCES orders (order_id),
+  CONSTRAINT fk_orders_to_delivers FOREIGN KEY (order_id)
+    REFERENCES orders (order_id),
+  CONSTRAINT fk_menus_to_order_items FOREIGN KEY (menu_id)
+    REFERENCES menus (menu_id),
+  CONSTRAINT ck_order_items_qty_pos CHECK (qty > 0),
+  CONSTRAINT ck_order_items_price_nonneg CHECK (unit_price >= 0)
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------
+SELECT
+  o.order_id,
+  o.order_time,
+  o.customer_id,
+  c.customer_name,
+  o.customer_address,
+  o.paid_yn,
+  o.total_price,
+  oi.menu_id              AS item_code,     -- 메뉴 코드
+  oi.qty,
+  oi.unit_price,
+  (oi.qty * oi.unit_price) AS line_total
+FROM orders o
+LEFT JOIN customers c
+  ON c.customer_id = o.customer_id
+JOIN order_items oi
+  ON oi.order_id = o.order_id
+WHERE o.order_id = :order_id
+ORDER BY oi.menu_id;
