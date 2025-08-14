@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>데이터 모델링 & SQL/성능 최적화 — 확장 요약(통합 1·2·3과목)</title>
+<style>
+  :root{--bg:#fafafa;--fg:#1f2937;--muted:#4b5563;--accent:#2563eb;--card:#fff;--code:#f1f5f9;--border:#e5e7eb}
+  @media(prefers-color-scheme:dark){
+    :root{--bg:#0b0f14;--fg:#e5e7eb;--muted:#9ca3af;--accent:#60a5fa;--card:#0f141a;--code:#111827;--border:#1f2937}
+  }
+  html,body{height:100%}
+  body{margin:0;background:var(--bg);color:var(--fg);font-family:ui-sans-serif,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;line-height:1.65;letter-spacing:.1px;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  header{position:sticky;top:0;background:linear-gradient(to bottom,var(--bg),color-mix(in oklab,var(--bg) 85%,transparent));backdrop-filter:blur(6px);border-bottom:1px solid var(--border);z-index:10}
+  .bar{max-width:1040px;margin:0 auto;padding:12px 20px;display:flex;gap:12px;align-items:center;justify-content:space-between}
+  .title{font-size:clamp(22px,3vw,30px);font-weight:800}
+  .container{max-width:1040px;margin:0 auto;padding:28px 16px 80px}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin:14px 0;box-shadow:0 1px 0 rgba(0,0,0,.04)}
+  h2{font-size:clamp(18px,2.2vw,24px);margin:18px 0 8px}
+  h3{font-size:clamp(16px,2vw,20px);margin:14px 0 6px}
+  p{margin:8px 0}
+  ul,ol{padding-left:22px}
+  .muted{color:var(--muted)}
+  .kbd{font-family:ui-monospace,Menlo,Monaco,Consolas,monospace;background:var(--code);padding:0 6px;border-radius:6px;border:1px solid var(--border)}
+  .toc a{color:var(--fg);text-decoration:none;border-bottom:1px dashed var(--border)}
+  .toc a:hover{color:var(--accent)}
+  .grid{display:grid;grid-template-columns:1fr;gap:12px}
+  @media(min-width:900px){.grid{grid-template-columns:1fr 1fr}}
+  .chip{display:inline-block;padding:2px 8px;border:1px solid var(--border);border-radius:999px;font-size:12px;color:var(--muted)}
+  .quote{border-left:3px solid var(--border);padding-left:12px;margin:8px 0}
+  .tip{background:color-mix(in oklab,var(--accent) 6%,var(--card));border:1px solid color-mix(in oklab,var(--accent) 30%,var(--border));border-radius:10px;padding:10px 12px;margin:8px 0}
+  .small{font-size:13px}
+  .tag{display:inline-block;margin-right:6px;font-size:12px;color:var(--accent)}
+  .page{font-size:12px;color:var(--muted);margin-left:6px}
+  .footer{margin-top:36px;font-size:13px;color:var(--muted)}
+</style>
+<script>
+function toggleTheme(){
+  const d=document.documentElement, cur=d.dataset.theme;
+  d.dataset.theme=cur==="light"?"dark":"light";
+  if(d.dataset.theme==="dark"){
+    d.style.setProperty('--bg','#0b0f14');d.style.setProperty('--fg','#e5e7eb');d.style.setProperty('--muted','#9ca3af');
+    d.style.setProperty('--accent','#60a5fa');d.style.setProperty('--card','#0f141a');d.style.setProperty('--code','#111827');d.style.setProperty('--border','#1f2937');
+  }else{
+    d.style.removeProperty('--bg');d.style.removeProperty('--fg');d.style.removeProperty('--muted');d.style.removeProperty('--accent');d.style.removeProperty('--card');d.style.removeProperty('--code');d.style.removeProperty('--border');
+  }
+}
+</script>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <div class="title">데이터 모델링 & SQL/성능 최적화 — 확장 요약</div>
+    <button class="chip" onclick="toggleTheme()" title="눈이 편한 모드">테마 전환</button>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="card">
+    <p class="muted">대상 파일: <span class="kbd">1과목_2과목_3과목_merged.pdf</span> · 분량: 300+쪽</p>
+    <p class="quote">본 요약은 문서 전반을 <b>모델링 → SQL 기본/활용 → 성능/튜닝</b> 구조로 재정리했습니다. 각 섹션에 <span class="page">p.xx</span> 힌트를 붙여 원문 확인을 돕습니다.</p>
+  </div>
+
+  <div class="card toc">
+    <h2 id="toc">목차</h2>
+    <ol>
+      <li><a href="#part-a">A. 데이터 모델링 Essentials</a></li>
+      <li><a href="#part-b">B. SQL 기초·중급 문법 총정리</a></li>
+      <li><a href="#part-c">C. SQL 고급(윈도우·서브쿼리·CTE)</a></li>
+      <li><a href="#part-d">D. 옵티마이저/실행계획 이해</a></li>
+      <li><a href="#part-e">E. 인덱스·조인·소트 튜닝</a></li>
+      <li><a href="#part-f">F. 스키마/DDL/제약조건·무결성</a></li>
+      <li><a href="#part-g">G. 성능 데이터 모델링 & 분산</a></li>
+      <li><a href="#appendix">부록: 체크리스트 & 실무 규칙</a></li>
+    </ol>
+  </div>
+
+  <!-- A. 모델링 -->
+  <section id="part-a" class="card">
+    <h2>A. 데이터 모델링 Essentials</h2>
+    <div class="grid">
+      <div>
+        <h3>1) 핵심 개념</h3>
+        <ul>
+          <li>목적: 현실을 <b>추상화·단순화·명확화</b>하여 재사용 가능한 구조로 표준화</li>
+          <li>관점: <b>데이터(What)</b>, <b>프로세스(How)</b>, <b>상관(Interaction)</b></li>
+          <li>3단계: <b>개념→논리→물리</b> (정규화·키·무결성 → 저장구조·인덱스)</li>
+        </ul>
+      </div>
+      <div>
+        <h3>2) 4대 구성요소</h3>
+        <ul>
+          <li><b>엔터티</b>: 관리 대상의 집합, 식별자·속성 보유</li>
+          <li><b>속성</b>: 더 이상 쪼갤 수 없는 의미 단위(기본/설계/파생)</li>
+          <li><b>관계</b>: 존재/행위 기반, 1:1·1:N·N:M, 필수/선택</li>
+          <li><b>식별자</b>: 주/보조·내부/외부·단일/복합·본질/인조</li>
+        </ul>
+      </div>
+    </div>
+    <h3>3) 식별자 관계 vs 비식별자 관계</h3>
+    <ul>
+      <li><b>식별자 관계</b>: 부모 PK가 자식 PK로 <i>상속</i> → 1:1 또는 1:N</li>
+      <li><b>비식별자 관계</b>: 부모 키를 자식의 <i>일반 FK</i>로만 보유(Null 허용/수명주기 분리 등)</li>
+      <li class="tip small">PK 속성 남발(연쇄 상속) 시 조인 키 과다 → SQL 복잡·성능 저하</li>
+    </ul>
+    <h3>4) 좋은 모델의 조건</h3>
+    <ul>
+      <li>완전성·일관성·중복 배제·명확한 규칙·단순성·확장성</li>
+    </ul>
+  </section>
+
+  <!-- B. SQL 기초/중급 -->
+  <section id="part-b" class="card">
+    <h2>B. SQL 기초·중급 문법 총정리</h2>
+    <h3>1) 집합과 조인(Join)</h3>
+    <ul>
+      <li><b>INNER / OUTER JOIN</b> (LEFT/RIGHT/FULL), <b>CROSS JOIN</b> — 카티전 곱 <span class="page">p. ~150 전후</span></li>
+      <li>JOIN 조건 누락 시 데이터 폭증(카디널리티 M×N)</li>
+    </ul>
+    <h3>2) 비교·범위·리스트</h3>
+    <ul>
+      <li><b>BETWEEN</b> 경계 포함 유의(날짜·시분초 포함범위) <span class="page">p. ~210</span></li>
+      <li><b>IN(list)</b> vs 다중 OR — 옵티마이저 변환 특성</li>
+      <li><b>부정</b>: NOT IN 시 <b>NULL</b> 주의(삼진 논리)</li>
+    </ul>
+    <h3>3) NULL 정확히 다루기</h3>
+    <ul>
+      <li><b>NVL/ISNULL/COALESCE</b> 차이, <b>NULLIF</b> 용도 <span class="page">p. ~231</span></li>
+      <li>집계/산술 시 NULL 전파, 외부조인과의 상호작용</li>
+    </ul>
+    <h3>4) 행 제한</h3>
+    <ul>
+      <li><b>ROWNUM / TOP</b> / FETCH FIRST … ONLY / LIMIT <span class="page">p. ~211</span></li>
+    </ul>
+  </section>
+
+  <!-- C. 고급 SQL -->
+  <section id="part-c" class="card">
+    <h2>C. SQL 고급(윈도우·서브쿼리·CTE)</h2>
+    <h3>1) 윈도우 함수</h3>
+    <ul>
+      <li><b>LAST_VALUE(... IGNORE NULLS)</b> 등 누적/누락 보정 <span class="page">p. ~311</span></li>
+      <li>파티션·정렬·프레임(ROWS/RANGE) 선택이 결과/성능 좌우</li>
+    </ul>
+    <h3>2) CTE(공통 테이블 식, WITH)</h3>
+    <ul>
+      <li>가독성↑, 재사용↑, 재귀 쿼리·단계적 집계에 유리 <span class="page">p. ~311</span></li>
+      <li class="small">DBMS에 따라 머티리얼라이즈/인라인 최적화 차이</li>
+    </ul>
+    <h3>3) 서브쿼리 활용</h3>
+    <ul>
+      <li>EXISTS vs IN, 세미/안티 세미 조인 전략</li>
+      <li>스칼라 서브쿼리 — 선택적으로 인덱스 스캔 유도</li>
+    </ul>
+  </section>
+
+  <!-- D. 옵티마이저 -->
+  <section id="part-d" class="card">
+    <h2>D. 옵티마이저 & 실행계획 이해</h2>
+    <h3>1) CBO(비용기반) 기본</h3>
+    <ul>
+      <li>통계(카디널리티·히스토그램·데이터 분포) 기반 경로 선택 <span class="page">p. ~251</span></li>
+      <li>블록 I/O·CPU 비용 모델, 조인 순서/방식 결정</li>
+    </ul>
+    <h3>2) 실행계획 읽기</h3>
+    <ul>
+      <li>Access vs Filter, Predicate 정보, 예상/실측 Rows, 비용(=비교지표) <span class="page">p. ~151</span></li>
+      <li>힌트는 <i>보장</i>이 아니라 <i>유도</i> — 과용 금물</li>
+    </ul>
+    <div class="tip small">통계 갱신 주기 미흡·왜도(Skew) 미반영·파라미터 의존성은 잘못된 경로를 유발.</div>
+  </section>
+
+  <!-- E. 인덱스·조인·소트 -->
+  <section id="part-e" class="card">
+    <h2>E. 인덱스·조인·소트 튜닝</h2>
+    <h3>1) 인덱스 구조 & 설계</h3>
+    <ul>
+      <li><b>B*-Tree</b> 기본 원리, 선행 컬럼 <b>선택도</b> 중심 설계 <span class="page">p. ~271</span></li>
+      <li>범위조건은 폭이 넓음 → <b>IN-List 변환</b>이 유리한 케이스 존재 <span class="page">p. ~291</span></li>
+      <li>컬럼 순서: <b>= 조건 → 범위</b> 순으로 앞쪽 배치(조합 인덱스)</li>
+    </ul>
+    <h3>2) 조인 전략</h3>
+    <ul>
+      <li>NL/해시/소트머지 — 데이터량·선택도·메모리·조인 조건에 따라 선택</li>
+      <li>드라이빙/드리븐 테이블, 조인 칼럼 인덱싱</li>
+    </ul>
+    <h3>3) 소트(정렬) 최소화</h3>
+    <ul>
+      <li>ORDER BY/윈도우/중복제거 DISTINCT는 소트 코스트↑</li>
+      <li>가능하면 <b>인덱스 정렬</b> 재사용, 불가 시 소트 영역 최적화 <span class="page">p. ~331</span></li>
+    </ul>
+    <div class="tip small">“select nvl(max(주문번호),0)+1”로 일련번호 생성은 경합·갭·동시성 문제 → <b>시퀀스/아이덴티티</b> 사용 <span class="page">p. ~331</span></div>
+  </section>
+
+  <!-- F. 스키마/DDL/무결성 -->
+  <section id="part-f" class="card">
+    <h2>F. 스키마/DDL/제약조건·무결성</h2>
+    <h3>1) DDL 변경</h3>
+    <ul>
+      <li>칼럼 타입/크기 변경 시 영향도(인덱스·뷰·프로시저) 분석 <span class="page">p. ~171</span></li>
+      <li>제약조건 추가/수정/삭제: <span class="kbd">ADD/DROP CONSTRAINT</span> <span class="page">p. ~171</span></li>
+    </ul>
+    <h3>2) 무결성</h3>
+    <ul>
+      <li>PK/UK/FK/Check/Not Null — 논리 규칙을 물리로 보강</li>
+      <li>FK 인덱스는 조인·삭제 지연 방지에 효과(카스케이드 주의)</li>
+    </ul>
+  </section>
+
+  <!-- G. 성능 모델링 & 분산 -->
+  <section id="part-g" class="card">
+    <h2>G. 성능 데이터 모델링 & 분산</h2>
+    <h3>1) 반정규화(De-Norm)</h3>
+    <ul>
+      <li>목표: 조인 경로 단축·I/O 감소·복잡 SQL 단순화</li>
+      <li>방법: 테이블/컬럼/관계 중복·분리·통합(무결성 관리 프로세스 필수)</li>
+    </ul>
+    <h3>2) 슈퍼/서브타입 물리 변환</h3>
+    <ul>
+      <li>트랜잭션 패턴 기준으로 <b>개별</b> vs <b>통합</b> 테이블 결정</li>
+    </ul>
+    <h3>3) 대용량 전략</h3>
+    <ul>
+      <li>파티셔닝(수평/수직), 이력 테이블, 집계 테이블, 클러스터링</li>
+      <li>PK/FK 순서 — 인덱스 활용 극대화(=조건을 앞)</li>
+    </ul>
+    <h3>4) 분산 DB 개요</h3>
+    <ul>
+      <li>투명성(분할/위치/중복/장애/병행), 위치/분할/복제/요약 분산</li>
+      <li>부분복제(지사→본사), 광역복제(본사→지사), 분석/통합 요약</li>
+    </ul>
+  </section>
+
+  <!-- Appendix -->
+  <section id="appendix" class="card">
+    <h2>부록 — 실무 체크리스트</h2>
+    <h3>모델링 품질</h3>
+    <ul>
+      <li>각 엔터티: 주식별자 정의 완료? 속성은 업무 필요/의미 단위 충족?</li>
+      <li>관계: 필수/선택·카디널리티·식별/비식별 구분 명확?</li>
+      <li>명명: 현업 용어 일관·약어 규칙·도메인 사전 적용?</li>
+    </ul>
+    <h3>성능 설계</h3>
+    <ul>
+      <li>핵심 트랜잭션의 <b>실제 조건</b> 순서에 맞춘 PK/인덱스 컬럼 배치</li>
+      <li>대량 테이블: 파티션 키·히스토그램 통계·수명주기 정책 정의</li>
+      <li>FK 인덱스 생성/검토, 불필요 소트 제거</li>
+    </ul>
+    <h3>SQL 품질</h3>
+    <ul>
+      <li>NULL·날짜 경계 안전, EXISTS/IN 선택, 조인 조건 누락 방지</li>
+      <li>윈도우/CTE로 가독성↑, 과도한 서브쿼리 중복 계산↓</li>
+      <li>실행계획 확인 — 예상 Rows vs 실제 Rows 편차 점검</li>
+    </ul>
+    <p class="small muted">페이지 힌트(예: p.151, p.171, p.211, p.231, p.251, p.271, p.291, p.311, p.331)는 원문 대조를 돕기 위한 대표 위치입니다.</p>
+  </section>
+
+  <div class="footer">
+    <p>본 요약은 학습/참고 목적의 고수준 정리입니다. 세부 구문·에러 케이스·DBMS별 문법 차이는 운영 표준과 원문을 함께 확인하세요.</p>
+  </div>
+
+</div>
+</body>
+</html>
