@@ -28,6 +28,7 @@ public class mainpageServlet extends HttpServlet {
 		try {
 			System.out.println("main test get");
 			
+			
 		}
 		catch(Exception e) {
 			e.printStackTrace();
