@@ -14,11 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/login")
-public class loginServlet extends HttpServlet {
+public class loginServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
-	String url = "jdbc:oracle:thin:@125.181.132.133:51521:xe";
-	String user = "scott4_12";
-	String pw = "tiger";
+	ORACLE_connect ora = new ORACLE_connect();
 	
     public loginServlet() {
         super();
@@ -28,8 +26,13 @@ public class loginServlet extends HttpServlet {
         Connection conn = null;
         Statement stmt = null;
         ResultSet rs = null;
+        String url = ora.url;
+        String user = ora.user;
+        String pw = ora.pw;
 
         try {
+        	System.out.println("url = " +  ora.url);
+        	System.out.println("user = " +  ora.user);
             String id2 = request.getParameter("ID");
             String pw2 = request.getParameter("PW");
             boolean loginSuccess = false;

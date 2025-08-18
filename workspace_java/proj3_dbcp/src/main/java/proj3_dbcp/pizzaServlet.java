@@ -80,6 +80,7 @@ public class pizzaServlet extends HttpServlet {
             System.out.println("로그인 DB 연결 성공");
 
             // 3. 쿼리 실행
+//            conn.prepareStatement(top) 요즘은 이거 쓴데
             stmt = conn.createStatement();
             String order = String.format(
             	    "INSERT INTO pizza_orders (order_id, pizza_type, pizza_size, toppings, special_requests) " +
