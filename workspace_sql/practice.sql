@@ -453,3 +453,8 @@ select /*+ USE_HASH(o) */
 
 
 
+
+select * from accounts;
+select * from pizza_orders;
+select * from pizzalist;
+
