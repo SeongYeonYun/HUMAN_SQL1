@@ -29,6 +29,7 @@
 	    핫소스<input type = "checkbox" value = "핫소스"  name = "topping">
     </div>
 	<input type = "submit" value = "전송">    
+	<input type = "submit" value = "변경">
     
 </form>
 </body>
