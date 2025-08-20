@@ -103,6 +103,46 @@ public class EmpDAO {
 		
 		return resultDTO;
 	}
+	
+	
+	//하나의 값만 삭제하는 기능
+	public EmpDTO delOneEmp(EmpDTO empDTO) {
+	    String sel = "SELECT empno, ename, job, mgr, hiredate, sal, comm, deptno FROM emp2 WHERE empno = ?";
+	    String del = "DELETE FROM emp2 WHERE empno = ?";
+	    try (Connection conn = getConn()) {
+	        conn.setAutoCommit(false);
+
+	        EmpDTO before = null;
+	        try (PreparedStatement ps1 = conn.prepareStatement(sel)) {
+	            ps1.setInt(1, empDTO.getEmpno());
+	            try (ResultSet rs = ps1.executeQuery()) {
+	                if (rs.next()) {
+	                    before = new EmpDTO();
+	                    before.setEmpno(rs.getInt("empno"));
+	                    before.setEname(rs.getString("ename"));
+	                    before.setJob(rs.getString("job"));
+	                    before.setMgr(rs.getInt("mgr"));
+	                    before.setHiredate(rs.getDate("hiredate"));
+	                    before.setSal(rs.getInt("sal"));
+	                    before.setComm(rs.getInt("comm"));
+	                    before.setDeptno(rs.getInt("deptno"));
+	                }
+	            }
+	        }
+	        if (before == null) { conn.rollback(); return null; }
+
+	        try (PreparedStatement ps2 = conn.prepareStatement(del)) {
+	            ps2.setInt(1, empDTO.getEmpno());
+	            int cnt = ps2.executeUpdate();
+	            if (cnt == 1) { conn.commit(); return before; }
+	            else { conn.rollback(); return null; }
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return null;
+	    }
+	}
+
 }
 
 

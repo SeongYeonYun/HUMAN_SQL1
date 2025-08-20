@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import emp.dto.EmpDTO;
+import emp.service.EmpService;
+
 /**
  * Servlet implementation class EmpRemoveController
  */
@@ -26,11 +29,19 @@ public class EmpRemoveController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		0. 삭제 버튼을 눌렀을떄
-//		1. 삭제되는 값을 받아와 + 서비스는 거치자
-//		2. DAO에서 DB connect
-//		3. DAO 파일에서 DELETE문 실행
-//		4. 삭제된 값만 지워버려
+//		0. 삭제 버튼을 눌렀을떄 동작
+		
+//		1. 삭제되는 값을 받아와(empno)
+		
+//		2. DTO에 담아주기
+		EmpDTO empDTO = new EmpDTO();
+		
+		
+//		3. DB 커넥트
+		EmpService empService = new EmpService();
+		int result = empService.DelOneEmp(empDTO);
+		System.out.println(result + "만큼 삭제 되었습니다.");
+//		4. 전체목록 페이지 표시
 		
 		
 		

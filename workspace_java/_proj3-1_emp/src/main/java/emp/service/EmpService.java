@@ -20,4 +20,9 @@ public class EmpService {
 		return dto;
 	}
 	
+	public EmpDTO DelOneEmp(EmpDTO empDTO){
+		return empDAO.delOneEmp(empDTO);
+		
+	}
+	
 }
