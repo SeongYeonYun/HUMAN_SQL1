@@ -50,12 +50,6 @@ public class EmpDetailController extends HttpServlet {
 			out.println("	<tr><td>comm</td><td>"+ empDTO2.getComm() +"</td><tr>");
 			out.println("	<tr><td>deptno</td><td>"+ empDTO2.getDeptno() +"</td><tr>");
 			out.println("</table>");
-			out.println("<form method = 'post' action = 'remove'>");
-			
-			out.println("<input type = 'submit' name = 'empno'>");
-			out.println("</table>");
-			
-			
 			
 		}catch (Exception e) {
 			e.printStackTrace();
