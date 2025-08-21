@@ -7,17 +7,22 @@ import emp.dto.EmpDTO;
 
 public class EmpService {
 
-	EmpDAO empDAO = new EmpDAO();
-	
-	public List<EmpDTO> getAllEmp(){
-		EmpDAO empDAO = new EmpDAO();
-		List list = empDAO.selectAllEmp();
-		return list;
-	}
-	
-	public EmpDTO getOneEmp(EmpDTO empDTO) {
-		EmpDTO dto = empDAO.selectOneEmp(empDTO);
-		return dto;
-	}
-	
+    private final EmpDAO empDAO = new EmpDAO();
+
+    public List<EmpDTO> getAllEmp() {
+        return empDAO.selectAllEmp();
+    }
+
+    public EmpDTO getOneEmp(EmpDTO empDTO) {
+        return empDAO.selectOneEmp(empDTO);
+    }
+
+    public int removeEmp(EmpDTO empDTO) {
+        return empDAO.deleteEmp(empDTO);
+    }
+
+    // 수동 empno 삽입
+    public int addEmp(EmpDTO empDTO) {
+        return empDAO.insertEmp(empDTO);
+    }
 }

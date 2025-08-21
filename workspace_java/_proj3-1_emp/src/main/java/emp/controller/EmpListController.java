@@ -28,6 +28,7 @@ public class EmpListController extends HttpServlet {
 		// 화면에 출력(응답 정적 자원 만들기)
 		PrintWriter out = response.getWriter();
 		
+		out.println("<a href = list> </a>");
 		out.println("<table border=1>");
 		out.println("	<tr>");
 		out.println("		<th>empno</th>");
@@ -40,7 +41,14 @@ public class EmpListController extends HttpServlet {
 			out.println("<tr>");
 			out.println("	<td>"+ dto.getEmpno() +"</td>");
 			out.println("	<td><a href='detail?empno="+ dto.getEmpno() +"'>"+ dto.getEname() +"</a></td>");
+			out.println("	<td>"+ dto.getJob() +"</td>");
+			out.println("	<td>"+ dto.getMgr() +"</td>");
+			out.println("	<td>"+ dto.getHiredate() +"</td>");
 			out.println("	<td>"+ dto.getSal() +"</td>");
+			out.println("	<td>"+ dto.getComm() +"</td>");
+			out.println("	<td>"+ dto.getDeptno() +"</td>");
+
+
 			out.println("</tr>");	
 		}
 		out.println("</table>");

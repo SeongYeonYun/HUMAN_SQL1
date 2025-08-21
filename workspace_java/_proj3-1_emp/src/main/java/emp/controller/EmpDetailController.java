@@ -18,6 +18,8 @@ public class EmpDetailController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("/detail doGet 실행: 한명의 상세 정보만 조회");
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
 		
 		// 파라메터 empno를 int로 형변환
 		int empno = 0;
@@ -50,6 +52,12 @@ public class EmpDetailController extends HttpServlet {
 			out.println("	<tr><td>comm</td><td>"+ empDTO2.getComm() +"</td><tr>");
 			out.println("	<tr><td>deptno</td><td>"+ empDTO2.getDeptno() +"</td><tr>");
 			out.println("</table>");
+
+			out.println("<form method='post' action='remove'>");
+			out.println("	<input type='hidden' name='empno' value='"+ empDTO2.getEmpno() +"'>");
+			out.println("	<input type='submit' value='삭제'>");
+			out.println("</form>");
+			
 			
 		}catch (Exception e) {
 			e.printStackTrace();

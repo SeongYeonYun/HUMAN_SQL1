@@ -567,3 +567,6 @@ SELECT
         TRUNC(
             TO_DATE('2024-09-12 09:00:00', 'YYYY-MM-DD HH24:MI:SS'))
                 AS D2 FROM DUAL;
+                
+                
+                select * from staff;
