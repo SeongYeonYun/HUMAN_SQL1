@@ -48,7 +48,7 @@ public class GetCookies extends HttpServlet {
 	    		System.out.println("name: " + name + " /n value: " + value);
 	    		
 	    		if(!("showPopup".equals(name) && "N".equals(value))) {
-	    			isShow = false;
+	    			 isShow = false;
 	    		}
 	    		
 	    	}
