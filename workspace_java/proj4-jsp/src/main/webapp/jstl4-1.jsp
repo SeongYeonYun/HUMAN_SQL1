@@ -19,6 +19,5 @@
 	requestScope : ${requestScope.game}<br> 
 	sessionScope : ${sessionScope.game}<br> 
 	applicationScope : ${applicationScope.game}<br> 
-
 </body>
 </html>
