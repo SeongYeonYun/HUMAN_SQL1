@@ -1,3 +1,5 @@
+이전에 깃을 설정했던 방식
+
 /.metadata/
 # Eclipse / WTP / Tomcat (개발용)
 Servers/
@@ -23,3 +25,5 @@ Thumbs.db
 # 로컬 비밀 설정
 **/META-INF/context.xml
 # -> 대신 context.example.xml 템플릿을 커밋(아래 설명)
+
+
