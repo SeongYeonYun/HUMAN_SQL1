@@ -11,7 +11,7 @@ public class OracleJDBCExam {
 	public static void main(String[] args) {
 		
 		String url = "jdbc:oracle:thin:@125.181.132.133:51521:xe";
-		String user = "scott4_0";
+		String user = "scott4_12";
 		String password = "tiger";
 		String driver = "oracle.jdbc.driver.OracleDriver";
 		
@@ -64,6 +64,7 @@ public class OracleJDBCExam {
 			}
 			
 //			conn.close();
+			//반드시 close를 하진 않아도 자바가 알아서 종료해 주긴 하지만 닫아주는게 좋다. 선언한 순서의 역순 
 		}catch (Exception e) {
 			e.printStackTrace();
 		} finally {
