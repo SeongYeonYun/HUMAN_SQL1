@@ -10,8 +10,6 @@ import java.util.List;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
-
-import emp.dto.EmpDTO;
 import movieDTO.movieDTO;
 
 
