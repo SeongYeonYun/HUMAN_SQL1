@@ -11,7 +11,7 @@
 <body>
 
 
-<form method = "get" action ="paging" >
+<form method = "get" action="<c:url value='/paging'/>" > <!-- 이렇게 하면 처음 페이지는 1번 페이지로 됨 -->
 <h2>페이징 결과</h2>
 <c:if test="${empty moviespaging}">
   <p>표시할 데이터가 없습니다.</p>

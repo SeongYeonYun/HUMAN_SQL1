@@ -32,23 +32,28 @@ public class pagingServlet extends HttpServlet {
 	    request.setCharacterEncoding("UTF-8");
 	    response.setContentType("text/html; charset=UTF-8");
 	    response.setCharacterEncoding("UTF-8");
+	    
 	    pagingService pagingService = new pagingService();
 	    List<pagingDTO> list = pagingService.getAllmovies();
 	    
 	    
 	   
-	    int page = Integer.parseInt(request.getParameter("page"));
-    	
-	    
-	    
-	    page = 1;
+
 	    String pageparm = request.getParameter("page");
+	    int page = 1;
 	    System.out.println("pageparm = " + pageparm);
 
 	    if( pageparm != null && !pageparm.isBlank()) {
+	    	try{
+	    		
+	    		page = Integer.parseInt(pageparm);
+	    		
+	    		
+	    	} catch(Exception e) {
+	    		e.printStackTrace();
+	    		page = 1;
+	    	}
 
-	    	page = Integer.parseInt(pageparam);
-		    System.out.println("page = " + page);
 		    List<pagingDTO> list2 = pagingService.pagingservice(page);
 		    //페이징 서비스가 처음 로드 될떄는 1을 클ㄹ릭했을떄 나오는 화면, 그 다음 다른 버튼을 클릭했을떄 거기에 맞는 페이지를
 	//	    보이기 위해서 service -> DAO순서로 page값을 전달하여 로드하게 해보자
@@ -61,7 +66,7 @@ public class pagingServlet extends HttpServlet {
 		    
 	    } else {
 
-		    System.out.println("page = " + page);
+	    	// page 파라미터가 없을 때: 기본값 1페이지로 처리
 		    List<pagingDTO> list2 = pagingService.pagingservice(page);
 		    //페이징 서비스가 처음 로드 될떄는 1을 클ㄹ릭했을떄 나오는 화면, 그 다음 다른 버튼을 클릭했을떄 거기에 맞는 페이지를
 	//	    보이기 위해서 service -> DAO순서로 page값을 전달하여 로드하게 해보자
@@ -71,6 +76,7 @@ public class pagingServlet extends HttpServlet {
 		    request.setAttribute("movies", list);
 		    request.setAttribute("moviespaging", list2);
 		    request.getRequestDispatcher("paging.jsp").forward(request, response);
+	    
 	    }
 
 	    
