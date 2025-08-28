@@ -1,0 +1,80 @@
+package emp.controller;
+
+import java.io.IOException;
+import java.sql.Date;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import emp.dto.EmpDTO;
+
+@WebServlet("/add")
+public class EmpAddController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		EmpDTO dto = new EmpDTO();
+		try {
+//			String sEmpno = request.getParameter("empno");
+//			int empno = Integer.parseInt(sEmpno);
+			String ename = request.getParameter("ename");
+			dto.setEname(ename);
+			
+			String job = request.getParameter("job");
+			dto.setJob(job);
+			
+			String sMgr = request.getParameter("mgr");
+			int mgr = Integer.parseInt(sMgr);
+			dto.setMgr(mgr);
+			
+			String sHiredate = request.getParameter("hiredate");
+			Date hiredate = Date.valueOf(sHiredate);
+			dto.setHiredate(hiredate);
+			
+			String sSal = request.getParameter("sal");
+			int sal = Integer.parseInt(sSal);
+			dto.setSal(sal);
+			
+			String sComm = request.getParameter("comm");
+			int comm = Integer.parseInt(sComm);
+			dto.setComm(comm);
+			
+			String sDeptno = request.getParameter("deptno");
+			int deptno = Integer.parseInt(sDeptno);
+			dto.setDeptno(deptno);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	//파라미터 String값을 줌,
+	//만약에 원래 String이라면 String을 돌려줌
+	//원래 int 라면 int를 돌려주게 getclass.getname
+	
+	//오버라이드 해서 자료형을 반환하는 메소드는 안되나?????
+
+	
+//	private Object getParam(String param) {
+//		Object o = param;
+//		try {
+//			String sEmpno = request.getParameter("empno");
+//			dto.setEmpno((int)getParam(sEmpno));
+//			
+//			
+//		}catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
+	
+
+}

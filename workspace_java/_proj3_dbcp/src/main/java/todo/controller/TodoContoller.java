@@ -30,7 +30,8 @@ public class TodoContoller extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		out.println("<table border=1>");
-		// 목록 보여주기
+		
+		// 목록 보여주기 html처럼 보여줌
 		for(int i=0; i<list.size(); i++) {
 			System.out.println(list.get(i));
 			
@@ -47,7 +48,7 @@ public class TodoContoller extends HttpServlet {
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("/todo goPost 실행");
-		// 한글 깨짐 방지
+		// 한글 깨짐 방지 / 반드시 맨 위에 놓을것
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		

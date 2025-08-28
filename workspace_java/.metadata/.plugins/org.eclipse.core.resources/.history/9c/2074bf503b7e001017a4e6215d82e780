@@ -1,0 +1,55 @@
+package movieDAO;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
+
+public class movieDAO {
+    private final DataSource dataSource;
+
+    public movieDAO() {
+        try {
+            Context ctx = new InitialContext();
+            this.dataSource = (DataSource) ctx.lookup("java:comp/env/jdbc/oracle");
+        } catch (Exception e) {
+            throw new RuntimeException("JNDI lookup 실패: java:comp/env/jdbc/oracle", e);
+        }
+    }
+
+    private Connection getConn() throws SQLException {
+        return dataSource.getConnection();
+    }
+
+    public List<movieDTO> selectAllmovie() {
+        String sql = "SELECT title, code,status, country, genre, open FROM movies";
+        List<movieDTO> list = new ArrayList<>();
+        try (Connection conn = getConn();
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                movieDTO dto = new movieDTO();
+                dto.setEmpno(rs.getInt("title"));
+                dto.setEname(rs.getString("title_en"));
+                dto.setSal(rs.getInt("code"));
+                dto.setJob(rs.getString("status"));
+                dto.setMgr(rs.getInt("country"));
+                dto.setHiredate(rs.getDate("genre"));
+                dto.setComm(rs.getInt("open"));
+                list.add(dto);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("selectAllEmp 실패", e);
+        }
+        return list;
+    }
+
+}

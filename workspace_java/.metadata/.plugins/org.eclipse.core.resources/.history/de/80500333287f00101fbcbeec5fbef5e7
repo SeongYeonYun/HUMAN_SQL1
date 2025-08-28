@@ -1,0 +1,55 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	.popup{
+		border : 1px solid black;
+		width : 100px;
+		height : 150px;
+	}
+	
+	.hide {
+		display : none;
+	}
+
+</style>
+<script>
+	window.addEventListener('load', ()=>{
+		document.querySelector('#noShow').addEventListener('click', function(event){
+			
+			
+			//자바스크립트로 쿠키 먹이는법
+			document.cookie = 'a = a1';
+			document.cookie = 'abcd = 1234';
+			
+			
+			const isCheck = event.target.checked;
+			if( isCheck ){
+				
+				
+				
+			}
+			
+			
+		})
+	})
+</script>
+
+</head>
+<body>
+<div class = "popup">
+
+	공지입니다. 꼭 확인하세요<br><br>
+	
+	<input type = "checkbox" id= "noShow"> 10초간 보지 않기
+	
+	
+</div>
+
+
+</body>
+</html>

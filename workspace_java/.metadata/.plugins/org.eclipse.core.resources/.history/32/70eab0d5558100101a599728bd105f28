@@ -1,0 +1,64 @@
+package Session;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+/**
+ * Servlet implementation class MypageServlet
+ */
+@WebServlet("/mypage")
+public class MypageServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+
+    public MypageServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html; charset=utf-8"); 
+		
+		HttpSession session = request.getSession(false);
+		
+		
+//		if(session ==null) {
+//			System.out.println("아예 처음 방문");
+//			//없으면 항상 null, 
+//			Boolean login = (Boolean)session.getAttribute("login"); //(Boolean)은 NULL 값이 들어갈수 있다.
+//			if(login !=true) {
+//				//로그인이 안됬을경우
+//				response.sendRedirect("cookie_5.jsp");
+//				
+//			} else {
+//				response.getWriter().println("sucess");
+//			}
+//		}
+		
+		
+		if(session == null) {
+			System.out.println("아예 처음 방문");
+			Boolean login = (Boolean)session.getAttribute("login"); //(Boolean)은 NULL 값이 들어갈수 있다.
+		} else {
+			if(login != null) {
+				
+			} else {
+				
+			}
+		}
+		response.getWriter().println("로그인 해야 올수 있는곳");
+		response.getWriter().println("아이디 : " + session.getAttribute("id"));
+	}
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	}
+
+}

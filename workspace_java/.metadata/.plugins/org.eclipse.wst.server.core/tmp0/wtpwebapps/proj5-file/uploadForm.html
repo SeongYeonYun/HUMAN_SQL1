@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<!-- 파일 첨부시 유의 사항
+메소드는 꼭 post로 
+enctype = 반드시 쓸것 
+-->
+
+
+<body>
+	<form method = "post" action = "upload.do" enctype = "multipart/form-data" accept-charset = "utf-8">
+	 	
+	 	
+	제목 : 내용 <input type = "text" name = "title"><br>
+	내용<br>
+	<textarea name = "content" cols = 40 rows = 10></textarea> <br>
+	첨부파일 : <input type = "file" name = "file1"><br>
+	<input type = "submit" value = 등록>
+	</form>
+	
+</body>
+</html>

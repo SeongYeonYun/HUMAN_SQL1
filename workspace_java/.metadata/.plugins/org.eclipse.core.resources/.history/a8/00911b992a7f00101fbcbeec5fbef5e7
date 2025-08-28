@@ -1,0 +1,84 @@
+package cookie;
+
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class SetCookie
+ */
+@WebServlet("/Cookie/set")
+public class SetCookie extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public SetCookie() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	    request.setCharacterEncoding("UTF-8");
+	    response.setContentType("text/html; charset=UTF-8");
+	    response.setCharacterEncoding("UTF-8");
+	    
+		//만료일이 있는 쿠키
+		Cookie c1 = new Cookie("addr", "천안시");
+		c1.setMaxAge(10); //초단위
+		response.addCookie(c1); //브라우저가 쿠키를 저장함
+		//개발자 도구 > application > 쿠키 술서로 들어가면 쿠키를 확인 가능하다.
+		//일주일간 광고 보지 않기 같은 기능, 아이디 저장 기능 같은 것들
+		
+		
+		
+		//만료일이 없는 쿠키
+		//세션 쿠키 : 평생 남아있지만 브라우저를 껐다 키면 사라짐
+		//setmaxage를 설정하지 않거나 음수로 설정
+		//브라우저 메모리에만 저장된다
+		//모든 탭을 껐다 켜야만 사라진다.
+		
+		Cookie c2 = new Cookie("dinner", "밥");
+		c2.setMaxAge(-1);
+		response.addCookie(c2);
+
+		Cookie c3 = new Cookie("showPopup", "N");		
+		c3.setMaxAge(12);
+		response.addCookie(c3);
+		
+		//현제시간
+		LocalTime now = LocalTime.now();
+
+//		LocalDate now = LocalDate.now();
+		System.out.println(now.getHour());
+		System.out.println(now.getMinute());
+		System.out.println(now.getSecond());
+		
+		
+		System.out.println(24 - now.getHour());
+		System.out.println(60 - now.getMinute());
+		System.out.println(60 - now.getSecond());
+		
+		
+		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	}
+
+}

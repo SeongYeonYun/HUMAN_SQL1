@@ -1,0 +1,65 @@
+package paging_DAO;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
+import paging_DTO.pagingDTO;
+
+public class pagingDAO {
+    private final DataSource dataSource;
+
+    public pagingDAO() {
+        try {
+            Context ctx = new InitialContext();
+            this.dataSource = (DataSource) ctx.lookup("java:comp/env/jdbc/oracle");
+        } catch (Exception e) {
+            throw new RuntimeException("JNDI lookup 실패: java:comp/env/jdbc/oracle", e);
+        }
+    }
+
+    private Connection getConn() throws SQLException {
+        return dataSource.getConnection();
+    }
+    
+    
+    public List<pagingDTO> selectAllmovies() {
+//    	System.out.println("DAO SQL문 실행");
+        String sql = " select rownum, title_en, code, status, country, genre, open from (select * from movies\r\n"
+        		+ "    where title_en is not null order by code desc) ";
+
+        List<pagingDTO> list = new ArrayList<>();
+        try (Connection conn = getConn();
+  
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+        
+                pagingDTO dto = new pagingDTO();
+                
+                dto.setRownum(rs.getInt("rownum"));
+                dto.setTitle_en(rs.getString("title_en"));
+                dto.setCode(rs.getInt("code"));
+                dto.setStatus(rs.getString("status"));
+                dto.setCountry(rs.getString("country"));
+                dto.setGenre(rs.getString("genre"));
+                list.add(dto);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("selectAllmovie 실패", e);
+        }
+        return list;
+    }
+    
+    
+    
+    
+}

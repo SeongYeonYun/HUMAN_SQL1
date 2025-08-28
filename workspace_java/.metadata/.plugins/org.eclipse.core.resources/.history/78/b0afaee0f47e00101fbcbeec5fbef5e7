@@ -1,0 +1,41 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	const count = 3;
+	const sum = 30;
+	console.log('합은 ${sum} 개수는 \${count}'); <!-- el태그로 인식함 -->
+</script>
+</head>
+<body>
+<%-- ${}는 표시 안된다 --%>
+<!-- el은 계산할때 문자를 숫자로 바꾼다 -->
+\${ 10 } : ${ 10 } <br>
+10<br>
+<%-- \${ "10" + 1 } : #${ "10" + 1 } <br> --%>
+<%-- \${ "10" + "s" } : #${ "10" + "s" } <br>  문자끼리의 연산은 안된다.에러가 나면 에러가 나는 부분을 에러로그 중앙에 
+보여주는 경우가 많다. --%>
+
+\${ "10" += 1 } : #${ "10"+=  1 } <br>
+\${ 10 % 4 } : #${  10 % 4 } <br>
+\${ 10 mod 4 } : #${  10 mod 4 } <br> <!-- 나머지 -->
+
+\${ 10 / 4 } : #${  10 / 4 } <br>
+\${ 10 div 4 } : #${  10 div 4 } <br>
+\${ "10" == "4" } : #${  "10" == "4" } <br>
+\${ "10" eq "4" } : #${  "10" eq "4" } <br>
+a&nbsp;&nbsp; a<br>
+
+&lt;/body&gt
+
+<!-- ne : 같지 않다. not (eq), gt : 크다 작다, nbsp : 띄어쓰기   -->
+
+
+
+
+</body>
+</html>

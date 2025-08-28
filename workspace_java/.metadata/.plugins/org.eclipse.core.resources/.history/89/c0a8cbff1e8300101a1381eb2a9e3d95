@@ -1,0 +1,84 @@
+package paging_ctrl;
+
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import paging_DTO.pagingDTO;
+import paging_Service.pagingService;
+
+/**
+ * Servlet implementation class pagingServlet
+ */
+@WebServlet("/paging")
+public class pagingServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+
+    public pagingServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+	    request.setCharacterEncoding("UTF-8");
+	    response.setContentType("text/html; charset=UTF-8");
+	    response.setCharacterEncoding("UTF-8");
+	    pagingService pagingService = new pagingService();
+	    List<pagingDTO> list = pagingService.getAllmovies();
+	    
+	    
+	   
+	    int page = Integer.parseInt(request.getParameter("page"));
+	    String pageparm = request.getParameter("page");
+	    System.out.println(pageparm);
+	    
+	    if(pageparm != null && !pageparm.isBlank()) {
+		    System.out.println("page = " + page);
+		    List<pagingDTO> list2 = pagingService.pagingservice(page);
+		    //페이징 서비스가 처음 로드 될떄는 1을 클ㄹ릭했을떄 나오는 화면, 그 다음 다른 버튼을 클릭했을떄 거기에 맞는 페이지를
+	//	    보이기 위해서 service -> DAO순서로 page값을 전달하여 로드하게 해보자
+		    
+		    System.out.println("DEBUG /paging size=" + (list==null? "null" : list.size())); // 콘솔 확인
+		    
+		    request.setAttribute("movies", list);
+		    request.setAttribute("moviespaging", list2);
+		    request.getRequestDispatcher("paging.jsp").forward(request, response);
+		    
+	    } else {
+	    	page = 1;
+		    System.out.println("page = " + page);
+		    List<pagingDTO> list2 = pagingService.pagingservice(page);
+		    //페이징 서비스가 처음 로드 될떄는 1을 클ㄹ릭했을떄 나오는 화면, 그 다음 다른 버튼을 클릭했을떄 거기에 맞는 페이지를
+	//	    보이기 위해서 service -> DAO순서로 page값을 전달하여 로드하게 해보자
+		    
+		    System.out.println("DEBUG /paging size=" + (list==null? "null" : list.size())); // 콘솔 확인
+		    
+		    request.setAttribute("movies", list);
+		    request.setAttribute("moviespaging", list2);
+		    request.getRequestDispatcher("paging.jsp").forward(request, response);
+	    }
+
+	    
+	    
+	    
+	    
+	    
+	    
+	}
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}

@@ -1,0 +1,114 @@
+package emp.dao;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
+import emp.dto.EmpDTO;
+
+public class EmpDAO {
+
+    private final DataSource dataSource;
+
+    public EmpDAO() {
+        try {
+            Context ctx = new InitialContext();
+            this.dataSource = (DataSource) ctx.lookup("java:comp/env/jdbc/oracle");
+        } catch (Exception e) {
+            throw new RuntimeException("JNDI lookup 실패: java:comp/env/jdbc/oracle", e);
+        }
+    }
+
+    private Connection getConn() throws SQLException {
+        return dataSource.getConnection();
+    }
+
+    public List<EmpDTO> selectAllEmp() {
+        String sql = "SELECT empno, ename, sal FROM emp2";
+        List<EmpDTO> list = new ArrayList<>();
+        try (Connection conn = getConn();
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                EmpDTO dto = new EmpDTO();
+                dto.setEmpno(rs.getInt("empno"));
+                dto.setEname(rs.getString("ename"));
+                dto.setSal(rs.getInt("sal"));
+                dto.setJob(rs.getString("job"));
+                dto.setMgr(rs.getInt("mgr"));
+                dto.setHiredate(rs.getDate("hiredate"));
+                dto.setComm(rs.getInt("comm"));
+                dto.setDeptno(rs.getInt("deptno"));
+                list.add(dto);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("selectAllEmp 실패", e);
+        }
+        return list;
+    }
+
+    public EmpDTO selectOneEmp(EmpDTO empDTO) {
+        String sql = "SELECT * FROM emp2 WHERE empno = ?";
+        EmpDTO result = null;
+        try (Connection conn = getConn();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, empDTO.getEmpno());
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    result = new EmpDTO();
+                    result.setEmpno(rs.getInt("empno"));
+                    result.setEname(rs.getString("ename"));
+                    result.setJob(rs.getString("job"));
+                    result.setMgr(rs.getInt("mgr"));
+                    result.setHiredate(rs.getDate("hiredate"));
+                    result.setSal(rs.getInt("sal"));
+                    result.setComm(rs.getInt("comm"));
+                    result.setDeptno(rs.getInt("deptno"));
+                }
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("selectOneEmp 실패", e);
+        }
+        return result;
+    }
+
+    public int deleteEmp(EmpDTO empDTO) {
+        String sql = "DELETE FROM emp2 WHERE empno = ?";
+        try (Connection conn = getConn();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, empDTO.getEmpno());
+            return ps.executeUpdate();
+        } catch (Exception e) {
+            throw new RuntimeException("deleteEmp 실패", e);
+        }
+    }
+
+    //  수동 empno 삽입 (인덱스 1..8 주의)
+    public int insertEmp(EmpDTO emp) {
+        String sql = "INSERT INTO emp2 (empno, ename, job, mgr, hiredate, sal, comm, deptno) " +
+                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        try (Connection conn = getConn();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            int i = 1;
+            ps.setInt(i++,    emp.getEmpno());
+            ps.setString(i++, emp.getEname());
+            ps.setString(i++, emp.getJob());
+            ps.setInt(i++,    emp.getMgr());
+            ps.setDate(i++,   emp.getHiredate()); // java.sql.Date
+            ps.setInt(i++,    emp.getSal());
+            ps.setInt(i++,    emp.getComm());
+            ps.setInt(i++,    emp.getDeptno());
+
+            return ps.executeUpdate();
+        } catch (Exception e) {
+            throw new RuntimeException("insertEmp 실패", e);
+        }
+    }
+}

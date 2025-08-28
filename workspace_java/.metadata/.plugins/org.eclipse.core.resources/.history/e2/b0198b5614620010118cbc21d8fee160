@@ -1,0 +1,10 @@
+package sce01_exam01;
+
+public class ExtendsExam {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

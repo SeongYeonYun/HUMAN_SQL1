@@ -1,0 +1,11 @@
+package movieService;
+
+import java.util.List;
+
+public class movieService {
+    private final movieDAO movieDAO = new movieDAO();
+
+    public List<movieDTO> getAllEmp() {
+        return movieDAO.selectAllEmp();
+    }
+}

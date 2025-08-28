@@ -1,0 +1,11 @@
+package paging_Service;
+
+import paging_DAO.pagingDAO;
+
+public class pagingService {
+	public view{
+		 pagingDAO.countMovies();
+	}
+	
+	
+}

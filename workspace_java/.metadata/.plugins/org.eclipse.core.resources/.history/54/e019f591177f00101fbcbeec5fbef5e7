@@ -1,0 +1,131 @@
+<%@ page language="java" 
+contentType="text/html; charset=UTF-8"
+
+    pageEncoding="UTF-8"
+    import = "java.util.List"
+    import = "java.util.HashMap"
+    import = "java.util.ArrayList"
+    import = "java.util.Map"
+    %>
+    
+<%-- jstl core --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>JSTL</h1>
+<% int a = 0;%>
+<c:set var="a" value = "10"/>   <!-- 자바 변수로 바로 등록이 됨 -->
+
+\${a } : ${a }<br>
+<%
+	String name = "HUMAN";
+
+%>  
+<%-- <c:set var = name2  value = "<%= name %>"> </c:set>      --%>
+<%-- \${name2 } : ${name2}<br> --%>
+
+<%-- <c:set var = name3 value = "${a}"> </c:set>   --%>
+<!-- <!-- 스코프 생략하면 page 스코프가 되는거고  -->    -->
+<%-- \${name3 } : ${name3}<br> --%>
+<hr>
+scope : page > request > session > application<br>
+
+<c:set var = "game"  value = "LOL" scope = "page"> </c:set> 
+<c:set var = "game"  value = "마비노기" scope = "request"> </c:set> 
+<c:set var = "game"  value = "서든어택" scope = "session"> </c:set> 
+<c:set var = "game"  value = "세븐나이츠" scope = "application"> </c:set> 
+\${ game } : ${ game }<br>   <!-- 기본은 page -->
+requestScope : ${requestScope.game}<br> 
+<%-- <jsp:forward page="jstl4-1.jsp"/> 반드시 jsp주석으로 처리할것--%> 
+
+<hr>
+
+<!-- 조건문, java태그로 해도 되고, EL로 해도 되고 -->
+<%-- <c:if test = "true" > --%>
+<!-- 	항상 참 true -->
+<%-- </c:if> --%>
+<%-- <c:if test = "${a eq 10} " > --%>
+<!-- 	a 는 10이 맞습니다. -->
+<%-- </c:if> --%>
+<%-- <c:if test = "${a ne 10} " > --%>
+<!-- 	a 는 10이 아닙니다. -->
+<%-- </c:if> --%>
+<%-- <c:if test = "${!(a eq 10)} " > --%>
+<!-- 	a 는 10이 아닙니다. -->
+<%-- </c:if> --%>
+<%-- <c:if test = "${not(a eq 10)}" > --%>
+<!-- 	a 는 10이 아닙니다. -->
+<%-- </c:if> --%>
+
+<c:choose>
+	<c:when test = "a eq 8" > a는 8입니다.</c:when>
+	<c:when test = "a eq 9" > a는 9입니다.</c:when>
+	<c:otherwise > a는 8이나 9가 아닙니다.</c:otherwise>
+	
+</c:choose>
+
+<%
+	List list = new ArrayList();
+	for(int i = 0; i<4 ; i++){
+		Map map = new HashMap();
+		map.put("title", "music" +i);
+		map.put("singer", "singer" +i);
+		
+		list.add(map);
+	}
+%>
+
+<c:set var="list2" value = "<%= list %>" scope = "page"></c:set>
+그냥 첫번쨰 재목 : ${list2[0].title}<br>
+ 
+ <c:forEach var = "song" items = "${list2}">
+	 title : ${song.title}<br>
+	 singer : ${song.singer}<br>
+ </c:forEach>
+ 
+ <c:forEach var = "i" begin = "0" end = "5">
+ 
+ 	${i},${list2[i].title} <br>
+ </c:forEach>
+ <c:forEach var = "i" begin = "0" end = "5" step = "2">
+ 
+ 	${i},${list2[i].title}<br> 
+ </c:forEach>
+ 
+ <hr>
+ varStatus<br>
+  <c:forEach var = "i" begin = "0" end = "5" step = "2" varStatus = "loop"> <!-- loop는 변수 -->
+ 	<%--count는 몇번째 출역된건지 출력, index는 인덱스, 
+ 	first나 last는 첫번쨰로 돌아가는 것인지,마지막으로 돌아가는것인지 확인 --%>
+ 	
+ 	${i},${list2[i].title}<br> 
+ 	loop.index : ${loop.index}<br> 
+ 	loop.count : ${loop.count}<br> 
+ 	loop.first : ${loop.first}<br> 
+ 	loop.last : ${loop.last}<br> 
+ </c:forEach>
+ 
+<%--  <c:forEach var = "song" items = "${list2 }"  begin = "1", end = "2" > --%>
+ 
+<%--  	${song.title }<br>  --%>
+<%--  </c:forEach> --%>
+
+<hr>
+
+<c:forEach var = "i" begin="2" end = "9">
+	<c:if test = "${i ne 5}" >
+	${i} * 1 = 
+	
+	</c:if>
+
+</c:forEach>
+ 
+</body>
+</html>

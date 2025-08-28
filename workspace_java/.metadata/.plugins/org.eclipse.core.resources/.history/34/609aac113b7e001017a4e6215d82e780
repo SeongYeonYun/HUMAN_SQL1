@@ -1,0 +1,65 @@
+package movieService;
+
+import java.sql.Date;
+
+public class movieService {
+	
+	private String title;
+	private String title_en;
+	private int code;
+	private String status;
+	private String country;
+	private String genre;
+	private Date open;
+	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getTitle_en() {
+		return title_en;
+	}
+	public void setTitle_en(String title_en) {
+		this.title_en = title_en;
+	}
+	public int getCode() {
+		return code;
+	}
+	public void setCode(int code) {
+		this.code = code;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getCountry() {
+		return country;
+	}
+	public void setCountry(String country) {
+		this.country = country;
+	}
+	public String getGenre() {
+		return genre;
+	}
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+	public Date getOpen() {
+		return open;
+	}
+	public void setOpen(Date open) {
+		this.open = open;
+	}
+	
+	
+	
+	@Override
+	public String toString() {
+		return "movieService [title=" + title + ", title_en=" + title_en + ", code=" + code + ", status=" + status
+				+ ", country=" + country + ", genre=" + genre + ", open=" + open + "]";
+	}
+}

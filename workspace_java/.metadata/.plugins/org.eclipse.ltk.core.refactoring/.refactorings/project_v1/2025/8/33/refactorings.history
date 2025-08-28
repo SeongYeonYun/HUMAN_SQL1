@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;templete.css&apos; to &apos;0_templete&apos;&#x0D;&#x0A;- Original project: &apos;project_v1&apos;&#x0D;&#x0A;- Destination element: &apos;0_templete&apos;&#x0D;&#x0A;- Original element: &apos;templete.css&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move file" element1="0_templete/asset/templete.css" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1754958163633" target="0_templete" units="0" version="1.0"/>
+</session>

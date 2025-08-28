@@ -1,0 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+    <%-- jstl core --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<c:set var = "game"  value = "LOL" scope = "page"> </c:set> 
+	<c:set var = "game"  value = "마비노기" scope = "request"> </c:set> 
+	<c:set var = "game"  value = "서든어택" scope = "session"> </c:set> 
+	<c:set var = "game"  value = "세븐나이츠" scope = "application"> </c:set> <!-- 모든 서블릿이 공유해서 쓰는 -->
+	pageScope : ${pageScope.game}<br> 
+	requestScope : ${requestScope.game}<br> 
+	sessionScope : ${sessionScope.game}<br> 
+	applicationScope : ${applicationScope.game}<br> 
+</body>
+</html>

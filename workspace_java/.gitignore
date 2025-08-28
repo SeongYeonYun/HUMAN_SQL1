@@ -1,25 +1,2 @@
-/.metadata/
-# Eclipse / WTP / Tomcat (개발용)
-Servers/
-**/Catalina/localhost/
-**/wtpwebapps/
-.logs/
-*.log
-
-# Eclipse 프로젝트 메타
-.project
-.classpath
-.settings/
-
-# 빌드 산출물
-target/
-build/
-out/
-
-# OS / 기타
-.DS_Store
-Thumbs.db
-
-# 로컬 비밀 설정
-**/META-INF/context.xml
-# -> 대신 context.example.xml 템플릿을 커밋(아래 설명)
+workspace_java/chap00/bin/
+*.class

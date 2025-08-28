@@ -1,0 +1,25 @@
+package cookie;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+@WebServlet("/error")
+public class Rollbacktest extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+
+        // 여기서 강제로 예외 발생
+        if (true) {
+            throw new RuntimeException("의도적으로 발생시킨 에러!");
+        }
+
+        // (여긴 실행되지 않음)
+        resp.getWriter().println("정상 처리됨");
+    }
+}
