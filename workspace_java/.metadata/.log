@@ -9312,3 +9312,6 @@ Caused by: org.eclipse.core.runtime.CoreException: One or more constraints have 
 	at org.eclipse.m2e.wtp.WebProjectConfiguratorDelegate.configure(WebProjectConfiguratorDelegate.java:138)
 	at org.eclipse.m2e.wtp.AbstractProjectConfiguratorDelegate.configureProject(AbstractProjectConfiguratorDelegate.java:97)
 	... 15 more
+
+!ENTRY org.eclipse.jst.server.core 4 0 2025-08-28 10:08:52.078
+!MESSAGE Could not launch in profiling mode because no profilers are configured.
