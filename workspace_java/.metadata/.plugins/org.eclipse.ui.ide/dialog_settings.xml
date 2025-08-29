@@ -114,6 +114,7 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="D:\workspace_1\workspace_java"/>
 			<item value="D:\project_v1\project_backend"/>
 			<item value="D:\workspace_1\workspace_java\pro_v1"/>
 			<item value="D:\workspace_1\workspace_java\_proj3-1_emp"/>

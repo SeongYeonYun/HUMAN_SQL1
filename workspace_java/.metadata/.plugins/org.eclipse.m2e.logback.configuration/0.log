@@ -1262,3 +1262,8 @@ Caused by: org.eclipse.core.runtime.CoreException: One or more constraints have 
 2025-08-28 10:00:04,096 [Worker-42: Building Project proj_camera] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace_1\workspace_java\proj_camera\src\main\resources
 2025-08-28 10:00:04,097 [Worker-42: Building Project proj_camera] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2025-08-28 10:00:04,097 [Worker-42: Building Project proj_camera] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace_1\workspace_java\proj_camera\src\test\resources
+2025-08-29 09:05:26,809 [Worker-9: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2025-08-29 09:05:44,181 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2025-08-29 09:05:44,182 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace_1\workspace_java\proj_camera\src\main\resources
+2025-08-29 09:05:44,185 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2025-08-29 09:05:44,185 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace_1\workspace_java\proj_camera\src\test\resources

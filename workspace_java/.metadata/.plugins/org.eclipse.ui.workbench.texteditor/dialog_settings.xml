@@ -6,8 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="title"/>
+		<item key="selection" value="seq"/>
 		<list key="findhistory">
+			<item value="seq"/>
 			<item value="title"/>
 			<item value="chat"/>
 			<item value="&gt;&gt;"/>
@@ -22,7 +23,6 @@
 			<item value="templ"/>
 			<item value="alert"/>
 			<item value="disable"/>
-			<item value="list"/>
 		</list>
 		<list key="replacehistory">
 		</list>
