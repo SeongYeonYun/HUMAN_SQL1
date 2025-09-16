@@ -1,2 +1,3 @@
 workspace_java/chap00/bin/
 *.class
+/.metadata/

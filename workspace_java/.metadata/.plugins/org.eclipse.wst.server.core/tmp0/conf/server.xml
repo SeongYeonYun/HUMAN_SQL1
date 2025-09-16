@@ -162,11 +162,11 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="D:\workspace_1\workspace_java\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="D:\workspace_1\workspace_java\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\project_v1" path="/project_v1" reloadable="true" source="org.eclipse.jst.jee.server:project_v1"/>
-      <Context docBase="D:\workspace_1\workspace_java\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\proj5-file" path="/proj5-file" reloadable="true" source="org.eclipse.jst.jee.server:proj5-file"/>
+      
+      <Context docBase="D:\workspace_1\workspace_java\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="D:\workspace_1\workspace_java\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\proj5-file" path="/proj5-file" reloadable="true" source="org.eclipse.jst.jee.server:proj5-file"/>
       <Context docBase="D:\workspace_1\workspace_java\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ptoj3-2_movie" path="/ptoj3-2_movie" reloadable="true" source="org.eclipse.jst.jee.server:ptoj3-2_movie"/>
       <Context docBase="D:\workspace_1\workspace_java\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\proj6_filtet" path="/proj6_filtet" reloadable="true" source="org.eclipse.jst.jee.server:proj6_filtet"/>
-      <Context docBase="D:\workspace_1\workspace_java\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\proj-paging" path="/proj-paging" reloadable="true" source="org.eclipse.jst.jee.server:proj-paging"/><Context docBase="D:\workspace_1\workspace_java\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\_proj3_dbcp" path="/_proj3_dbcp" reloadable="true" source="org.eclipse.jst.jee.server:_proj3_dbcp"/></Host>
+      <Context docBase="D:\workspace_1\workspace_java\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\proj-paging" path="/proj-paging" reloadable="true" source="org.eclipse.jst.jee.server:proj-paging"/><Context docBase="D:\workspace_1\workspace_java\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\_proj3_dbcp" path="/_proj3_dbcp" reloadable="true" source="org.eclipse.jst.jee.server:_proj3_dbcp"/><Context docBase="D:\workspace_1\workspace_java\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\spring_hello" path="/human" reloadable="true" source="org.eclipse.jst.jee.server:spring_hello"/></Host>
     </Engine>
   </Service>
 </Server>

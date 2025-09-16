@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Copy 10 elements to &apos;webapp&apos;&#x0D;&#x0A;- Original project: &apos;pro_v1&apos;&#x0D;&#x0A;- Destination element: &apos;webapp&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     0_templete&#x0D;&#x0A;     2_lecture&#x0D;&#x0A;     img&#x0D;&#x0A;     3_mypage&#x0D;&#x0A;     memopad&#x0D;&#x0A;     4_cs&#x0D;&#x0A;     6_chatbot&#x0D;&#x0A;     presentation_file&#x0D;&#x0A;     1_main&#x0D;&#x0A;     5_community" description="Copy folders" element1="0_templete" element10="5_community" element2="2_lecture" element3="img" element4="3_mypage" element5="memopad" element6="4_cs" element7="6_chatbot" element8="presentation_file" element9="1_main" files="0" flags="589830" folders="10" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1756093579220" target="/project_v1/src/main/webapp" units="0" version="1.0"/>
-</session>
