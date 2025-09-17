@@ -1,0 +1,15 @@
+127.0.0.1 - - [26/Aug/2025:21:48:45 +0900] "GET / HTTP/1.1" 404 808
+0:0:0:0:0:0:0:1 - - [26/Aug/2025:21:48:46 +0900] "GET /project_v1/WEB-INF/classes/Service/baewo_service.java HTTP/1.1" 404 722
+0:0:0:0:0:0:0:1 - - [26/Aug/2025:21:48:59 +0900] "GET /project_v1/WEB-INF/classes/Service/baewo_service.java HTTP/1.1" 404 722
+0:0:0:0:0:0:0:1 - - [26/Aug/2025:21:48:59 +0900] "GET /favicon.ico HTTP/1.1" 404 819
+0:0:0:0:0:0:0:1 - - [26/Aug/2025:21:49:25 +0900] "GET /project_v1/login HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [26/Aug/2025:21:49:25 +0900] "GET /project_v1/1_main/html/3_login.html HTTP/1.1" 200 1509
+0:0:0:0:0:0:0:1 - - [26/Aug/2025:21:49:25 +0900] "GET /project_v1/1_main/asset/3_login.css HTTP/1.1" 200 3740
+0:0:0:0:0:0:0:1 - - [26/Aug/2025:21:49:25 +0900] "GET /project_v1/1_main/asset/3_login.js HTTP/1.1" 200 4014
+0:0:0:0:0:0:0:1 - - [26/Aug/2025:21:49:34 +0900] "POST /project_v1/login HTTP/1.1" 401 63
+0:0:0:0:0:0:0:1 - - [26/Aug/2025:21:49:40 +0900] "POST /project_v1/login HTTP/1.1" 401 63
+127.0.0.1 - - [26/Aug/2025:21:52:48 +0900] "GET / HTTP/1.1" 404 808
+0:0:0:0:0:0:0:1 - - [26/Aug/2025:21:53:11 +0900] "POST /project_v1/login HTTP/1.1" 401 63
+127.0.0.1 - - [26/Aug/2025:21:55:51 +0900] "GET / HTTP/1.1" 404 808
+0:0:0:0:0:0:0:1 - - [26/Aug/2025:21:55:58 +0900] "POST /project_v1/login HTTP/1.1" 200 59
+0:0:0:0:0:0:0:1 - - [26/Aug/2025:21:55:58 +0900] "GET /project_v1/1_main/html/admin.html HTTP/1.1" 200 7439

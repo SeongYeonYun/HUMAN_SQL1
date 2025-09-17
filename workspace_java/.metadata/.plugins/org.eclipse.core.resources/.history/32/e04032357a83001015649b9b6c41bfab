@@ -1,0 +1,6 @@
+package camera_DTO;
+
+public class QrLoginToken {
+	
+
+}
