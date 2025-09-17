@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Move element &apos;AccountCreate.java&apos; to &apos;proj3_dbcp.AccountCreate.java&apos;&#x0D;&#x0A;- Original project: &apos;chat01&apos;&#x0D;&#x0A;- Destination element: &apos;proj3_dbcp.AccountCreate.java&apos;&#x0D;&#x0A;- Original element: &apos;sec01.exam01.AccountCreate.java&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move compilation unit" destination="=proj3_dbcp/src\/main\/java&lt;proj3_dbcp{AccountCreate.java" element1="/src&lt;sec01.exam01{AccountCreate.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" patterns="*" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1755141651213" units="1" version="1.0"/>
-</session>

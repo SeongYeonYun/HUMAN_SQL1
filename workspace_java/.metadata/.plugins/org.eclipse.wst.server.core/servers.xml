@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <servers>
   <server auto-publish-setting="2" auto-publish-time="1" configuration-id="/Servers/Tomcat v9.0 Server at localhost-config" deployDir="wtpwebapps" hostname="localhost" id="Tomcat v9.0 Server at localhost" name="Tomcat v9.0 Server at localhost" runtime-id="Apache Tomcat v9.0" server-type="org.eclipse.jst.server.tomcat.90" server-type-id="org.eclipse.jst.server.tomcat.90" start-timeout="45" stop-timeout="15" testEnvironment="true" timestamp="4">
-    <list key="modules" value0="project_v1::org.eclipse.jst.jee.server:project_v1::jst.web::4.0" value1="proj5-file::org.eclipse.jst.jee.server:proj5-file::jst.web::4.0" value2="ptoj3-2_movie::org.eclipse.jst.jee.server:ptoj3-2_movie::jst.web::4.0" value3="proj6_filtet::org.eclipse.jst.jee.server:proj6_filtet::jst.web::4.0" value4="proj-paging::org.eclipse.jst.jee.server:proj-paging::jst.web::4.0" value5="_proj3_dbcp::org.eclipse.jst.jee.server:_proj3_dbcp::jst.web::4.0"/>
+    <list key="modules"/>
   </server>
 </servers>
