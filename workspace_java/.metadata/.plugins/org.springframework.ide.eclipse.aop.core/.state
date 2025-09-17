@@ -2,4 +2,6 @@
 <aop-reference-model>
 <aop-project name="proj_camera"/>
 <aop-project name="spring_hello"/>
+<aop-project name="spring3_model"/>
+<aop-project name="spring_ioC_DI"/>
 </aop-reference-model>

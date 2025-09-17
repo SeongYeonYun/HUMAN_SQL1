@@ -5,6 +5,8 @@ D:\workspace_1\workspace_java\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsea
 \spring_hello\src\main\java
 D:\workspace_1\workspace_java\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1183451759.index
 \proj-paging\src\main\java
+D:\workspace_1\workspace_java\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2274522429.index
+\spring3_model\src\main\java
 D:\workspace_1\workspace_java\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\4091167037.index
 \proj_mes\src\main\java
 D:\workspace_1\workspace_java\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2847978661.index
@@ -25,6 +27,8 @@ D:\workspace_1\workspace_java\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsea
 \proj_mes\src\main\java
 D:\workspace_1\workspace_java\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1414523060.index
 \proj_mes\src\main\java
+D:\workspace_1\workspace_java\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2397337603.index
+\spring_ioC_DI\src\main\java
 D:\workspace_1\workspace_java\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1952188577.index
 \proj_mes\src\main\java
 D:\workspace_1\workspace_java\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3599300989.index
