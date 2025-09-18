@@ -2,7 +2,15 @@ package kr.or.human3;
 
 public class MemberDTO {
 	
-	
+	private String tel;
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
+
 	private String id;
 	private String pw;
 	private String name;
@@ -32,12 +40,13 @@ public class MemberDTO {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	
-	
 	@Override
 	public String toString() {
-		return "MemberDTO [id=" + id + ", pw=" + pw + ", name=" + name + ", age=" + age + "]";
+		return "MemberDTO [tel=" + tel + ", id=" + id + ", pw=" + pw + ", name=" + name + ", age=" + age + "]";
 	}
+	
+	
+	
 	
 	
 
