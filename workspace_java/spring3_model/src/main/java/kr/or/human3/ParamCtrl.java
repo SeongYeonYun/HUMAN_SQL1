@@ -7,9 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,6 +22,7 @@ public class ParamCtrl {
 
 	@RequestMapping("/join1.do") // 해당 주소로 보낸다
 	public void joinForm(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("join1.do start");
 		try {
 			request.getRequestDispatcher("/WEB-INF/views/join.jsp").forward(request, response);
 		} catch (ServletException e) {
@@ -64,7 +68,7 @@ public class ParamCtrl {
 
 		
 //		ModelAndView mav = new ModelAndView("result");
-//		mav.addObject("id", id);
+//		mav.addObject("id", id); jsp로 전달
 //		return mav;
 	}
 	
@@ -224,28 +228,122 @@ public class ParamCtrl {
 	@RequestMapping("/join7")
 	public void join7(String id, MemberDTO dto) {
 		
+		
+		
+		
+	}
+	
+	//보다 구체적이기에 우선권을 가진다.
+	@RequestMapping("/cal/1")
+	public void cal() {
+		System.out.println("1월!! 달력");
+	}
+	
+	
+	//url patttern
+	@RequestMapping("/lunch/{store}/order/{menu}")
+	public void lunch(
+			@PathVariable("store")
+			String store,
+			
+			@PathVariable("menu")  //생략 불가능
+			String menu
+			
+			) {
+		System.out.println(store + "에서 " + menu + "준비중");
+	}
+	
+	
+	
+	
+	//spring은 항상 forward방식으로 이동한다
+	@RequestMapping("/join8")
+	public String join8() {
+		return "join";
+		
+		
+		
+	}
+	
+	@RequestMapping("/join9")
+	public String join9() {
+		return "redirect:join1.do"; //url까지 바뀌는 redirect방식,view resolver가 알아서 해석하고 처리해줌
+		
+		
+		
+		
+	}
+	
+	
+	
+	@RequestMapping("/join10")
+	public String join10() {
+		return "forward:join1.do"; 
+		//jsp로 가는게 아니다. Viewreslover로 가는게 아니라 controller로 간다 .
+		//그래서 request mapping에 주소를 쓴다. 
+		//dispatcher이 다시 컨트롤러로 보내줌, 기존의 스프링과 차이는, 디스패처가 그림 그준 원래는 아래로 가는데 이건 오른쪽으로 감 노션보자
+		//웹 접근성(모든 사용자의 차별없는 사용을 위해(장애인)), 웹 호환성 이력서 스킬에 무조건 넣어야 함	
+		
+	}
+	
+	
+	///////////////////////////////////////////////////////
+
+	@RequestMapping("/join11")
+	public String join11(String id,Model model) {
+		
+		//컨트롤로가 모델로 가서 접근, 그 다음 스크롤러? 가 가져감, 모델은 request와 생명주기가 같다. 모델은 얕은 복사
+		
+		System.out.println("join11 start , id : " + id + "model : " + model);
+		model.addAttribute("id", id);
+
+		return "result"; 
+
+		
+	}
+	
+	
+	@RequestMapping(value = "/join12") //유일하게 value만 있는경우는 생략 가능
+	public String join12() {
+		
+		
+		return "join";
+		
+		
+	}
+	
+	@RequestMapping(value = {"/join13", "/join14"}) //중괄호를 사용할 경우 복수의 값읊 받는것이 가능
+	public String join13() {
+		
+		
+		return "join";
+		
+		
+	}	
+	
+	@RequestMapping(value = "/join15", method = RequestMethod.POST) //메소드가 다르면 주소가 같아도 됨
+	public String doPost() {
+	
+		System.out.println("doPost join 15");		
+		return "join";
+		
+		
+	}
+	
+	@RequestMapping(value = "/join15", method = RequestMethod.GET) //메소드가 다르면 주소가 같아도 됨
+	public String doGet() {
+	
+		System.out.println("doGet join 15");
+		return "join";
+		
+		
 	}
 	
 	
 	
 	
 	
-	
-	
-	
-	
-	
-		
-		
-
-
-	
-	}
-	
-	
-	
-	
-	
+}
 	
 	
 	

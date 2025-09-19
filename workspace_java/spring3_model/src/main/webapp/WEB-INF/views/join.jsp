@@ -17,7 +17,7 @@
 <!-- 	private int age; -->
 	
 	<!-- Login을 받을수 있는 페이지 -->
-	<form method = "post" action = "join6">
+	<form method = "post" action = "join11">
 		아이디 : <input type = "text" name = "id"><br>
 		비밀번호 : <input type = "text" name = "pw"><br>
 		이름 : <input type = "text" name = "name"><br>
