@@ -2,6 +2,7 @@
 dacon_venv/
 django_pra/
 
+.metadata
 
 # 주피터 체크포인트 무시
 .ipynb_checkpoints/
@@ -13,5 +14,21 @@ __pycache__/
 
 workspace_java/_chap00/bin/
 *.class
+
+# Eclipse/STS
+.metadata/
+.recommenders/
+.settings/
+.classpath
+.project
+
+# 빌드 산출물
+/bin/
+/target/
+
+# 기타 IDE
+.idea/
+*.iml
+.vscode/
 
 
