@@ -32,7 +32,7 @@
 		
 		const xhr = new XMLHttpRequest()
 // 		xhr.open('post' , 'ajax1')
-		xhr.open('post' , 'ajax2')
+		xhr.open('post' , 'ajax5')
 		xhr.setRequestHeader('Content-type', 'application/json')
 		xhr.send(JSON.stringify(data))
 		xhr.onload = function(){

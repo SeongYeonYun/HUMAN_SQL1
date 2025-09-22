@@ -35,5 +35,7 @@ D:\workspace_1\workspace_java\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsea
 \proj_mes\src\main\java
 D:\workspace_1\workspace_java\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1771443064.index
 \proj4-jsp\src\main\java
+D:\workspace_1\workspace_java\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2610437594.index
+\spring4_MyBatis\src\main\java
 D:\workspace_1\workspace_java\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\32721093.index
 \proj_mes\src\main\java

@@ -340,6 +340,12 @@ public class ParamCtrl {
 	}
 	
 	
+	@RequestMapping("/join")
+	public void join7() {
+		System.out.println("/join start");
+	}
+	
+	
 	
 	
 	

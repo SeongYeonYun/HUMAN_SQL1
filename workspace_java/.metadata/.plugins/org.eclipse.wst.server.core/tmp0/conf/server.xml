@@ -163,7 +163,7 @@
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
       
-     <Context docBase="D:\workspace_1\workspace_java\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="D:\workspace_1\workspace_java\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\spring3_model" path="/human3" reloadable="true" source="org.eclipse.jst.jee.server:spring3_model"/></Host>
+     <Context docBase="D:\workspace_1\workspace_java\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="D:\workspace_1\workspace_java\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\spring3_model" path="/human3" reloadable="true" source="org.eclipse.jst.jee.server:spring3_model"/><Context docBase="D:\workspace_1\workspace_java\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\spring4_MyBatis" path="/human4" reloadable="true" source="org.eclipse.jst.jee.server:spring4_MyBatis"/></Host>
     </Engine>
   </Service>
 </Server>
