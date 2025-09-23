@@ -23,10 +23,31 @@ public class EmpServiceImpl implements EmpService{
 	}
 	
 	@Override
-	public EmpDTO getEmp(){
-		EmpDTO result = empDAO.selectOneEmp();
+	public List<EmpDTO> selectEmp(EmpDTO dto){
+//		List<EmpDTO> result = empDAO.selectEmpList();
+		if(dto.getType().equals("1")) {
+			dto.setEname(dto.getKeyword());
+		} else if(dto.getType().equals("2")) {
+			dto.setJob(dto.getKeyword());
+		}
 		
-		return result;
+		return empDAO.selectEmp(dto);
+	}
+	
+	
+	@Override
+	public EmpDTO getEmp(EmpDTO dto){
+		
+		
+		
+		if(dto.getType().equals("1")) {
+			dto.setEname(dto.getKeyword());
+		} else if(dto.getType().equals("1")) {
+			dto.setJob(dto.getKeyword());
+		}
+		
+		
+		return dto;
 	}
 	
 	@Override
@@ -45,4 +66,37 @@ public class EmpServiceImpl implements EmpService{
 	public List getEname(String ename) {
 		return empDAO.selectEname(ename);
 	}
+	
+	@Override
+	public List selectDelete(int empno) {
+		return empDAO.selectDelete(empno);
+	}
+	
+	
+//	@Override
+//	public int selectJoin(EmpDTO empdto) {
+//		return empDAO.selectJoin(empdto);
+//	}
+//	public List<EmpDTO> selectEmp(EmpDTO dto){
+//		return empDAO.selectEmp(dto);
+//	}
+	
+	
+//	@Override
+//	public int selectJoin(EmpDTO empdto) {
+//		return empDAO.selectJoin(empdto);
+//	}
+	
+	
+//	@Override
+//	public List<EmpDTO> getEmp1(){
+//		if(dto.getType().equals("1")) {
+//			dto.setEname(dto.getKeyword());
+//		} else if(dto.getType().squals("1")) {
+//			dto.
+//		}
+//		
+//		return empDAO.selectEmp();
+//	}
+	
 }

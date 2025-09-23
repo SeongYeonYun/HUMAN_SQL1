@@ -57,10 +57,23 @@ public class EmpServiceimpl implements EmpService{
 		
 
 	}	
-//		@Autowired
+		@Autowired
 //		private EmpDAO empDAO1;
 		public EmpDTO getEmpno(int empno){
 			EmpDTO empdto = empDAO.selectEmpno(empno);
+			
+			
+			return empdto;
+			
+			
+			
+		}	
+		
+		
+		
+		@Autowired
+		public EmpDTO selectEmpnoEname(EmpDTO empno, EmpDTO ename){
+			EmpDTO empdto = empDAO.selectEmpnoEname(empno, ename);
 			
 			
 			return empdto;

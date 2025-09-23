@@ -12,5 +12,8 @@ public interface EmpDAO {
 	public Map selectOneEmpMap();
 	public List selectEmpno(int empno);
 	public List selectEname(String ename);
+	public List selectDelete(int empno);
+//	public int selectJoin(EmpDTO dto);
+	public List<EmpDTO> selectEmp(EmpDTO dto);
 	
 }

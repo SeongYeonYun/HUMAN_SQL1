@@ -56,4 +56,30 @@ public class EmpDAOImpl implements EmpDAO {
 		return sqlSession.selectList("mapper.emp.selectEname", ename);
 	}
 	
+	@Override
+	public List selectDelete(int empno) {
+		System.out.println("ename: "+ empno);
+		return sqlSession.selectList("mapper.emp.selectRemove", empno);
+	}
+	
+	
+	
+//	@Override
+//	public int selectJoin(EmpDTO dto) {
+//		System.out.println("dto: "+ dto);
+//		return sqlSession.selectList("mapper.emp.insertEmp2", dto);
+//	}
+	
+	
+	//검색, 조건을 곁들인
+	@Override
+	public List<EmpDTO> selectEmp(EmpDTO dto){
+		List<EmpDTO> resultList = null;
+		
+		resultList = sqlSession.selectList("mapper.emp.dynamic.selectEmp",dto);
+		System.out.println("resultList : "+ resultList);
+		
+		return resultList;
+	}
+	
 }

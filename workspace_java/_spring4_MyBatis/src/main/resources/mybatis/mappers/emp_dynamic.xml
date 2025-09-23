@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.emp.dynamic">
+	<select id ="selectALL" resultType = "empDTO" parameterType = "empDTO">
+		select * from emp2
+	</select>
+	
+	<select id ="selectEname" resultType = "empDTO" parameterType = "empDTO">
+		select * from emp2  where ename = #{ename}
+	</select>
+	
+	<select id ="selectJob" resultType = "empDTO" parameterType = "empDTO">
+		select * from emp2  where ename = #{job}
+	</select>
+	
+	
+	<select id ="selectEmp" resultType = "empDTO" parameterType = "empDTO">
+		select * from emp2
+<!-- where 문이 둘다 나타나면 안됨 -->
+<!-- 		where 1=1 		 -->
+
+		<where>
+<!-- 		<if test = "조건">조건에 해당하는 내용 </if> -->
+			<if test ="ename != null and ename !=''"  >
+	<!-- 			where ename = #{ename} -->
+				and lower(ename) like lower( '%' || #{ename} || '%' ) 
+			
+			</if>
+			<if test ="job != null and job !=''"  >
+	<!-- 			where job = #{job} -->
+<!-- 				and job = #{job} -->
+				and lower(job) like lower( '%' || #{job} || '%' ) 
+			
+			</if>
+			
+<!-- 			<if test ="type != null "  > -->
+	<!-- 			where ename = #{ename} -->
+<!-- 				and lower(ename) like lower( '%' || #{ename} || '%' )  -->
+			
+<!-- 			</if> -->
+		</where>
+		
+	</select>
+	
+	
+</mapper>
+
+
+
+

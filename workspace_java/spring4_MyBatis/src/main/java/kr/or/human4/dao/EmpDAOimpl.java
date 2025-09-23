@@ -85,6 +85,17 @@ public class EmpDAOimpl implements EmpDAO {
 	}
 	
 	
+	@Override
+	public EmpDTO selectEmpnoEname(EmpDTO ename, EmpDTO empno) {
+	    EmpDTO empdto = null;
+	    
+	    ename.setEmpno(empno.getEmpno()); // empno 값 세팅
+	    empdto = sqlSession.selectOne("mapper.emp.selectEmpnoEname", ename);
+	    
+	    System.out.println("dto : " + empdto);
+	    return empdto;
+	}
+	
 	
 
 }

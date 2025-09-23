@@ -15,11 +15,9 @@ public interface EmpService {
 	public EmpDTO getEmpOne();
 	public Map getEmpOneMap();
 	public EmpDTO getEmpno(int empno);
+	public EmpDTO selectEmpnoEname(String ename, int empno);
 	
-//	@Autowired
-//	EmpDAO empDAO;
-//	public List<EmpDTO> getEmpList(){
-//		List<EmpDTO> result = empDAO.selectEmplist();
+
 		
 	}
 

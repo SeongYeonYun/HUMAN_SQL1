@@ -34,9 +34,40 @@
 	
 		select * from emp2 
 		where ename = #{_parameter}
+		
 	</select>
 	
+	<select id = "selectJob" resultType = "empDTO" parameterType  = "string">
+		select * from emp2
+		 where job = #{_parameter}
+		 <!-- 
+		 
+		 #{} : ''를 자동으로 붙혀줌
+		 들어온 값이 숫자면 123, 문자면 'ㄴㅇㄴㅇ' 
+		
+		 ${} : ''를 안붙힘
+		 where ename = King -> 변수로 인식
+		 where ename = '${_parameter}' -> 역으로 해킹이 가능하다. sqlinjection 가능, sql문 자체를 변수로 받을때 쓰기는 함
+		 
+		 ex -> '' or '1' !=2
+		  -->
+	
+	</select>
+		
+<!-- 	<select id = "selectEmpnoEname" resultType = "kr.or.human4.dto.EmpDTO" parameterType = "EmpDTO"> -->
+	
+<!-- 		select * from emp2  -->
+<!-- 		where empno = #{empno} and ename = #{ename} -->
+		<!--  getter 가 실행된다 -->
+		
+<!-- 	</select> -->
 
+<select id="selectEmpnoEname"
+        resultType="kr.or.human4.dto.EmpDTO"
+        parameterType="kr.or.human4.dto.EmpDTO">
+    select * from emp2
+    where empno = #{empno} and ename = #{ename}
+</select>
 	
 	
 </mapper>

@@ -96,4 +96,23 @@ public class EmpCtrl {
 	}
 	
 	
+	@RequestMapping("/getempnoename")
+	public String getempnoename (Model model, String ename , int empno) {
+		
+		EmpDTO empdto = empService.selectEmpnoEname(empno, ename);
+		model.addAttribute("list", empdto);
+		
+		
+		
+		
+		
+		/////////////////////////////////////////////////
+		
+		
+		return "emp";
+		
+		
+	}
+	
+	
 }

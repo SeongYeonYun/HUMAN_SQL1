@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.or.human4.dto.EmpDTO;
@@ -64,4 +65,72 @@ public class EmpController {
 		model.addAttribute("list", list);
 		return "emp";
 	}
+	
+	
+	
+//	@RequestMapping("/listEmp")
+//	public String listEmp(Model model) {
+//		
+//		List<EmpDTO> list = empService.getEmpList();
+//
+//		model.addAttribute("list", list);
+//		
+//		return "emp";
+//	}
+	
+	
+	
+	
+	
+	@RequestMapping("/getemp")
+	public String getemp(Model model) {
+		List<EmpDTO> list = empService.getEmpList();
+		model.addAttribute("list", list);
+		return "emp";
+	}
+	
+	
+	
+	@RequestMapping("/delete")
+	public String deleteemp(Model model, int empno) {
+		List<EmpDTO> list = empService.selectDelete(empno);
+		model.addAttribute("list", list);
+		return "emp";
+	}
+	
+	
+	// 회원 가입 페이지로 이동
+	@RequestMapping("/join")
+	public String join() {
+		return "join";
+	}
+	
+	
+	
+	//상세조회
+	
+	@RequestMapping("/empDetail")
+	public String getDetail(Model model, EmpDTO dto) {
+
+		return "detail";
+	}
+
+	
+	@RequestMapping("/joinEmp2")
+	public  String joinemp(Model model, EmpDTO dto) {
+		int list = empService.selectJoin(dto);
+		model.addAttribute("list", list);
+		return "emp";
+	}
+	
+	@RequestMapping("/search")
+	public  String search(Model model, EmpDTO dto) {
+		List<EmpDTO> list = empService.selectEmp(dto);
+
+		model.addAttribute("list", list);
+		
+		return "emp";
+	}
+	
+	
 }
