@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<aop-reference-model>
-<aop-project name="proj_camera"/>
-<aop-project name="spring_hello"/>
-<aop-project name="_spring3_model"/>
-<aop-project name="spring3_model"/>
-<aop-project name="spring4_MyBatis"/>
-<aop-project name="spring_ioC_DI"/>
-</aop-reference-model>
