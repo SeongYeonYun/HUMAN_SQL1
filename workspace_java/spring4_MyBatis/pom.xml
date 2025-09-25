@@ -91,7 +91,14 @@
 		
 		
 		
-		
+			
+		<!-- Spring Test -->
+		<!--  테스트 주도 개발론???  -->
+		<dependency>
+		 <groupId>org.springframework</groupId>
+		 <artifactId>spring-test</artifactId>
+		 <version>${org.springframework-version}</version>
+		</dependency>	
 		
 		
 		
