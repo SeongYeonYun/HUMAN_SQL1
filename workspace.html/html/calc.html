@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calculator (table 레이아웃, 무색)</title>
+  <style>
+    /* * { box-sizing: border-box; } */
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
+
+    body {
+        display: grid;
+        place-items: center;
+    }
+
+    .wrap {
+        width: 320px;
+        max-width: 92vw;
+        padding: 16px;
+    }
+
+    .display {
+        height: 64px;
+        padding: 8px 10px;
+        margin-bottom: 12px;
+        display: flex;
+        flex-direction:column;
+        justify-content: center;
+        align-items: flex-end;
+    }
+
+    .display .small {
+        font-size: 12px;
+        line-height: 1;
+    }
+
+    .display .main {
+        font-size: 28px;
+        font-weight: 600;
+        line-height: 1.2;
+    }
+
+    table.calc {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 8px;
+    }
+
+    table.calc td { padding: 0; }
+
+    button.key { width: 100%; height: 44px; }
+
+    .equal { height: 96px; }
+  </style>
+</head>
+<body>
+  <div class="wrap" aria-label="계산기">
+    <section class="display" aria-live="polite" aria-atomic="true">
+      <div class="small" id="expr"> </div>
+      <div class="main" id="result">0</div>
+    </section>
+
+    <table class="calc" role="presentation" aria-label="키패드">
+      <tbody>
+        <tr>
+          <td><button class="key" aria-label="percent">%</button></td>
+          <td><button class="key" aria-label="clear entry">CE</button></td>
+          <td><button class="key" aria-label="clear">C</button></td>
+          <td><button class="key" aria-label="backspace">지우기</button></td>
+        </tr>
+        <tr>
+          <td><button class="key" aria-label="reciprocal">1/x</button></td>
+          <td><button class="key" aria-label="square">제곱</button></td>
+          <td><button class="key" aria-label="square root">제곱근</button></td>
+          <td><button class="key" aria-label="divide">÷</button></td>
+        </tr>
+        <tr>
+          <td><button class="key" aria-label="seven">7</button></td>
+          <td><button class="key" aria-label="eight">8</button></td>
+          <td><button class="key" aria-label="nine">9</button></td>
+          <td><button class="key" aria-label="multiply">×</button></td>
+        </tr>
+        <tr>
+          <td><button class="key" aria-label="four">4</button></td>
+          <td><button class="key" aria-label="five">5</button></td>
+          <td><button class="key" aria-label="six">6</button></td>
+          <td><button class="key" aria-label="minus">−</button></td>
+        </tr>
+        <tr>
+          <td><button class="key" aria-label="one">1</button></td>
+          <td><button class="key" aria-label="two">2</button></td>
+          <td><button class="key" aria-label="three">3</button></td>
+          <td rowspan="2"><button class="key equal" aria-label="equals">=</button></td>
+        </tr>
+        <tr>
+          <td><button class="key" aria-label="toggle sign">+/−</button></td>
+          <td><button class="key" aria-label="zero">0</button></td>
+          <td><button class="key" aria-label="dot">.</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    // --- Calculator Logic (vanilla JS) ---
+    const $result = document.getElementById('result');
+    const $expr = document.getElementById('expr');
+
+    let display = '0';        
+    let acc = null;            
+    let op = null;             
+    let lastOperand = null;    
+    let overwrite = true;      
+
+    const MAX_LEN = 18;
+
+    const opMap = { '×': '*', '÷': '/', '−': '-', '+': '+', '*': '*', '/': '/', '-': '-', '+': '+' };
+    const showOp = { '+': '+', '-': '−', '*': '×', '/': '÷' };
+
+    function updateDisplay() {
+      $result.textContent = display;
+      if (op && acc !== null) {
+        $expr.textContent = `${trimNum(acc)} ${showOp[op]}`;
+      } else {
+        $expr.textContent = '';
+      }
+    }
+
+    function trimNum(n) {
+      if (!isFinite(n)) return 'Error';
+      // 12자리 정도로 반올림 후 불필요한 0 제거
+      const s = (Math.round(n * 1e12) / 1e12).toString();
+      return s.includes('e') ? n.toString() : s.replace(/\.0+$/,'').replace(/(\.[0-9]*?)0+$/,'$1');
+    }
+
+    function setDisplayFromNumber(n) {
+      display = trimNum(n);
+      if (display.length > MAX_LEN) display = Number(n).toExponential(8);
+    }
+
+    function inputDigit(d) {
+      if (overwrite) {
+        display = d;
+        overwrite = false;
+      } else {
+        if (display.replace('-', '').length >= MAX_LEN) return;
+        display = (display === '0') ? d : display + d;
+      }
+    }
+
+    function inputDot() {
+      if (overwrite) {
+        display = '0.'; overwrite = false; return;
+      }
+      if (!display.includes('.')) display += '.';
+    }
+
+    function backspace() {
+      if (overwrite) return;
+      display = display.length > 1 && !(display.startsWith('-') && display.length === 2)
+        ? display.slice(0, -1)
+        : '0';
+    }
+
+    function clearEntry() { display = '0'; overwrite = true; }
+
+    function allClear() {
+      display = '0'; acc = null; op = null; lastOperand = null; overwrite = true; updateDisplay();
+    }
+
+    function toggleSign() {
+      if (display === '0') return;
+      display = display.startsWith('-') ? display.slice(1) : '-' + display;
+    }
+
+    function applyUnary(kind) {
+      let x = Number(display);
+      if (kind === '1/x') { if (x === 0) { display = 'Error'; overwrite = true; return; } x = 1 / x; }
+      if (kind === 'x²')  { x = x * x; }
+      if (kind === '²√x') { if (x < 0) { display = 'Error'; overwrite = true; return; } x = Math.sqrt(x); }
+      setDisplayFromNumber(x); overwrite = true;
+    }
+
+    function percent() {
+      // 단순 퍼센트: 현재 입력을 100으로 나눔 (실무/윈도 계산기와 일부 동작 다를 수 있음)
+      let x = Number(display) / 100;
+      setDisplayFromNumber(x);
+    }
+
+    function commitPending(b) {
+      if (op === '+') acc = acc + b;
+      else if (op === '-') acc = acc - b;
+      else if (op === '*') acc = acc * b;
+      else if (op === '/') acc = (b === 0 ? NaN : acc / b);
+    }
+
+    function chooseOperator(nextOp) {
+      const current = Number(display);
+      if (acc === null) {
+        acc = current;
+      } else if (!overwrite) {
+        commitPending(current);
+        setDisplayFromNumber(acc);
+      }
+      op = nextOp; overwrite = true; lastOperand = null; // 새 이항연산 시작
+    }
+
+    function equals() {
+      if (op == null) return;
+      let b;
+      if (lastOperand == null || !overwrite) {
+        b = Number(display);
+        lastOperand = b;
+      } else {
+        b = lastOperand;
+      }
+      commitPending(b);
+      setDisplayFromNumber(acc);
+      overwrite = true; // 다음 입력은 새로 시작
+    }
+
+    function press(label) {
+      if (/^[0-9]$/.test(label)) { inputDigit(label); updateDisplay(); return; }
+      switch (label) {
+        case '.': inputDot(); break;
+        case '지우기': backspace(); break;
+        case 'CE': clearEntry(); break;
+        case 'C': allClear(); return; // allClear가 update 포함
+        case '+/−': toggleSign(); break;
+        case '%': percent(); break;
+        case '1/x': case 'x²': case '²√x': applyUnary(label); break;
+        case '+': case '−': case '×': case '÷':
+          chooseOperator(opMap[label]); break;
+        case '=': equals(); break;
+      }
+      updateDisplay();
+    }
+
+    // 초기 렌더
+    updateDisplay();
+
+    // 버튼 클릭 위임
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('button.key');
+      if (!btn) return;
+      press(btn.textContent.trim());
+    });
+
+    // 키보드 입력(선택)
+    document.addEventListener('keydown', (e) => {
+      const key = e.key;
+      if (/^[0-9]$/.test(key)) return press(key);
+      if (key === '.') return press('.');
+      if (key === 'Backspace') return press('지우기');
+      if (key === 'Escape') return press('C');
+      if (key === 'Enter' || key === '=') return press('=');
+      if (key === '+') return press('+');
+      if (key === '-') return press('−');
+      if (key === '*') return press('×');
+      if (key === '/') return press('÷');
+    });
+  </script>
+</div>
+</body>
+</html>
